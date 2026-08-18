@@ -1,6 +1,6 @@
 # Firmenstein
 
 > [!NOTE]
-> Due to intellectual property considerations, the complete source code of Firmenstein will be released in early September 2026.
+> The complete Firmenstein codebase and documentation are currently being prepared for public release and will be available in early September 2026.
 >
-> In the meantime, an incomplete snapshot of some core components is available for reference on [Zenodo](https://zenodo.org/records/20355630).
+> In the meantime, an incomplete snapshot of some core components is available on [Zenodo](https://zenodo.org/records/20355630).
