@@ -1,0 +1,69 @@
+{
+  "manifest_abi_version": 3,
+  "target_image": "fmst-x86-nvram-demo",
+  "target_binary": "fmst_x86_nvram_guest",
+  "arch": "x86_64",
+  "global_state": {
+    "type_path": "crate::state::NvramState",
+    "init_path": "crate::state::NvramState::default"
+  },
+  "callsite_hooks": [],
+  "function_stubs": [
+    {
+      "id": "stub_outer_guarded_network_startup",
+      "target": {
+        "binary": "fmst_x86_nvram_guest",
+        "offset": "0x00000202",
+        "_symbol_hint": "guarded_network_startup @ 0x401202 (non-PIE abs VA)"
+      },
+      "flavor": "Call",
+      "entry_fn_path": "crate::function_stubs::stub_outer::intercept",
+      "source_file": "function_stubs/stub_outer.rs"
+    },
+    {
+      "id": "stub_nvram_init",
+      "target": {
+        "binary": "fmst_x86_nvram_guest",
+        "offset": "0x000000b3",
+        "_symbol_hint": "nvram_init @ 0x4010b3"
+      },
+      "flavor": "Call",
+      "entry_fn_path": "crate::function_stubs::stub_nvram_init::intercept",
+      "source_file": "function_stubs/stub_nvram_init.rs"
+    },
+    {
+      "id": "stub_nvram_set",
+      "target": {
+        "binary": "fmst_x86_nvram_guest",
+        "offset": "0x000000d7",
+        "_symbol_hint": "nvram_set @ 0x4010d7"
+      },
+      "flavor": "Call",
+      "entry_fn_path": "crate::function_stubs::stub_nvram_set::intercept",
+      "source_file": "function_stubs/stub_nvram_set.rs"
+    },
+    {
+      "id": "stub_nvram_get",
+      "target": {
+        "binary": "fmst_x86_nvram_guest",
+        "offset": "0x000000ea",
+        "_symbol_hint": "nvram_get @ 0x4010ea"
+      },
+      "flavor": "Call",
+      "entry_fn_path": "crate::function_stubs::stub_nvram_get::intercept",
+      "source_file": "function_stubs/stub_nvram_get.rs"
+    },
+    {
+      "id": "stub_nvram_commit",
+      "target": {
+        "binary": "fmst_x86_nvram_guest",
+        "offset": "0x000000f9",
+        "_symbol_hint": "nvram_commit @ 0x4010f9"
+      },
+      "flavor": "Call",
+      "entry_fn_path": "crate::function_stubs::stub_nvram_commit::intercept",
+      "source_file": "function_stubs/stub_nvram_commit.rs"
+    }
+  ],
+  "pseudo_files": []
+}

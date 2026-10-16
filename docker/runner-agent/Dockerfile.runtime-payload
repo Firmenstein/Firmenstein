@@ -1,0 +1,4 @@
+ARG RUNNER_TOOLING_IMAGE=firmenstein/runner-agent:py312-runtime-tooling
+FROM ${RUNNER_TOOLING_IMAGE}
+COPY --chown=runner:runner payload/ /opt/guestweave/
+LABEL org.firmenstein.runner.runtime="offline-runtime-v1"

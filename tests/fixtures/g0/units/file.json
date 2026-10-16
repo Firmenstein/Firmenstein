@@ -1,0 +1,22 @@
+{
+  "resource_group_id": "file_dev_nvram",
+  "primary_path": "/dev/nvram",
+  "resource_class": "pseudo_fs_dev",
+  "callsite_reports": [
+    {
+      "callsite_id": "file-callsite",
+      "containing_function_purpose": "opens nvram",
+      "setup_details": "read-only open",
+      "usage_reports": [],
+      "resource_usage_sites": [],
+      "total_usage_sites": 0
+    }
+  ],
+  "contract": {
+    "expectation": "expected_present",
+    "violation_effect": "fatal_exit"
+  },
+  "coverage_flows": [],
+  "summary": "The service requires the nvram device during startup.",
+  "observed_apis": []
+}

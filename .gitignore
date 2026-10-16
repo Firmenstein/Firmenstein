@@ -1,0 +1,72 @@
+# Credentials and local provider / agent state.
+.env
+.env.*
+!.env.example
+!.env.template
+*.pem
+*.key
+*.hexlic
+ida.reg
+.codex/
+.claude/
+.agents/
+.fmst/
+
+# Python environments, caches, packaging and coverage output.
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+/build/
+/dist/
+
+# Rust / native builds; keep fixture source and Cargo.lock files.
+target/
+/tests/runtime_fixtures/**/build/
+*.o
+*.so
+# Curated decompiler fixtures use shared-library names for source directories.
+!*.so/
+*.dylib
+qemu_*.core
+*.core
+
+# Firmware inputs, downloaded dependencies and generated runtime evidence.
+/dataset/
+/data/
+/tmp/
+/workdir/
+/workspace/
+/recipe/
+/lib/
+/qemu-source/
+/resources/
+/GuestWeave/
+/src/qiling_poc/
+/src/fmst_basic/Extractors/Binwalk_v3/
+*.log
+.gdb_history
+
+# Internal development records remain local. Public setup is in README.md.
+/AGENTS.md
+/docs/
+/papers/
+/TODO.md
+/doc/
+/workflow.html
+/DEVELOPMENT_HANDOFF*.md
+/src/fmst_iib_runtime
+
+# Editor and operating-system files.
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo

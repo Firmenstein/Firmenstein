@@ -1,0 +1,5 @@
+pub mod state;
+pub mod logic;
+{%- if kind_subdir %}
+pub mod {{ kind_subdir }};
+{%- endif %}

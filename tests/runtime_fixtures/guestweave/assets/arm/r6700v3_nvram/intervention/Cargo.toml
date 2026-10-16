@@ -1,0 +1,25 @@
+[package]
+name    = "intervention-r6700v3-nvram"
+version = "0.1.0"
+edition = "2021"
+
+# Opt out of any ancestor workspace — this crate is standalone so it can be
+# built independently of the main fmst_iib_runtime workspace.
+[workspace]
+
+[lib]
+crate-type = ["cdylib"]
+name = "intervention_r6700v3_nvram"
+
+[dependencies]
+fmst-iib-api = { path = "../../../../../../../../GuestWeave/fmst-iib-api" }
+log          = "0.4"
+
+[build-dependencies]
+serde_json = "1"
+
+[lints.rust]
+# Warn on unsafe — v1 intervention authors should avoid it. The generated
+# build.rs uses `#[unsafe(no_mangle)]` which is required syntax on modern
+# rustc and is the only necessary exception.
+unsafe_code = "warn"

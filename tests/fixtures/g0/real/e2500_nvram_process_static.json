@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "phase": "static",
+  "root_binary": "nvram",
+  "callsites": {
+    "process-event:015ab1793704480029ae30aa": {
+      "callsite_id": "process-event:015ab1793704480029ae30aa",
+      "binary_name": "nvram",
+      "function_name": "usage",
+      "function_ea": 4196624,
+      "snapshot_hash": "cf3c99134b9f6c081cdf102d44cfe566a3d8292d6df97ff541fe620bf4bab8cb",
+      "ctree_index": 9,
+      "source_ea": 4196696,
+      "line_number": 4,
+      "column_number": 2,
+      "api_name": "exit",
+      "event_kind": "termination"
+    }
+  },
+  "assessments": {},
+  "skipped": {}
+}

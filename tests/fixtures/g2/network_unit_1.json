@@ -1,0 +1,494 @@
+{
+  "schema_version": 9,
+  "root_binary": "ntpclient",
+  "analysis": {
+    "callsite_ids": [
+      "network-cs:39bb9f95507166c5fb900c1e",
+      "network-cs:a8dd2b3fb261fbd1ee505766",
+      "network-cs:8f599518f411b9ce79196d25",
+      "network-cs:82725831377ea8559bf93ed1"
+    ],
+    "disposition": "network",
+    "interaction_kind": "outbound_connection",
+    "identity": {
+      "resolution": "partial",
+      "family": "AF_INET when the selected getaddrinfo result has family 2; otherwise setup_transmit constructs AF_INET6",
+      "socket_type": "numeric socket type argument 1",
+      "protocol": "numeric socket protocol argument 17",
+      "local_address": null,
+      "local_port": null,
+      "remote_address": null,
+      "remote_port": 123,
+      "hostname": "runtime name buffer",
+      "service": null,
+      "interface": null,
+      "operation": null,
+      "netlink_protocol": null
+    },
+    "contract": {
+      "expectation": "expected_present",
+      "violation_effect": "fatal_exit"
+    },
+    "coverage_flows": [
+      {
+        "flow_id": "ipv4_hostname_connect",
+        "description": "Resolve the runtime hostname as IPv4 and connect the created socket to port 123 when the selected address family is IPv4.",
+        "setup": [
+          {
+            "binary_name": "ntpclient",
+            "function_name": "main",
+            "api_name": "getaddrinfo",
+            "line_number": 235,
+            "column_number": 15,
+            "function_ea": 4206032,
+            "snapshot_hash": "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d",
+            "ctree_index": 586,
+            "source_ea": 4208208,
+            "reason": "setup: resolve hostname and select socket family"
+          },
+          {
+            "binary_name": "ntpclient",
+            "function_name": "main",
+            "api_name": "socket",
+            "line_number": 241,
+            "column_number": 16,
+            "function_ea": 4206032,
+            "snapshot_hash": "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d",
+            "ctree_index": 616,
+            "source_ea": 4208284,
+            "reason": "setup: create socket descriptor"
+          },
+          {
+            "binary_name": "ntpclient",
+            "function_name": "stuff_net_addr",
+            "api_name": "gethostbyname",
+            "line_number": 6,
+            "column_number": 7,
+            "function_ea": 4201104,
+            "snapshot_hash": "b676da05e57f15fbb5430fc1a8131eb257dcba8b6d6803546c5593ced975eadc",
+            "ctree_index": 4,
+            "source_ea": 4201152,
+            "reason": "setup: resolve IPv4 address"
+          }
+        ],
+        "use": [
+          {
+            "binary_name": "ntpclient",
+            "function_name": "setup_transmit",
+            "api_name": "connect",
+            "line_number": 24,
+            "column_number": 9,
+            "function_ea": 4201320,
+            "snapshot_hash": "c5eb2b1717658899c545ddfcd3b63c1da357c99127067a1980dadddaf68697fe",
+            "ctree_index": 81,
+            "source_ea": 4201496,
+            "reason": "use: connect socket to resolved IPv4 address on port 123"
+          }
+        ],
+        "termination": [
+          {
+            "binary_name": "ntpclient",
+            "function_name": "main",
+            "api_name": "exit",
+            "line_number": 236,
+            "column_number": 12,
+            "function_ea": 4206032,
+            "snapshot_hash": "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d",
+            "ctree_index": 583,
+            "source_ea": 4208236,
+            "reason": "termination: exit on getaddrinfo(L235) failure"
+          },
+          {
+            "binary_name": "ntpclient",
+            "function_name": "main",
+            "api_name": "exit",
+            "line_number": 245,
+            "column_number": 12,
+            "function_ea": 4206032,
+            "snapshot_hash": "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d",
+            "ctree_index": 628,
+            "source_ea": 4208348,
+            "reason": "termination: exit on socket(L241) < 0"
+          }
+        ]
+      },
+      {
+        "flow_id": "ipv6_hostname_connect",
+        "description": "Resolve the runtime hostname as IPv6 and connect the created socket to port 123 when the selected address family is not IPv4.",
+        "setup": [
+          {
+            "binary_name": "ntpclient",
+            "function_name": "main",
+            "api_name": "getaddrinfo",
+            "line_number": 235,
+            "column_number": 15,
+            "function_ea": 4206032,
+            "snapshot_hash": "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d",
+            "ctree_index": 586,
+            "source_ea": 4208208,
+            "reason": "setup: resolve hostname and select socket family"
+          },
+          {
+            "binary_name": "ntpclient",
+            "function_name": "main",
+            "api_name": "socket",
+            "line_number": 241,
+            "column_number": 16,
+            "function_ea": 4206032,
+            "snapshot_hash": "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d",
+            "ctree_index": 616,
+            "source_ea": 4208284,
+            "reason": "setup: create socket descriptor"
+          },
+          {
+            "binary_name": "ntpclient",
+            "function_name": "stuff_net_addr6",
+            "api_name": "gethostbyname2",
+            "line_number": 9,
+            "column_number": 7,
+            "function_ea": 4200900,
+            "snapshot_hash": "a41f0f4733866ae8e6d0a177ab76ad46fa3e5dd43b1263d7e4c62f13cf62f0c3",
+            "ctree_index": 4,
+            "source_ea": 4200952,
+            "reason": "setup: resolve IPv6 address"
+          }
+        ],
+        "use": [
+          {
+            "binary_name": "ntpclient",
+            "function_name": "setup_transmit",
+            "api_name": "connect",
+            "line_number": 38,
+            "column_number": 9,
+            "function_ea": 4201320,
+            "snapshot_hash": "c5eb2b1717658899c545ddfcd3b63c1da357c99127067a1980dadddaf68697fe",
+            "ctree_index": 139,
+            "source_ea": 4201632,
+            "reason": "use: connect socket to resolved IPv6 address on port 123"
+          }
+        ],
+        "termination": [
+          {
+            "binary_name": "ntpclient",
+            "function_name": "main",
+            "api_name": "exit",
+            "line_number": 236,
+            "column_number": 12,
+            "function_ea": 4206032,
+            "snapshot_hash": "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d",
+            "ctree_index": 583,
+            "source_ea": 4208236,
+            "reason": "termination: exit on getaddrinfo(L235) failure"
+          },
+          {
+            "binary_name": "ntpclient",
+            "function_name": "main",
+            "api_name": "exit",
+            "line_number": 245,
+            "column_number": 12,
+            "function_ea": 4206032,
+            "snapshot_hash": "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d",
+            "ctree_index": 628,
+            "source_ea": 4208348,
+            "reason": "termination: exit on socket(L241) < 0"
+          }
+        ]
+      }
+    ],
+    "api_effects": [
+      {
+        "binary_name": "ntpclient",
+        "function_name": "main",
+        "line_number": 235,
+        "api_name": "getaddrinfo",
+        "role": "resolver and family selection",
+        "return_or_output_use": "Nonzero return causes exit(1); on success the first addrinfo result supplies the socket family used for socket and the 4-versus-6 selector.",
+        "side_effect": "Performs a hostname resolution query.",
+        "failure_effect": "Calls exit(1) when resolution fails."
+      },
+      {
+        "binary_name": "ntpclient",
+        "function_name": "main",
+        "line_number": 241,
+        "api_name": "socket",
+        "role": "setup",
+        "return_or_output_use": "Returned descriptor v23 is checked against -1 and then passed to setup_receive and setup_transmit.",
+        "side_effect": "Creates the socket descriptor with runtime family, type 1, and protocol 17.",
+        "failure_effect": "Calls perror(\"socket\") and exit(1) when the descriptor is -1."
+      },
+      {
+        "binary_name": "ntpclient",
+        "function_name": "stuff_net_addr",
+        "line_number": 6,
+        "api_name": "gethostbyname",
+        "role": "resolver",
+        "return_or_output_use": "The hostent is checked for NULL; when h_length is 4, the first address is copied through a1 into the IPv4 sockaddr.",
+        "side_effect": "Performs an IPv4 hostname resolution query.",
+        "failure_effect": "Calls herror(a2) and returns 1 on NULL; returns 1 after fprintf when h_length is not 4."
+      },
+      {
+        "binary_name": "ntpclient",
+        "function_name": "stuff_net_addr6",
+        "line_number": 9,
+        "api_name": "gethostbyname2",
+        "role": "resolver",
+        "return_or_output_use": "The hostent is checked for NULL; four 32-bit words from the first address are copied through a1 into the IPv6 sockaddr.",
+        "side_effect": "Performs an AF_INET6 hostname resolution query.",
+        "failure_effect": "Calls herror(a2) and returns 1 on NULL."
+      },
+      {
+        "binary_name": "ntpclient",
+        "function_name": "setup_transmit",
+        "line_number": 24,
+        "api_name": "connect",
+        "role": "use",
+        "return_or_output_use": "Return value is compared with -1; success allows setup_transmit to return 0.",
+        "side_effect": "Attempts to connect fd to the constructed IPv4 sockaddr with length 16.",
+        "failure_effect": "Calls perror and returns 1 on -1."
+      },
+      {
+        "binary_name": "ntpclient",
+        "function_name": "setup_transmit",
+        "line_number": 38,
+        "api_name": "connect",
+        "role": "use",
+        "return_or_output_use": "Return value is compared with -1; success allows setup_transmit to return 0.",
+        "side_effect": "Attempts to connect fd to the constructed IPv6 sockaddr with length 28.",
+        "failure_effect": "Calls perror and returns 1 on -1."
+      }
+    ],
+    "summary": "The reachable ntpclient path resolves a runtime hostname, creates a socket, constructs either an IPv4 or IPv6 destination with port 123, and calls connect. Resolver or connect failure returns to main, which closes the descriptor and skips primary_loop; preliminary getaddrinfo or socket failure exits.",
+    "evidence": [
+      {
+        "claim": "main calls getaddrinfo(name, 0, req, pai); a nonzero result reaches exit(1), while success supplies the family used for socket creation and the IPv4-versus-IPv6 selector.",
+        "binary_name": "ntpclient",
+        "function_name": "main",
+        "line_number": 235,
+        "api_name": "getaddrinfo",
+        "callsite_id": null
+      },
+      {
+        "claim": "main creates v23 with socket(v21, 1, 17), checks for -1, and calls perror followed by exit(1) on failure.",
+        "binary_name": "ntpclient",
+        "function_name": "main",
+        "line_number": 241,
+        "api_name": "socket",
+        "callsite_id": null
+      },
+      {
+        "claim": "The target-reachable main path calls setup_transmit(v23, name, 0x7B, v22); a nonzero return closes v23 and skips primary_loop.",
+        "binary_name": "ntpclient",
+        "function_name": "main",
+        "line_number": 248,
+        "api_name": "setup_transmit",
+        "callsite_id": null
+      },
+      {
+        "claim": "For v22 == 4, setup_transmit sets sockaddr family 2, calls stuff_net_addr, writes the supplied port, and reaches the IPv4 connect call. The assembly confirms the helper call at 0x401bdc and connect at 0x401c18.",
+        "binary_name": "ntpclient",
+        "function_name": "setup_transmit",
+        "line_number": 19,
+        "api_name": "stuff_net_addr",
+        "callsite_id": null
+      },
+      {
+        "claim": "The seed call invokes gethostbyname(a2); a successful hostent with h_length 4 supplies the first IPv4 address, while NULL or an unexpected length returns 1.",
+        "binary_name": "ntpclient",
+        "function_name": "stuff_net_addr",
+        "line_number": 6,
+        "api_name": "gethostbyname",
+        "callsite_id": "network-cs:a8dd2b3fb261fbd1ee505766"
+      },
+      {
+        "claim": "The IPv4 connect call uses fd, the constructed sockaddr, and length 0x10; -1 causes perror and return 1. The assembly confirms the call at 0x401c18.",
+        "binary_name": "ntpclient",
+        "function_name": "setup_transmit",
+        "line_number": 24,
+        "api_name": "connect",
+        "callsite_id": "network-cs:8f599518f411b9ce79196d25"
+      },
+      {
+        "claim": "For the alternate branch, setup_transmit sets sockaddr family 10, calls stuff_net_addr6, writes the supplied port, and reaches the IPv6 connect call.",
+        "binary_name": "ntpclient",
+        "function_name": "setup_transmit",
+        "line_number": 33,
+        "api_name": "stuff_net_addr6",
+        "callsite_id": null
+      },
+      {
+        "claim": "stuff_net_addr6 calls gethostbyname2(a2, 10) and copies four address words; NULL causes herror and return 1. The assembly confirms AF_INET6 argument 10 at 0x4019fc.",
+        "binary_name": "ntpclient",
+        "function_name": "stuff_net_addr6",
+        "line_number": 9,
+        "api_name": "gethostbyname2",
+        "callsite_id": "network-cs:39bb9f95507166c5fb900c1e"
+      },
+      {
+        "claim": "The IPv6 connect call uses fd, the constructed sockaddr, and length 0x1C; -1 causes perror and return 1. The assembly confirms the call at 0x401ca0.",
+        "binary_name": "ntpclient",
+        "function_name": "setup_transmit",
+        "line_number": 38,
+        "api_name": "connect",
+        "callsite_id": "network-cs:82725831377ea8559bf93ed1"
+      },
+      {
+        "claim": "main invokes setup_receive on the same descriptor before setup_transmit; that local bind/listen lifecycle is independent of the seeded outbound resolution/connect calls and has no catalog callsite in this wave.",
+        "binary_name": "ntpclient",
+        "function_name": "main",
+        "line_number": 247,
+        "api_name": "setup_receive",
+        "callsite_id": null
+      }
+    ],
+    "missing_evidence": [
+      "The runtime hostname and resolved remote address are not recoverable from the static code.",
+      "The local address and local port are not established by the supplied target path.",
+      "The exact symbolic meaning of socket type 1 and protocol 17 is not inferred beyond the numeric arguments.",
+      "The behavior of primary_loop and the external peer after a successful connect is outside this interaction's inspected lifecycle."
+    ],
+    "interaction_id": "network:8f5905d457e62a97ddc56836",
+    "anchor_callsite_id": "network-cs:a8dd2b3fb261fbd1ee505766"
+  },
+  "callsites": {
+    "network-cs:39bb9f95507166c5fb900c1e": {
+      "callsite_id": "network-cs:39bb9f95507166c5fb900c1e",
+      "location": {
+        "binary_name": "ntpclient",
+        "binary_path": "usr/sbin/ntpclient",
+        "binary_sha256": "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2",
+        "function_name": "stuff_net_addr6",
+        "function_ea": 4200900,
+        "snapshot_hash": "a41f0f4733866ae8e6d0a177ab76ad46fa3e5dd43b1263d7e4c62f13cf62f0c3",
+        "ctree_index": 4,
+        "source_ea": 4200952,
+        "line_number": 9,
+        "column_number": 7
+      },
+      "api_name": "gethostbyname2",
+      "api_family": "resolver",
+      "api_binding": {
+        "symbol": "gethostbyname2",
+        "call_kind": "direct",
+        "verified": true
+      },
+      "expression_text": "gethostbyname2(a2, 10)",
+      "arguments": [
+        {
+          "index": 1,
+          "expression": "a2"
+        },
+        {
+          "index": 2,
+          "expression": "10"
+        }
+      ],
+      "return_expression": "v4"
+    },
+    "network-cs:a8dd2b3fb261fbd1ee505766": {
+      "callsite_id": "network-cs:a8dd2b3fb261fbd1ee505766",
+      "location": {
+        "binary_name": "ntpclient",
+        "binary_path": "usr/sbin/ntpclient",
+        "binary_sha256": "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2",
+        "function_name": "stuff_net_addr",
+        "function_ea": 4201104,
+        "snapshot_hash": "b676da05e57f15fbb5430fc1a8131eb257dcba8b6d6803546c5593ced975eadc",
+        "ctree_index": 4,
+        "source_ea": 4201152,
+        "line_number": 6,
+        "column_number": 7
+      },
+      "api_name": "gethostbyname",
+      "api_family": "resolver",
+      "api_binding": {
+        "symbol": "gethostbyname",
+        "call_kind": "direct",
+        "verified": true
+      },
+      "expression_text": "gethostbyname(a2)",
+      "arguments": [
+        {
+          "index": 1,
+          "expression": "a2"
+        }
+      ],
+      "return_expression": "v4"
+    },
+    "network-cs:8f599518f411b9ce79196d25": {
+      "callsite_id": "network-cs:8f599518f411b9ce79196d25",
+      "location": {
+        "binary_name": "ntpclient",
+        "binary_path": "usr/sbin/ntpclient",
+        "binary_sha256": "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2",
+        "function_name": "setup_transmit",
+        "function_ea": 4201320,
+        "snapshot_hash": "c5eb2b1717658899c545ddfcd3b63c1da357c99127067a1980dadddaf68697fe",
+        "ctree_index": 81,
+        "source_ea": 4201496,
+        "line_number": 24,
+        "column_number": 9
+      },
+      "api_name": "connect",
+      "api_family": "endpoint",
+      "api_binding": {
+        "symbol": "connect",
+        "call_kind": "direct",
+        "verified": true
+      },
+      "expression_text": "connect(fd, &addr, 0x10u)",
+      "arguments": [
+        {
+          "index": 1,
+          "expression": "fd"
+        },
+        {
+          "index": 2,
+          "expression": "&addr"
+        },
+        {
+          "index": 3,
+          "expression": "0x10u"
+        }
+      ],
+      "return_expression": null
+    },
+    "network-cs:82725831377ea8559bf93ed1": {
+      "callsite_id": "network-cs:82725831377ea8559bf93ed1",
+      "location": {
+        "binary_name": "ntpclient",
+        "binary_path": "usr/sbin/ntpclient",
+        "binary_sha256": "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2",
+        "function_name": "setup_transmit",
+        "function_ea": 4201320,
+        "snapshot_hash": "c5eb2b1717658899c545ddfcd3b63c1da357c99127067a1980dadddaf68697fe",
+        "ctree_index": 139,
+        "source_ea": 4201632,
+        "line_number": 38,
+        "column_number": 9
+      },
+      "api_name": "connect",
+      "api_family": "endpoint",
+      "api_binding": {
+        "symbol": "connect",
+        "call_kind": "direct",
+        "verified": true
+      },
+      "expression_text": "connect(fd, &v9, 0x1Cu)",
+      "arguments": [
+        {
+          "index": 1,
+          "expression": "fd"
+        },
+        {
+          "index": 2,
+          "expression": "&v9"
+        },
+        {
+          "index": 3,
+          "expression": "0x1Cu"
+        }
+      ],
+      "return_expression": null
+    }
+  }
+}

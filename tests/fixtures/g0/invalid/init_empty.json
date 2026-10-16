@@ -1,0 +1,10 @@
+{
+  "schema_version": 4,
+  "target_identity": {
+    "target_basename": "httpd",
+    "selected_rootfs_path": "usr/sbin/httpd",
+    "target_aliases": []
+  },
+  "launch_recipes": {},
+  "analysis_gaps": []
+}

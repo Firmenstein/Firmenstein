@@ -1,0 +1,88 @@
+{
+  "schema_version": 8,
+  "launch_choice": {
+    "recipe_id": "launch-httpd",
+    "reason": "Validated normal launch command."
+  },
+  "scope_no_interventions": [
+    {
+      "finding_ref": "network:network-listener",
+      "reason": "The baseline provides native TCP bind on a free port."
+    }
+  ],
+  "clusters": {
+    "cluster-nvram": {
+      "cluster_id": "cluster-nvram",
+      "cluster_reason": "The same nvram resource causes the startup exit.",
+      "finding_refs": [
+        "file:file_dev_nvram",
+        "process:process-callsite"
+      ],
+      "units": {
+        "unit-1111111111111111": {
+          "unit_id": "unit-1111111111111111",
+          "finding_refs": [
+            "file:file_dev_nvram",
+            "process:process-callsite"
+          ],
+          "strategy": "function_stub",
+          "anchors": [
+            {
+              "kind": "function",
+              "binary_name": "libnvram.so",
+              "function_name": "nvram_get",
+              "function_ea": 4096
+            }
+          ],
+          "mock_contract": [
+            "Return a stable guest string for a known key and NULL for an unknown key."
+          ],
+          "summary": "Known key-value semantics allow stable synthetic NVRAM values even when device-specific values are unknown.",
+          "contract": {
+            "applicability": [
+              "claim only the supplied Unit anchors"
+            ],
+            "owned_resources": [
+              "planner anchor 1"
+            ],
+            "operations": [
+              "Return a stable guest string for a known key and NULL for an unknown key."
+            ],
+            "state": [
+              "preserve state for the declared Unit lifetime"
+            ],
+            "native_fallback": [
+              "fall through when the Unit does not claim the interaction"
+            ],
+            "required_iib_capabilities": [],
+            "verification": [
+              "cover every legacy mock_contract item exactly once"
+            ],
+            "allowed_refinement_scope": [
+              "implementation details inside this Unit"
+            ]
+          }
+        }
+      },
+      "runner_tasks": [],
+      "no_interventions": []
+    },
+    "cluster-peer": {
+      "cluster_id": "cluster-peer",
+      "cluster_reason": null,
+      "finding_refs": [
+        "ipc:dependency-uds"
+      ],
+      "units": {},
+      "runner_tasks": [
+        {
+          "finding_refs": [
+            "ipc:dependency-uds"
+          ],
+          "objective": "Start the verified peer in the runtime sandbox and observe its endpoint availability."
+        }
+      ],
+      "no_interventions": []
+    }
+  }
+}

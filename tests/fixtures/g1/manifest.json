@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "baseline_source_digest": "2b7a703e292a5d6a0f5d55b005687332e513f4ef3a78e9b704ebf2725c73477b",
+  "provenance": "Synthetic public-contract fixtures, not Agent outputs or a new production Result format.",
+  "target": {
+    "target_path": "usr/sbin/httpd",
+    "target_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "origins": {
+    "finding:file:v1:2d59a814916078856d28452063080ddd9883b4658aa6ea885dc3518d2bd36ff7": {
+      "source": "file",
+      "source_id": "file_dev_nvram"
+    },
+    "finding:network:v1:2ab534c672027cefe3f8e2edcedc9c19a4a639f6d1aaa5f5bbdd36423df752c8": {
+      "source": "network",
+      "source_id": "listener-http"
+    },
+    "finding:ipc:v1:e05ee805d03f3184ab3196a2711026e6ee17664b8ebbae88053d2847b391de4c": {
+      "source": "ipc",
+      "source_id": "channel-uds"
+    },
+    "finding:process:v1:c8c8ba3a354cbdc33ca4c0e17ec6fb7e7a3637dcc965ead34cc446b5c826940f": {
+      "source": "process",
+      "source_id": "exit-startup"
+    },
+    "finding:init_launch:v1:02d3c73a328fab4da227d586205314fa12b9cd68df330d2acf914c29cc4b61cc": {
+      "source": "init_launch",
+      "source_id": "launch-httpd:preparation"
+    },
+    "finding:file:v1:da7887e746d6348f2a769b607c0ce6c2b23aae394b43788d69d967d340254c67": {
+      "source": "file",
+      "source_id": "function:nvram_get"
+    }
+  },
+  "sha256": {
+    "static.json": "f9a1eb8a23b45df807ed7a6a4fcd90e3702342f3e6831e850464789b9eb7ab82",
+    "static.md": "d44ef9ca9bf55ae176d6ff8c05d97bc65736744873c4c4818b00117d0f384c76",
+    "full.json": "95a4f9be03d9c6b5bc31f2c116b148a8772399593c8e456257a187c99cc084c1",
+    "full.md": "4dbef38fd9f3ad49f8e9525bb9d41fb6b0a28fc43db51ca1f016700814a986d4",
+    "empty.json": "36021cbc079ee8bed9d878fc5609c1cf0d7952cbdc1b4a85a15b5962b1e32218",
+    "empty.md": "9f7d55f8fe1ba13f43190c2d090cfee8fdd67e700051767cde87066f5d9ff789",
+    "gap.json": "c5b690caedf45fccfe5ac9e09a5d837ae3dbf9def66471cc6267ddb320c41841",
+    "gap.md": "65598c445da7652cb77bf9570c74aea4ba1baabbfa06641201c309b259864bac"
+  }
+}

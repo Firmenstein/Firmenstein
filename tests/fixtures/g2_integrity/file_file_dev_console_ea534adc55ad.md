@@ -1,0 +1,738 @@
+# File Resource Report — `/dev/console`
+
+- resource_group_id: ` "file_dev_console_ea534adc55ad" `
+- primary_path: ` "/dev/console" `
+- resource_class: ` "pseudo_fs_dev" `
+- callsite_reports:
+  - [0]:
+    - callsite_id: ` "libnvram.so::check_action::L28::fopen@ctree28" `
+    - containing_function_purpose: ` "check_action reads /tmp/action, maps recognized action strings to status codes, and logs the selected action." `
+    - setup_details: ` "Calls fopen(\"/dev/console\", &GVar_unk_26E0); GVar_unk_26E0 resolves to 0x77 ('w'), so the effective mode is write mode. The returned FILE* is stored in local v2 after the temporary return value v1. It is closed by fclose(v2) on the successful-open path; no leak is visible when fopen fails." `
+    - usage_reports:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 32 `
+        - api_name: ` "fwrite" `
+        - details: ` "Writes the literal \"Upgrading from tftp now ...\\n\" to the console stream with size 1 and count 28. The stream is passed as the FILE* destination; fwrite's return value is not stored." `
+        - post_use_constraint: ` null `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 33 `
+        - api_name: ` "fclose" `
+        - details: ` "Closes local FILE* v2 after the successful fwrite, within the v1-nonnull branch." `
+        - post_use_constraint: ` null `
+    - resource_usage_sites:
+      - [0]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_commit" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_commit → check_action" `
+        - context_snippet: ` "" `
+    - total_usage_sites: ` 1 `
+  - [1]:
+    - callsite_id: ` "libnvram.so::check_action::L39::fopen@ctree59" `
+    - containing_function_purpose: ` "check_action reads /tmp/action, maps recognized action strings to status codes, and logs the selected action." `
+    - setup_details: ` "Calls fopen(\"/dev/console\", &GVar_unk_26E0); GVar_unk_26E0 resolves to 0x77 ('w'), so the effective mode is write mode. The returned FILE* is stored in local v4 after the temporary return value v3. It is closed by fclose(v4) on the successful-open path; no leak is visible when fopen fails." `
+    - usage_reports:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 43 `
+        - api_name: ` "fwrite" `
+        - details: ` "Writes the literal \"Upgrading from web (https) now ...\\n\" to the console stream with size 1 and count 35. The stream is passed as the FILE* destination; fwrite's return value is not stored." `
+        - post_use_constraint: ` null `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 44 `
+        - api_name: ` "fclose" `
+        - details: ` "Closes local FILE* v4 after the successful fwrite, within the v3-nonnull branch." `
+        - post_use_constraint: ` null `
+    - resource_usage_sites:
+      - [0]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_commit" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_commit → check_action" `
+        - context_snippet: ` "" `
+    - total_usage_sites: ` 1 `
+  - [2]:
+    - callsite_id: ` "libnvram.so::check_action::L50::fopen@ctree90" `
+    - containing_function_purpose: ` "check_action reads /tmp/action, maps recognized action strings to status codes, and logs the selected action." `
+    - setup_details: ` "Calls fopen(\"/dev/console\", &GVar_unk_26E0); GVar_unk_26E0 resolves to 0x77 ('w'), so the effective mode is write mode. The returned FILE* is stored in local v6 after the temporary return value v5. It is closed by fclose(v6) on the successful-open path; no leak is visible when fopen fails." `
+    - usage_reports:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 54 `
+        - api_name: ` "fwrite" `
+        - details: ` "Writes the literal \"Upgrading from web (http) now ...\\n\" to the console stream with size 1 and count 34. The stream is passed as the FILE* destination; fwrite's return value is not stored." `
+        - post_use_constraint: ` null `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 55 `
+        - api_name: ` "fclose" `
+        - details: ` "Closes local FILE* v6 after the successful fwrite, within the v5-nonnull branch." `
+        - post_use_constraint: ` null `
+    - resource_usage_sites:
+      - [0]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_commit" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_commit → check_action" `
+        - context_snippet: ` "" `
+    - total_usage_sites: ` 1 `
+  - [3]:
+    - callsite_id: ` "libnvram.so::check_action::L61::fopen@ctree121" `
+    - containing_function_purpose: ` "check_action reads /tmp/action, maps recognized action strings to status codes, and logs the selected action." `
+    - setup_details: ` "Calls fopen(\"/dev/console\", &GVar_unk_26E0); GVar_unk_26E0 resolves to 0x77 ('w'), so the effective mode is write mode. The returned FILE* is stored in local v8 after the temporary return value v7. It is closed by fclose(v8) on the successful-open path; no leak is visible when fopen fails." `
+    - usage_reports:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 65 `
+        - api_name: ` "fwrite" `
+        - details: ` "Writes the literal \"Receiving restore command from web ...\\n\" to the console stream with size 1 and count 39. The stream is passed as the FILE* destination; fwrite's return value is not stored." `
+        - post_use_constraint: ` null `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 66 `
+        - api_name: ` "fclose" `
+        - details: ` "Closes local FILE* v8 after the successful fwrite, within the v7-nonnull branch." `
+        - post_use_constraint: ` null `
+    - resource_usage_sites:
+      - [0]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_commit" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_commit → check_action" `
+        - context_snippet: ` "" `
+    - total_usage_sites: ` 1 `
+  - [4]:
+    - callsite_id: ` "libnvram.so::check_action::L72::fopen@ctree152" `
+    - containing_function_purpose: ` "check_action reads /tmp/action, maps recognized action strings to status codes, and logs the selected action." `
+    - setup_details: ` "Calls fopen(\"/dev/console\", &GVar_unk_26E0); GVar_unk_26E0 resolves to 0x77 ('w'), so the effective mode is write mode. The returned FILE* is stored in local v10 after the temporary return value v9. It is closed by fclose(v10) on the successful-open path; no leak is visible when fopen fails." `
+    - usage_reports:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 76 `
+        - api_name: ` "fwrite" `
+        - details: ` "Writes the literal \"Receiving restore commond from resetbutton ...\\n\" to the console stream with size 1 and count 47. The stream is passed as the FILE* destination; fwrite's return value is not stored." `
+        - post_use_constraint: ` null `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 77 `
+        - api_name: ` "fclose" `
+        - details: ` "Closes local FILE* v10 after the successful fwrite, within the v9-nonnull branch." `
+        - post_use_constraint: ` null `
+    - resource_usage_sites:
+      - [0]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_commit" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_commit → check_action" `
+        - context_snippet: ` "" `
+    - total_usage_sites: ` 1 `
+  - [5]:
+    - callsite_id: ` "libnvram.so::check_action::L83::fopen@ctree183" `
+    - containing_function_purpose: ` "check_action reads /tmp/action, maps recognized action strings to status codes, and logs the selected action." `
+    - setup_details: ` "Calls fopen(\"/dev/console\", &GVar_unk_26E0); GVar_unk_26E0 resolves to 0x77 ('w'), so the effective mode is write mode. The returned FILE* is stored in local v12 after the temporary return value v11. It is closed by fclose(v12) on the successful-open path; no leak is visible when fopen fails." `
+    - usage_reports:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 87 `
+        - api_name: ` "fwrite" `
+        - details: ` "Writes the literal \"Committing nvram now ...\\n\" to the console stream with size 1 and count 25. The stream is passed as the FILE* destination; fwrite's return value is not stored." `
+        - post_use_constraint: ` null `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 88 `
+        - api_name: ` "fclose" `
+        - details: ` "Closes local FILE* v12 after the successful fwrite, within the v11-nonnull branch." `
+        - post_use_constraint: ` null `
+    - resource_usage_sites:
+      - [0]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_commit" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_commit → check_action" `
+        - context_snippet: ` "" `
+    - total_usage_sites: ` 1 `
+  - [6]:
+    - callsite_id: ` "libnvram.so::check_action::L98::fopen@ctree228" `
+    - containing_function_purpose: ` "check_action reads /tmp/action, maps recognized action strings to status codes, and logs the selected action." `
+    - setup_details: ` "Calls fopen(\"/dev/console\", &GVar_unk_26E0); GVar_unk_26E0 resolves to 0x77 ('w'), so the effective mode is write mode. The returned FILE* is stored in local v15 after the temporary return value v14. It is closed by fclose(v15) on the successful-open path; no leak is visible when fopen fails." `
+    - usage_reports:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 102 `
+        - api_name: ` "fwrite" `
+        - details: ` "Writes the literal \"Erasing nvram now ...\\n\" to the console stream with size 1 and count 22. The stream is passed as the FILE* destination; fwrite's return value is not stored." `
+        - post_use_constraint: ` null `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - line_number: ` 103 `
+        - api_name: ` "fclose" `
+        - details: ` "Closes local FILE* v15 after the successful fwrite, within the v14-nonnull branch." `
+        - post_use_constraint: ` null `
+    - resource_usage_sites:
+      - [0]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_commit" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_commit → check_action" `
+        - context_snippet: ` "" `
+    - total_usage_sites: ` 1 `
+  - [7]:
+    - callsite_id: ` "libnvram.so::nvram_commit::L12::fopen@ctree4" `
+    - containing_function_purpose: ` "nvram_commit coordinates NVRAM commit operations, including action handling, device ioctl execution, and progress logging." `
+    - setup_details: ` "Calls fopen(\"/dev/console\", &GVar_unk_26E0); GVar_unk_26E0 resolves to 0x77 ('w'), so the effective mode is write mode. The returned FILE* is stored in local v0 and used directly. It is closed by fclose(v0) when fopen succeeds; no leak is visible when fopen fails." `
+    - usage_reports:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - line_number: ` 16 `
+        - api_name: ` "fprintf" `
+        - details: ` "Formats the result of getpid() with the literal \"%d nvram_commit(): start\\n\" and writes it to the console FILE* v0. The fprintf return value is not stored." `
+        - post_use_constraint: ` null `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - line_number: ` 17 `
+        - api_name: ` "fclose" `
+        - details: ` "Closes local FILE* v0 after the start message, within the v0-nonnull branch." `
+        - post_use_constraint: ` null `
+    - resource_usage_sites:
+      - [0]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_commit" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_commit" `
+        - context_snippet: ` "" `
+    - total_usage_sites: ` 1 `
+  - [8]:
+    - callsite_id: ` "libnvram.so::nvram_commit::L21::fopen@ctree32" `
+    - containing_function_purpose: ` "nvram_commit coordinates NVRAM commit operations, including action handling, device ioctl execution, and progress logging." `
+    - setup_details: ` "Calls fopen(\"/dev/console\", &GVar_unk_26E0); GVar_unk_26E0 resolves to 0x77 ('w'), so the effective mode is write mode. The returned FILE* is stored in local v8 after the temporary return value v7. It is closed by fclose(v8) on the successful-open path; no leak is visible when fopen fails." `
+    - usage_reports:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - line_number: ` 25 `
+        - api_name: ` "fwrite" `
+        - details: ` "When check_action() returns 6, writes the literal \"Waiting 2 seconds...\\n\" to the console stream with size 1 and count 21. The stream is passed as the FILE* destination; fwrite's return value is not stored." `
+        - post_use_constraint: ` null `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - line_number: ` 26 `
+        - api_name: ` "fclose" `
+        - details: ` "When check_action() returns 6 and fopen succeeds, closes local FILE* v8 after the waiting message. The function then calls sleep(1) twice." `
+        - post_use_constraint: ` null `
+    - resource_usage_sites:
+      - [0]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_commit" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_commit" `
+        - context_snippet: ` "" `
+    - total_usage_sites: ` 1 `
+  - [9]:
+    - callsite_id: ` "libnvram.so::nvram_commit::L41::fopen@ctree110" `
+    - containing_function_purpose: ` "nvram_commit coordinates NVRAM commit operations, including action handling, device ioctl execution, and progress logging." `
+    - setup_details: ` "Calls fopen(\"/dev/console\", &GVar_unk_26E0); GVar_unk_26E0 resolves to 0x77 ('w'), so the effective mode is write mode. The returned FILE* is stored in local v2 and used at the shared LABEL_16 cleanup path. It is closed by fclose(v2) at line 58 when fopen succeeds; if fopen fails, the function returns the preceding v4 status without closing a stream." `
+    - usage_reports:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - line_number: ` 45 `
+        - api_name: ` "fprintf" `
+        - details: ` "After a successful nvram_init()/ioctl path and ACT_IDLE update, formats getpid() with the literal \"%d nvram_commit(): end\\n\" and writes it to the console FILE* v2. The fprintf return value is not stored; control transfers to LABEL_16." `
+        - post_use_constraint: ` null `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - line_number: ` 58 `
+        - api_name: ` "fclose" `
+        - details: ` "Closes local FILE* v2 at LABEL_16 after the end message. This cleanup is reached only when the fopen result was non-null." `
+        - post_use_constraint: ` null `
+    - resource_usage_sites:
+      - [0]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_commit" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_commit" `
+        - context_snippet: ` "" `
+    - total_usage_sites: ` 1 `
+  - [10]:
+    - callsite_id: ` "libnvram.so::nvram_commit::L51::fopen@ctree155" `
+    - containing_function_purpose: ` "nvram_commit coordinates the NVRAM commit workflow and reports when no commit work is required." `
+    - setup_details: ` "Calls fopen(\"/dev/console\", &GVar_unk_26E0); the mode object resolves to 0x77 (ASCII 'w'), indicating write mode. The returned FILE* is stored in local v2. fopen failure returns 0 at L53; on success the stream is closed at L58 after the diagnostic write." `
+    - usage_reports:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - line_number: ` 56 `
+        - api_name: ` "fprintf" `
+        - details: ` "Writes the getpid()-derived process ID and the literal string \"%d nvram_commit():  nothing to do...\\n\" to the /dev/console stream via v2, on the no-op action branch." `
+        - post_use_constraint: ` null `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - line_number: ` 58 `
+        - api_name: ` "fclose" `
+        - details: ` "Closes the FILE* in v2 after fprintf at the common LABEL_16 cleanup path; fclose's return value is not stored or tested." `
+        - post_use_constraint: ` null `
+    - resource_usage_sites:
+      - [0]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_commit" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_commit" `
+        - context_snippet: ` "" `
+    - total_usage_sites: ` 1 `
+- coverage_flows:
+  - [0]:
+    - flow_id: ` "console_upgrade_tftp" `
+    - description: ` "This path opens the pre-existing console device for writing and emits the TFTP upgrade diagnostic." `
+    - setup:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fopen" `
+        - line_number: ` 28 `
+        - column_number: ` 9 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 28 `
+        - source_ea: ` 4948 `
+        - reason: ` "setup: open /dev/console for write" `
+    - use:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fwrite" `
+        - line_number: ` 32 `
+        - column_number: ` 6 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 40 `
+        - source_ea: ` 4988 `
+        - reason: ` "use: write TFTP upgrade diagnostic" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fclose" `
+        - line_number: ` 33 `
+        - column_number: ` 6 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 47 `
+        - source_ea: ` 5012 `
+        - reason: ` "use: close console stream" `
+    - termination: ` [] `
+  - [1]:
+    - flow_id: ` "console_upgrade_https" `
+    - description: ` "This path opens the pre-existing console device for writing and emits the HTTPS upgrade diagnostic." `
+    - setup:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fopen" `
+        - line_number: ` 39 `
+        - column_number: ` 9 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 59 `
+        - source_ea: ` 5100 `
+        - reason: ` "setup: open /dev/console for write" `
+    - use:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fwrite" `
+        - line_number: ` 43 `
+        - column_number: ` 6 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 71 `
+        - source_ea: ` 5140 `
+        - reason: ` "use: write HTTPS upgrade diagnostic" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fclose" `
+        - line_number: ` 44 `
+        - column_number: ` 6 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 78 `
+        - source_ea: ` 5164 `
+        - reason: ` "use: close console stream" `
+    - termination: ` [] `
+  - [2]:
+    - flow_id: ` "console_upgrade_http" `
+    - description: ` "This path opens the pre-existing console device for writing and emits the HTTP upgrade diagnostic." `
+    - setup:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fopen" `
+        - line_number: ` 50 `
+        - column_number: ` 9 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 90 `
+        - source_ea: ` 5252 `
+        - reason: ` "setup: open /dev/console for write" `
+    - use:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fwrite" `
+        - line_number: ` 54 `
+        - column_number: ` 6 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 102 `
+        - source_ea: ` 5292 `
+        - reason: ` "use: write HTTP upgrade diagnostic" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fclose" `
+        - line_number: ` 55 `
+        - column_number: ` 6 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 109 `
+        - source_ea: ` 5316 `
+        - reason: ` "use: close console stream" `
+    - termination: ` [] `
+  - [3]:
+    - flow_id: ` "console_restore_web" `
+    - description: ` "This path opens the pre-existing console device for writing and emits the web restore diagnostic." `
+    - setup:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fopen" `
+        - line_number: ` 61 `
+        - column_number: ` 9 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 121 `
+        - source_ea: ` 5388 `
+        - reason: ` "setup: open /dev/console for write" `
+    - use:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fwrite" `
+        - line_number: ` 65 `
+        - column_number: ` 6 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 133 `
+        - source_ea: ` 5428 `
+        - reason: ` "use: write web restore diagnostic" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fclose" `
+        - line_number: ` 66 `
+        - column_number: ` 6 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 140 `
+        - source_ea: ` 5452 `
+        - reason: ` "use: close console stream" `
+    - termination: ` [] `
+  - [4]:
+    - flow_id: ` "console_restore_resetbutton" `
+    - description: ` "This path opens the pre-existing console device for writing and emits the reset-button restore diagnostic." `
+    - setup:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fopen" `
+        - line_number: ` 72 `
+        - column_number: ` 9 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 152 `
+        - source_ea: ` 5524 `
+        - reason: ` "setup: open /dev/console for write" `
+    - use:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fwrite" `
+        - line_number: ` 76 `
+        - column_number: ` 6 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 164 `
+        - source_ea: ` 5564 `
+        - reason: ` "use: write reset-button restore diagnostic" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fclose" `
+        - line_number: ` 77 `
+        - column_number: ` 6 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 171 `
+        - source_ea: ` 5588 `
+        - reason: ` "use: close console stream" `
+    - termination: ` [] `
+  - [5]:
+    - flow_id: ` "console_commit_message" `
+    - description: ` "This path opens the pre-existing console device for writing and emits the NVRAM commit diagnostic." `
+    - setup:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fopen" `
+        - line_number: ` 83 `
+        - column_number: ` 10 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 183 `
+        - source_ea: ` 5660 `
+        - reason: ` "setup: open /dev/console for write" `
+    - use:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fwrite" `
+        - line_number: ` 87 `
+        - column_number: ` 6 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 195 `
+        - source_ea: ` 5700 `
+        - reason: ` "use: write NVRAM commit diagnostic" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fclose" `
+        - line_number: ` 88 `
+        - column_number: ` 6 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 202 `
+        - source_ea: ` 5724 `
+        - reason: ` "use: close console stream" `
+    - termination: ` [] `
+  - [6]:
+    - flow_id: ` "console_erase_message" `
+    - description: ` "This path opens the pre-existing console device for writing and emits the NVRAM erase diagnostic." `
+    - setup:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fopen" `
+        - line_number: ` 98 `
+        - column_number: ` 12 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 228 `
+        - source_ea: ` 5792 `
+        - reason: ` "setup: open /dev/console for write" `
+    - use:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fwrite" `
+        - line_number: ` 102 `
+        - column_number: ` 8 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 240 `
+        - source_ea: ` 5832 `
+        - reason: ` "use: write NVRAM erase diagnostic" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - api_name: ` "fclose" `
+        - line_number: ` 103 `
+        - column_number: ` 8 `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - ctree_index: ` 247 `
+        - source_ea: ` 5856 `
+        - reason: ` "use: close console stream" `
+    - termination: ` [] `
+  - [7]:
+    - flow_id: ` "console_start_message" `
+    - description: ` "This path opens the pre-existing console device for writing and emits the commit-start diagnostic." `
+    - setup:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "fopen" `
+        - line_number: ` 12 `
+        - column_number: ` 7 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 4 `
+        - source_ea: ` 6196 `
+        - reason: ` "setup: open /dev/console for write" `
+    - use:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "fprintf" `
+        - line_number: ` 16 `
+        - column_number: ` 4 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 17 `
+        - source_ea: ` 6252 `
+        - reason: ` "use: write commit-start diagnostic" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "fclose" `
+        - line_number: ` 17 `
+        - column_number: ` 4 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 23 `
+        - source_ea: ` 6276 `
+        - reason: ` "use: close console stream" `
+    - termination: ` [] `
+  - [8]:
+    - flow_id: ` "console_wait_message" `
+    - description: ` "This path opens the pre-existing console device for writing and emits the wait diagnostic before sleeping." `
+    - setup:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "fopen" `
+        - line_number: ` 21 `
+        - column_number: ` 9 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 32 `
+        - source_ea: ` 6832 `
+        - reason: ` "setup: open /dev/console for write" `
+    - use:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "fwrite" `
+        - line_number: ` 25 `
+        - column_number: ` 6 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 44 `
+        - source_ea: ` 6872 `
+        - reason: ` "use: write wait diagnostic" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "fclose" `
+        - line_number: ` 26 `
+        - column_number: ` 6 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 51 `
+        - source_ea: ` 6896 `
+        - reason: ` "use: close console stream" `
+    - termination: ` [] `
+  - [9]:
+    - flow_id: ` "console_end_message" `
+    - description: ` "This path opens the pre-existing console device for writing and emits the commit-end diagnostic." `
+    - setup:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "fopen" `
+        - line_number: ` 41 `
+        - column_number: ` 11 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 110 `
+        - source_ea: ` 6696 `
+        - reason: ` "setup: open /dev/console for write" `
+    - use:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "fprintf" `
+        - line_number: ` 45 `
+        - column_number: ` 8 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 123 `
+        - source_ea: ` 6752 `
+        - reason: ` "use: write commit-end diagnostic" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "fclose" `
+        - line_number: ` 58 `
+        - column_number: ` 2 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 182 `
+        - source_ea: ` 6776 `
+        - reason: ` "use: close console stream" `
+    - termination: ` [] `
+  - [10]:
+    - flow_id: ` "console_noop_message" `
+    - description: ` "This path opens the pre-existing console device for writing and emits the no-op commit diagnostic." `
+    - setup:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "fopen" `
+        - line_number: ` 51 `
+        - column_number: ` 7 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 155 `
+        - source_ea: ` 6456 `
+        - reason: ` "setup: open /dev/console for write" `
+    - use:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "fprintf" `
+        - line_number: ` 56 `
+        - column_number: ` 2 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 176 `
+        - source_ea: ` 6508 `
+        - reason: ` "use: write no-op commit diagnostic" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "fclose" `
+        - line_number: ` 58 `
+        - column_number: ` 2 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 182 `
+        - source_ea: ` 6776 `
+        - reason: ` "use: close console stream" `
+    - termination: ` [] `
+- summary: ` "All 11 observed callsites treat /dev/console as a pre-existing writable pseudo-filesystem sink. The program opens it in write mode, emits branch-specific progress or action diagnostics through fwrite or fprintf, and closes the stream after successful opening. No callsite creates, replaces, retries, or redirects the resource, and no exit-guarded failure path is reported; failed opens therefore degrade the corresponding diagnostic path while the surrounding operation continues according to its existing status flow. Write and close return values are not checked, so actual delivery to the console is not established by these facts." `
+- observed_apis:
+  - ` "fclose" `
+  - ` "fprintf" `
+  - ` "fwrite" `

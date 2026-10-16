@@ -1,0 +1,42 @@
+# Process Lifecycle Analysis — `empty`
+
+This report classifies reachable termination and process-transition calls by whether they can block target startup. JSON is the source of truth; the pages linked below are deterministic views of the same data.
+
+- Structured source of truth: [`process_lifecycle_analysis_result.json`](process_lifecycle_analysis_result.json)
+
+## Summary
+
+- schema_version: `5`
+- phase: `full`
+- root_binary: `empty`
+- callsites: 0
+- assessments: 0
+- startup_blocker: 0
+- expected_lifecycle: 0
+- runtime_only: 0
+- unresolved: 0
+
+## assessments
+
+_None._
+
+## finding_target
+
+- path: ` "usr/bin/empty" `
+- sha256: ` "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" `
+
+
+## callsites
+
+
+
+
+## planning_findings
+
+`{}`
+
+
+## execution
+
+- tasks: ` {} `
+- status: ` "complete" `

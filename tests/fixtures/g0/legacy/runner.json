@@ -1,0 +1,58 @@
+{
+  "schema_version": 9,
+  "target_binary": "httpd",
+  "guest_arch": "arm",
+  "generation_baseline_id": null,
+  "generation_baseline_path": null,
+  "selected_recipe_id": "launch-httpd",
+  "status": "attempts_exhausted",
+  "success_definition": "connect_and_interact",
+  "environment_preparation": {
+    "status": "not_needed",
+    "source_script_path": null,
+    "application_count": 0,
+    "failure_reason": null
+  },
+  "attempts": [
+    {
+      "attempt_number": 1,
+      "probe": {
+        "port": 80,
+        "request_text": "GET / HTTP/1.0\r\n\r\n",
+        "response_contains": null
+      },
+      "guest_args": [
+        "-f",
+        "/etc/httpd.conf"
+      ],
+      "guest_working_directory": "/",
+      "guest_environment": {},
+      "companion_processes": [],
+      "companion_log_paths": [],
+      "rootfs_actions": [],
+      "disabled_unit_ids": [],
+      "intervention_sha256": null,
+      "intervention_source_path": null,
+      "intervention_binary_path": null,
+      "container_exit_code": null,
+      "timed_out": false,
+      "outcome": "blocked",
+      "probe_result": {
+        "connected": false,
+        "interacted": false,
+        "attempts": 1,
+        "error": "Synthetic connection refused: required peer did not start.",
+        "response_text": "",
+        "response_truncated": false
+      },
+      "runtime_trace_path": "attempts/attempt-01/runtime_trace.json",
+      "runtime_trace_context_path": "attempts/attempt-01/runtime_trace_context.json",
+      "container_log_path": "attempts/attempt-01/container.log",
+      "runtime_trace_available": false,
+      "runtime_trace_context_available": false,
+      "runtime_trace_context_error": null,
+      "agent_summary": "The peer endpoint is unavailable; this fixture records a failed attempt, not successful rehosting."
+    }
+  ],
+  "final_summary": "Synthetic failed attempt retained for replay."
+}

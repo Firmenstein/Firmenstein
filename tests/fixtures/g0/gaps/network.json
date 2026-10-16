@@ -1,0 +1,55 @@
+{
+  "schema_version": 8,
+  "phase": "full",
+  "root_binary": "httpd",
+  "callsites": {
+    "network-callsite": {
+      "callsite_id": "network-callsite",
+      "location": {
+        "binary_name": "httpd",
+        "binary_path": "usr/sbin/httpd",
+        "binary_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "function_name": "serve",
+        "function_ea": 4352,
+        "snapshot_hash": "network-snapshot",
+        "ctree_index": 4,
+        "source_ea": 4384,
+        "line_number": 30,
+        "column_number": 6
+      },
+      "api_name": "bind",
+      "api_family": "socket_endpoint",
+      "api_binding": {
+        "symbol": "bind",
+        "call_kind": "direct",
+        "verified": true
+      },
+      "expression_text": "bind(fd, addr, 16)",
+      "arguments": [],
+      "return_expression": null
+    }
+  },
+  "analyses": [
+    {
+      "callsite_ids": [
+        "network-callsite"
+      ],
+      "disposition": "unresolved",
+      "interaction_kind": null,
+      "identity": null,
+      "contract": null,
+      "coverage_flows": [],
+      "api_effects": [],
+      "summary": "Resource-level network analysis did not produce a validated result.",
+      "evidence": [],
+      "missing_evidence": [
+        "The address family and socket buffer layout are unavailable."
+      ],
+      "interaction_id": "network:6cc0d68a3dce81a29786d899",
+      "anchor_callsite_id": "network-callsite"
+    }
+  ],
+  "skipped": {},
+  "pending_callsite_ids": [],
+  "covered_api_calls": []
+}

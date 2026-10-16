@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "phase": "static",
+  "planning_findings": {
+    "finding:file:v1:2d59a814916078856d28452063080ddd9883b4658aa6ea885dc3518d2bd36ff7": {
+      "finding_ref": "finding:file:v1:2d59a814916078856d28452063080ddd9883b4658aa6ea885dc3518d2bd36ff7",
+      "summary": "Static subject captured; semantic analysis is pending.",
+      "boundary": {
+        "kind": "resource",
+        "anchors": [
+          {
+            "kind": "device",
+            "ref": "/evidence/resource"
+          }
+        ],
+        "reachability_refs": [
+          "/evidence/paths/0"
+        ],
+        "coverage_refs": [
+          "/evidence/coverage/0"
+        ]
+      },
+      "claims": [
+        {
+          "kind": "unknown",
+          "statement": "The caller-visible semantics have not yet been analyzed.",
+          "evidence_refs": [],
+          "unknown_kind": "semantics"
+        }
+      ],
+      "domain": {
+        "kind": "file",
+        "resource_id": "file_dev_nvram",
+        "path": "/dev/nvram",
+        "resource_class": "pseudo_fs_dev",
+        "callsite_ids": [
+          "file-open"
+        ]
+      }
+    },
+    "finding:network:v1:2ab534c672027cefe3f8e2edcedc9c19a4a639f6d1aaa5f5bbdd36423df752c8": {
+      "finding_ref": "finding:network:v1:2ab534c672027cefe3f8e2edcedc9c19a4a639f6d1aaa5f5bbdd36423df752c8",
+      "summary": "Static subject captured; semantic analysis is pending.",
+      "boundary": {
+        "kind": "resource",
+        "anchors": [
+          {
+            "kind": "fd",
+            "ref": "/evidence/network"
+          }
+        ],
+        "reachability_refs": [
+          "/evidence/paths/0"
+        ],
+        "coverage_refs": []
+      },
+      "claims": [
+        {
+          "kind": "unknown",
+          "statement": "The caller-visible semantics have not yet been analyzed.",
+          "evidence_refs": [],
+          "unknown_kind": "semantics"
+        }
+      ],
+      "domain": {
+        "kind": "network",
+        "interaction_id": "listener-http",
+        "interaction_kind": "listener",
+        "callsite_ids": [
+          "net-bind"
+        ]
+      }
+    },
+    "finding:ipc:v1:e05ee805d03f3184ab3196a2711026e6ee17664b8ebbae88053d2847b391de4c": {
+      "finding_ref": "finding:ipc:v1:e05ee805d03f3184ab3196a2711026e6ee17664b8ebbae88053d2847b391de4c",
+      "summary": "Static subject captured; semantic analysis is pending.",
+      "boundary": {
+        "kind": "resource",
+        "anchors": [
+          {
+            "kind": "ipc_channel",
+            "ref": "/evidence/ipc"
+          }
+        ],
+        "reachability_refs": [
+          "/evidence/paths/0"
+        ],
+        "coverage_refs": []
+      },
+      "claims": [
+        {
+          "kind": "unknown",
+          "statement": "The caller-visible semantics have not yet been analyzed.",
+          "evidence_refs": [],
+          "unknown_kind": "semantics"
+        }
+      ],
+      "domain": {
+        "kind": "ipc",
+        "channel_id": "channel-uds",
+        "mechanism": "uds",
+        "endpoint_ids": [
+          "endpoint-client"
+        ]
+      }
+    },
+    "finding:process:v1:c8c8ba3a354cbdc33ca4c0e17ec6fb7e7a3637dcc965ead34cc446b5c826940f": {
+      "finding_ref": "finding:process:v1:c8c8ba3a354cbdc33ca4c0e17ec6fb7e7a3637dcc965ead34cc446b5c826940f",
+      "summary": "Static subject captured; semantic analysis is pending.",
+      "boundary": {
+        "kind": "callsite",
+        "anchors": [
+          {
+            "kind": "callsite",
+            "ref": "/evidence/process"
+          }
+        ],
+        "reachability_refs": [
+          "/evidence/paths/0"
+        ],
+        "coverage_refs": [
+          "/evidence/coverage/1"
+        ]
+      },
+      "claims": [
+        {
+          "kind": "unknown",
+          "statement": "The caller-visible semantics have not yet been analyzed.",
+          "evidence_refs": [],
+          "unknown_kind": "semantics"
+        }
+      ],
+      "domain": {
+        "kind": "process",
+        "callsite_id": "exit-startup",
+        "event_kind": "termination"
+      }
+    },
+    "finding:init_launch:v1:02d3c73a328fab4da227d586205314fa12b9cd68df330d2acf914c29cc4b61cc": {
+      "finding_ref": "finding:init_launch:v1:02d3c73a328fab4da227d586205314fa12b9cd68df330d2acf914c29cc4b61cc",
+      "summary": "Static subject captured; semantic analysis is pending.",
+      "boundary": {
+        "kind": "environment",
+        "anchors": [
+          {
+            "kind": "environment",
+            "ref": "/evidence/launch"
+          }
+        ],
+        "reachability_refs": [
+          "/evidence/paths/1"
+        ],
+        "coverage_refs": []
+      },
+      "claims": [
+        {
+          "kind": "unknown",
+          "statement": "The caller-visible semantics have not yet been analyzed.",
+          "evidence_refs": [],
+          "unknown_kind": "semantics"
+        }
+      ],
+      "domain": {
+        "kind": "init_launch",
+        "recipe_id": "launch-httpd",
+        "preparation_refs": [
+          "/evidence/launch/preparation"
+        ]
+      }
+    },
+    "finding:file:v1:da7887e746d6348f2a769b607c0ce6c2b23aae394b43788d69d967d340254c67": {
+      "finding_ref": "finding:file:v1:da7887e746d6348f2a769b607c0ce6c2b23aae394b43788d69d967d340254c67",
+      "summary": "Static subject captured; semantic analysis is pending.",
+      "boundary": {
+        "kind": "function",
+        "anchors": [
+          {
+            "kind": "function",
+            "ref": "/evidence/nvram_code"
+          }
+        ],
+        "reachability_refs": [
+          "/evidence/paths/0"
+        ],
+        "coverage_refs": []
+      },
+      "claims": [
+        {
+          "kind": "unknown",
+          "statement": "The caller-visible semantics have not yet been analyzed.",
+          "evidence_refs": [],
+          "unknown_kind": "semantics"
+        }
+      ],
+      "domain": null
+    }
+  },
+  "evidence": {
+    "resource": {
+      "resource_id": "file_dev_nvram",
+      "path": "/dev/nvram",
+      "resource_class": "pseudo_fs_dev"
+    },
+    "nvram_code": {
+      "binary_path": "usr/lib/libnvram.so",
+      "function_ea": 4096,
+      "function_name": "nvram_get",
+      "text": "/* get returns a pointer into the process-owned cache, valid until nvram_set replaces the value; missing keys return NULL. */"
+    },
+    "caller": {
+      "binary_path": "usr/sbin/httpd",
+      "function_ea": 8192,
+      "text": "value = nvram_get(key); if (!value) value = default_value;"
+    },
+    "file_callsite": {
+      "callsite_id": "file-open",
+      "api_name": "open",
+      "expression": "open(\"/dev/nvram\", O_RDONLY)"
+    },
+    "network": {
+      "interaction_id": "listener-http",
+      "interaction_kind": "listener",
+      "callsite_ids": [
+        "net-bind"
+      ],
+      "family": "AF_INET",
+      "address": "0.0.0.0",
+      "port": 80,
+      "text": "addr.sin_port = htons(80); bind(fd, &addr, sizeof(addr));"
+    },
+    "ipc": {
+      "channel_id": "channel-uds",
+      "mechanism": "uds",
+      "endpoint_ids": [
+        "endpoint-client"
+      ],
+      "path": "/var/run/peer.sock",
+      "text": "connect(fd, &peer_addr, sizeof(peer_addr)); send(fd, query, sizeof(query), 0); close(fd);"
+    },
+    "process": {
+      "callsite_id": "exit-startup",
+      "event_kind": "termination",
+      "text": "if (open(\"/dev/nvram\", O_RDONLY) < 0) exit(1);"
+    },
+    "launch": {
+      "recipe_id": "launch-httpd",
+      "script_path": "etc/init.d/S50httpd",
+      "text": "mkdir -p /var/run/httpd\n/usr/sbin/httpd",
+      "preparation": {
+        "path": "/var/run/httpd",
+        "operation": "mkdir"
+      }
+    },
+    "paths": [
+      {
+        "binary": "httpd",
+        "calls": [
+          "main",
+          "start_service",
+          "nvram_get"
+        ]
+      },
+      {
+        "script": "etc/init.d/S50httpd",
+        "target": "usr/sbin/httpd"
+      }
+    ],
+    "coverage": [
+      {
+        "callsite_id": "file-open",
+        "api_name": "open"
+      },
+      {
+        "callsite_id": "exit-startup",
+        "api_name": "exit"
+      }
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": 8,
+  "phase": "full",
+  "root_binary": "httpd",
+  "callsites": {
+    "network-callsite": {
+      "callsite_id": "network-callsite",
+      "location": {
+        "binary_name": "httpd",
+        "binary_path": "usr/sbin/httpd",
+        "binary_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "function_name": "serve",
+        "function_ea": 4352,
+        "snapshot_hash": "network-snapshot",
+        "ctree_index": 4,
+        "source_ea": 4384,
+        "line_number": 30,
+        "column_number": 6
+      },
+      "api_name": "bind",
+      "api_family": "socket_endpoint",
+      "api_binding": {
+        "symbol": "bind",
+        "call_kind": "direct",
+        "verified": true
+      },
+      "expression_text": "bind(fd, addr, 16)",
+      "arguments": [],
+      "return_expression": null
+    }
+  },
+  "analyses": [
+    {
+      "callsite_ids": [
+        "network-callsite"
+      ],
+      "disposition": "network",
+      "interaction_kind": "listener",
+      "identity": {
+        "resolution": "exact",
+        "family": "AF_INET",
+        "socket_type": "SOCK_STREAM",
+        "protocol": "TCP",
+        "local_address": "0.0.0.0",
+        "local_port": 80,
+        "remote_address": null,
+        "remote_port": null,
+        "hostname": null,
+        "service": null,
+        "interface": null,
+        "operation": null,
+        "netlink_protocol": null
+      },
+      "contract": {
+        "expectation": "expected_absent",
+        "violation_effect": "fatal_exit"
+      },
+      "coverage_flows": [],
+      "api_effects": [],
+      "summary": "httpd creates a TCP listener on port 80.",
+      "evidence": [],
+      "missing_evidence": [],
+      "interaction_id": "network-listener",
+      "anchor_callsite_id": "network-callsite"
+    }
+  ],
+  "skipped": {},
+  "pending_callsite_ids": [],
+  "covered_api_calls": [
+    {
+      "binary_name": "httpd",
+      "function_name": "serve",
+      "api_name": "bind",
+      "line_number": 30,
+      "column_number": 6,
+      "function_ea": 4352,
+      "snapshot_hash": "network-snapshot",
+      "ctree_index": 4,
+      "source_ea": 4384,
+      "reason": "network listener"
+    }
+  ]
+}

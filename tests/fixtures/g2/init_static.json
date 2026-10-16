@@ -1,0 +1,25 @@
+{
+  "schema_version": 5,
+  "phase": "static",
+  "target_identity": {
+    "target_basename": "httpd",
+    "selected_rootfs_path": "usr/sbin/httpd",
+    "target_aliases": []
+  },
+  "finding_target": {
+    "path": "usr/sbin/httpd",
+    "sha256": "39227120d341932b5d79b7a919593f305ea5ce8f311e97b695a12cada0953fe4"
+  },
+  "initialization_roots": [
+    "sbin/init",
+    "sbin/rc"
+  ],
+  "planning_findings": {},
+  "launch_recipes": {},
+  "analysis_gaps": [
+    {
+      "source": null,
+      "reason": "Static discovery identified initialization entries; target launch chains and preparation semantics have not been analyzed."
+    }
+  ]
+}

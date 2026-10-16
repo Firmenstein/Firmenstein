@@ -1,0 +1,381 @@
+# listener — ntpclient::setup_receive
+
+- schema_version: ` 11 `
+- root_binary: ` "ntpclient" `
+- analysis:
+  - callsite_ids:
+    - ` "network-cs:f92a752c1d859967a3e6eea0" `
+    - ` "network-cs:363953ebe71c78115cc96dae" `
+    - ` "network-cs:7924a19494cb40a40d66ba2a" `
+    - ` "network-cs:a1d17dfad6ecd7edc5aa50e1" `
+    - ` "network-cs:e9787221d8daea4979557966" `
+  - context_anchor:
+    - binary_name: ` "ntpclient" `
+    - function_name: ` "main" `
+    - line_number: ` 241 `
+    - column_number: ` 16 `
+  - applicability: ` "Scope is the captured seed invocation; caller applicability is not revalidated by this historical-response serialization fixture." `
+  - disposition: ` "network" `
+  - interaction_kind: ` "listener" `
+  - identity:
+    - resolution: ` "partial" `
+    - family: ` "AF_INET (2) or AF_INET6 (10), selected from getaddrinfo output" `
+    - socket_type: ` "Numeric argument 1; semantic socket type unresolved" `
+    - protocol: ` "Numeric argument 17 (IPPROTO_UDP)" `
+    - local_address: ` "0.0.0.0 for IPv4 or :: for IPv6" `
+    - local_port: ` null `
+    - remote_address: ` null `
+    - remote_port: ` null `
+    - hostname: ` null `
+    - service: ` null `
+    - interface: ` null `
+    - operation: ` null `
+    - netlink_protocol: ` null `
+  - coverage_flows:
+    - [0]:
+      - flow_id: ` "ip_socket_bind_listen" `
+      - description: ` "Resolves a non-special hostname's address family, creates the IP socket, binds an unspecified local address, and invokes listen; requires a nonempty hostname token other than literal 4 or 6." `
+      - setup:
+        - [0]:
+          - binary_name: ` "ntpclient" `
+          - function_name: ` "main" `
+          - api_name: ` "getaddrinfo" `
+          - line_number: ` 235 `
+          - column_number: ` 15 `
+          - function_ea: ` 4206032 `
+          - snapshot_hash: ` "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d" `
+          - ctree_index: ` 586 `
+          - source_ea: ` 4208208 `
+          - reason: ` "setup: resolve hostname and select address family" `
+        - [1]:
+          - binary_name: ` "ntpclient" `
+          - function_name: ` "main" `
+          - api_name: ` "socket" `
+          - line_number: ` 241 `
+          - column_number: ` 16 `
+          - function_ea: ` 4206032 `
+          - snapshot_hash: ` "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d" `
+          - ctree_index: ` 616 `
+          - source_ea: ` 4208284 `
+          - reason: ` "setup: create IP socket" `
+      - use:
+        - [0]:
+          - binary_name: ` "ntpclient" `
+          - function_name: ` "setup_receive" `
+          - api_name: ` "bind" `
+          - line_number: ` 14 `
+          - column_number: ` 9 `
+          - function_ea: ` 4200388 `
+          - snapshot_hash: ` "6164471d5f4ec4dbbf05d9634455f45615c852aaf7b09014e25de393ea9149ad" `
+          - ctree_index: ` 80 `
+          - source_ea: ` 4200540 `
+          - reason: ` "use: bind IPv4 wildcard address and selected local port" `
+        - [1]:
+          - binary_name: ` "ntpclient" `
+          - function_name: ` "setup_receive" `
+          - api_name: ` "bind" `
+          - line_number: ` 26 `
+          - column_number: ` 9 `
+          - function_ea: ` 4200388 `
+          - snapshot_hash: ` "6164471d5f4ec4dbbf05d9634455f45615c852aaf7b09014e25de393ea9149ad" `
+          - ctree_index: ` 134 `
+          - source_ea: ` 4200740 `
+          - reason: ` "use: bind IPv6 wildcard address and selected local port" `
+        - [2]:
+          - binary_name: ` "ntpclient" `
+          - function_name: ` "setup_receive" `
+          - api_name: ` "listen" `
+          - line_number: ` 33 `
+          - column_number: ` 9 `
+          - function_ea: ` 4200388 `
+          - snapshot_hash: ` "6164471d5f4ec4dbbf05d9634455f45615c852aaf7b09014e25de393ea9149ad" `
+          - ctree_index: ` 145 `
+          - source_ea: ` 4200868 `
+          - reason: ` "use: invoke listen with backlog 3" `
+      - termination:
+        - [0]:
+          - binary_name: ` "ntpclient" `
+          - function_name: ` "main" `
+          - api_name: ` "exit" `
+          - line_number: ` 236 `
+          - column_number: ` 12 `
+          - function_ea: ` 4206032 `
+          - snapshot_hash: ` "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d" `
+          - ctree_index: ` 583 `
+          - source_ea: ` 4208236 `
+          - reason: ` "termination: exit on getaddrinfo(L235) nonzero" `
+        - [1]:
+          - binary_name: ` "ntpclient" `
+          - function_name: ` "main" `
+          - api_name: ` "exit" `
+          - line_number: ` 245 `
+          - column_number: ` 12 `
+          - function_ea: ` 4206032 `
+          - snapshot_hash: ` "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d" `
+          - ctree_index: ` 628 `
+          - source_ea: ` 4208348 `
+          - reason: ` "termination: exit on socket(L241) == -1" `
+        - [2]:
+          - binary_name: ` "ntpclient" `
+          - function_name: ` "setup_receive" `
+          - api_name: ` "exit" `
+          - line_number: ` 18 `
+          - column_number: ` 6 `
+          - function_ea: ` 4200388 `
+          - snapshot_hash: ` "6164471d5f4ec4dbbf05d9634455f45615c852aaf7b09014e25de393ea9149ad" `
+          - ctree_index: ` 76 `
+          - source_ea: ` 4200648 `
+          - reason: ` "termination: exit on bind(L14) == -1" `
+        - [3]:
+          - binary_name: ` "ntpclient" `
+          - function_name: ` "setup_receive" `
+          - api_name: ` "exit" `
+          - line_number: ` 30 `
+          - column_number: ` 6 `
+          - function_ea: ` 4200388 `
+          - snapshot_hash: ` "6164471d5f4ec4dbbf05d9634455f45615c852aaf7b09014e25de393ea9149ad" `
+          - ctree_index: ` 130 `
+          - source_ea: ` 4200848 `
+          - reason: ` "termination: exit on bind(L26) == -1" `
+  - api_effects:
+    - [0]:
+      - binary_name: ` "ntpclient" `
+      - function_name: ` "main" `
+      - line_number: ` 235 `
+      - api_name: ` "getaddrinfo" `
+      - role: ` "setup and family query" `
+      - return_or_output_use: ` "Nonzero return triggers exit; on success, pai points to a result whose ai_family field is read to select IPv4 or IPv6." `
+      - side_effect: ` "Performs hostname resolution and writes the result pointer through pai." `
+      - failure_effect: ` "Any nonzero return causes exit(1)." `
+    - [1]:
+      - binary_name: ` "ntpclient" `
+      - function_name: ` "main" `
+      - line_number: ` 241 `
+      - api_name: ` "socket" `
+      - role: ` "setup" `
+      - return_or_output_use: ` "Return value is stored as the fd and checked against -1; successful fd is passed to setup_receive and setup_transmit." `
+      - side_effect: ` "Requests a socket with runtime family, numeric type 1, and protocol 17." `
+      - failure_effect: ` "Failure calls perror(\"socket\") and exit(1)." `
+    - [2]:
+      - binary_name: ` "ntpclient" `
+      - function_name: ` "setup_receive" `
+      - line_number: ` 14 `
+      - api_name: ` "bind" `
+      - role: ` "local configuration" `
+      - return_or_output_use: ` "Return value is compared with -1." `
+      - side_effect: ` "Binds the fd to IPv4 wildcard address 0.0.0.0 and the selected local port." `
+      - failure_effect: ` "Failure logs the port, calls perror, and exits." `
+    - [3]:
+      - binary_name: ` "ntpclient" `
+      - function_name: ` "setup_receive" `
+      - line_number: ` 26 `
+      - api_name: ` "bind" `
+      - role: ` "local configuration" `
+      - return_or_output_use: ` "Return value is compared with -1." `
+      - side_effect: ` "Binds the fd to IPv6 wildcard address :: and the selected local port." `
+      - failure_effect: ` "Failure logs the port, calls perror, and exits." `
+    - [4]:
+      - binary_name: ` "ntpclient" `
+      - function_name: ` "setup_receive" `
+      - line_number: ` 33 `
+      - api_name: ` "listen" `
+      - role: ` "listener configuration" `
+      - return_or_output_use: ` "Return value is returned by setup_receive but ignored by main." `
+      - side_effect: ` "Invokes listen(fd, 3)." `
+      - failure_effect: ` "Failure return is not checked by the target path and does not directly terminate the process." `
+  - summary: ` "For a non-special hostname token, ntpclient resolves the selected IP family, creates a socket, binds an IPv4 or IPv6 wildcard local address, and invokes listen. Resolution, socket creation, and bind failures are fatal; listen failure is ignored. The numeric socket-type argument is preserved as unresolved semantic detail." `
+  - evidence:
+    - [0]:
+      - claim: ` "main calls getaddrinfo(name, 0, req, pai), exits on nonzero return, reads ai_family, and passes the resulting family selector to socket and setup_receive." `
+      - binary_name: ` "ntpclient" `
+      - function_name: ` "main" `
+      - line_number: ` 235 `
+      - api_name: ` "getaddrinfo" `
+      - callsite_id: ` "network-cs:a1d17dfad6ecd7edc5aa50e1" `
+    - [1]:
+      - claim: ` "The seeded socket call uses the resolved family, numeric type 1, and protocol 17; failure is followed by perror and exit." `
+      - binary_name: ` "ntpclient" `
+      - function_name: ` "main" `
+      - line_number: ` 241 `
+      - api_name: ` "socket" `
+      - callsite_id: ` "network-cs:e9787221d8daea4979557966" `
+    - [2]:
+      - claim: ` "main calls setup_receive with fd, address argument 0, configured local port, and family selector 4 or 6." `
+      - binary_name: ` "ntpclient" `
+      - function_name: ` "main" `
+      - line_number: ` 247 `
+      - api_name: ` "setup_receive" `
+      - callsite_id: ` null `
+    - [3]:
+      - claim: ` "setup_receive constructs IPv4 wildcard address 0.0.0.0 or IPv6 address ::, binds it, and exits when bind returns -1." `
+      - binary_name: ` "ntpclient" `
+      - function_name: ` "setup_receive" `
+      - line_number: ` 14 `
+      - api_name: ` "bind" `
+      - callsite_id: ` "network-cs:f92a752c1d859967a3e6eea0" `
+    - [4]:
+      - claim: ` "setup_receive invokes listen(fd, 3), returns its result, and main ignores the setup_receive return value." `
+      - binary_name: ` "ntpclient" `
+      - function_name: ` "setup_receive" `
+      - line_number: ` 33 `
+      - api_name: ` "listen" `
+      - callsite_id: ` "network-cs:7924a19494cb40a40d66ba2a" `
+  - missing_evidence: ` [] `
+  - interaction_id: ` "network:0fa5c89fbd7ca2491c821208" `
+  - anchor_callsite_id: ` "network-cs:e9787221d8daea4979557966" `
+- callsites:
+  - network-cs:f92a752c1d859967a3e6eea0:
+    - callsite_id: ` "network-cs:f92a752c1d859967a3e6eea0" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "setup_receive" `
+      - function_ea: ` 4200388 `
+      - snapshot_hash: ` "6164471d5f4ec4dbbf05d9634455f45615c852aaf7b09014e25de393ea9149ad" `
+      - ctree_index: ` 80 `
+      - source_ea: ` 4200540 `
+      - line_number: ` 14 `
+      - column_number: ` 9 `
+    - api_name: ` "bind" `
+    - api_family: ` "endpoint" `
+    - api_binding:
+      - symbol: ` "bind" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "bind(fd, &addr, 0x10u)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "fd" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "&addr" `
+      - [2]:
+        - index: ` 3 `
+        - expression: ` "0x10u" `
+    - return_expression: ` null `
+  - network-cs:363953ebe71c78115cc96dae:
+    - callsite_id: ` "network-cs:363953ebe71c78115cc96dae" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "setup_receive" `
+      - function_ea: ` 4200388 `
+      - snapshot_hash: ` "6164471d5f4ec4dbbf05d9634455f45615c852aaf7b09014e25de393ea9149ad" `
+      - ctree_index: ` 134 `
+      - source_ea: ` 4200740 `
+      - line_number: ` 26 `
+      - column_number: ` 9 `
+    - api_name: ` "bind" `
+    - api_family: ` "endpoint" `
+    - api_binding:
+      - symbol: ` "bind" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "bind(fd, &v8, 0x1Cu)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "fd" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "&v8" `
+      - [2]:
+        - index: ` 3 `
+        - expression: ` "0x1Cu" `
+    - return_expression: ` null `
+  - network-cs:7924a19494cb40a40d66ba2a:
+    - callsite_id: ` "network-cs:7924a19494cb40a40d66ba2a" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "setup_receive" `
+      - function_ea: ` 4200388 `
+      - snapshot_hash: ` "6164471d5f4ec4dbbf05d9634455f45615c852aaf7b09014e25de393ea9149ad" `
+      - ctree_index: ` 145 `
+      - source_ea: ` 4200868 `
+      - line_number: ` 33 `
+      - column_number: ` 9 `
+    - api_name: ` "listen" `
+    - api_family: ` "endpoint" `
+    - api_binding:
+      - symbol: ` "listen" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "listen(fd, 3)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "fd" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "3" `
+    - return_expression: ` "DIRECT_RET" `
+  - network-cs:a1d17dfad6ecd7edc5aa50e1:
+    - callsite_id: ` "network-cs:a1d17dfad6ecd7edc5aa50e1" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "main" `
+      - function_ea: ` 4206032 `
+      - snapshot_hash: ` "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d" `
+      - ctree_index: ` 586 `
+      - source_ea: ` 4208208 `
+      - line_number: ` 235 `
+      - column_number: ` 15 `
+    - api_name: ` "getaddrinfo" `
+    - api_family: ` "resolver" `
+    - api_binding:
+      - symbol: ` "getaddrinfo" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "getaddrinfo(name, 0, req, pai)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "name" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "0" `
+      - [2]:
+        - index: ` 3 `
+        - expression: ` "req" `
+      - [3]:
+        - index: ` 4 `
+        - expression: ` "pai" `
+    - return_expression: ` null `
+  - network-cs:e9787221d8daea4979557966:
+    - callsite_id: ` "network-cs:e9787221d8daea4979557966" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "main" `
+      - function_ea: ` 4206032 `
+      - snapshot_hash: ` "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d" `
+      - ctree_index: ` 616 `
+      - source_ea: ` 4208284 `
+      - line_number: ` 241 `
+      - column_number: ` 16 `
+    - api_name: ` "socket" `
+    - api_family: ` "socket" `
+    - api_binding:
+      - symbol: ` "socket" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "socket(v21, 1, 17)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "v21" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "1" `
+      - [2]:
+        - index: ` 3 `
+        - expression: ` "17" `
+    - return_expression: ` "v23" `

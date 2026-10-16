@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/Firmenstein/GuestWeave.git",
+  "commit": "b5808428000ce13d455fcccf759e26c384da0c8c",
+  "checkout": ".fmst/dependencies/guestweave-b5808428000c/GuestWeave",
+  "manifest_abi_version": 4
+}

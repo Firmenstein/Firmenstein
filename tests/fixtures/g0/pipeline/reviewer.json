@@ -1,0 +1,12 @@
+{
+  "verdict": "approved",
+  "contract_reviews": [
+    {
+      "contract_index": 0,
+      "status": "satisfied",
+      "evidence": "implementation and test cover this contract item",
+      "required_change": null
+    }
+  ],
+  "summary": "Synthetic fixture: both known and unknown keys are covered."
+}

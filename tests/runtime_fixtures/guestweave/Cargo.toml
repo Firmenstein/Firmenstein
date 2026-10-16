@@ -1,0 +1,13 @@
+[package]
+name    = "guestweave-runtime-fixtures"
+edition = "2021"
+version = "0.1.0"
+license = "Apache-2.0"
+publish = false
+
+# Fixture-only manifest; it is deliberately outside the public GuestWeave workspace.
+[workspace]
+
+[[bin]]
+name = "placeholder"
+path = "src/main.rs"

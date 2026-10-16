@@ -1,0 +1,204 @@
+{
+  "schema_version": 29,
+  "phase": "full",
+  "firmware_sha256": "01785697c51209c9df008ee434a15265a2a8b90f791e2443cac2db5506d48e03",
+  "target_process": {
+    "executable_path": "usr/sbin/l2tp-control",
+    "executable_sha256": "63e9f422d199949f817437a16af5b6309f4e91629c2bdfd6b9f56d782e44e817",
+    "argv0": "l2tp-control"
+  },
+  "channel": {
+    "channel_id": "channel:4c931a2cbae08236ea3d47b7",
+    "mechanism": "uds",
+    "resources": [
+      {
+        "resource_key": "resource:68d2dc25dcfc52e8403f5160",
+        "kind": "uds_path",
+        "canonical_value": "/var/run/l2tpctrl",
+        "expressions": [
+          "AF_UNIX sockaddr initialized with pathname /var/run/l2tpctrl, then passed to connect"
+        ],
+        "status": "verified_agent",
+        "evidence": [
+          {
+            "claim": "The socket family is AF_UNIX and the pathname is /var/run/l2tpctrl.",
+            "binary_path": "usr/sbin/l2tp-control",
+            "function_name": "sub_4008D0",
+            "function_ea": 4196560,
+            "line_number": 12,
+            "callsite_id": null
+          },
+          {
+            "claim": "The supplied anchor connects the populated Unix-domain sockaddr.",
+            "binary_path": "usr/sbin/l2tp-control",
+            "function_name": "sub_4008D0",
+            "function_ea": 4196560,
+            "line_number": 17,
+            "callsite_id": "cs:3c9b56789b831dfecf1a3899"
+          }
+        ],
+        "missing_evidence": []
+      }
+    ],
+    "endpoints": [
+      {
+        "identity_resource_keys": [
+          "resource:68d2dc25dcfc52e8403f5160"
+        ],
+        "context_anchor": null,
+        "endpoint_id": "endpoint:91d9c28691adcb1bc4310b02",
+        "callsite_id": "cs:3c9b56789b831dfecf1a3899",
+        "role": "client",
+        "api_binding": {
+          "kind": "dynamic_import",
+          "symbol": "connect",
+          "binary_path": null,
+          "binary_sha256": null,
+          "status": "verified_static",
+          "reason": "source ELF declares this symbol undefined in its dynamic symbol table; runtime provider intentionally not inferred"
+        },
+        "wrapper_path": [],
+        "coverage_claims": [
+          {
+            "binary_name": "l2tp-control",
+            "function_name": "sub_4008D0",
+            "api_name": "connect",
+            "line_number": 17,
+            "column_number": 11,
+            "function_ea": 4196560,
+            "snapshot_hash": "cb4497eb06c3aa29ec80828a3a2f084f5a41900a571d98f72137fba0d2d6ce38",
+            "ctree_index": 75,
+            "source_ea": 4196884,
+            "reason": "IPC uds: Client creates an AF_UNIX SOCK_STREAM socket, connects to /var/run/l2tpctrl, and attempts to write the nonempty input followed by a newline."
+          },
+          {
+            "binary_name": "l2tp-control",
+            "function_name": "sub_4008D0",
+            "api_name": "socket",
+            "line_number": 14,
+            "column_number": 9,
+            "function_ea": 4196560,
+            "snapshot_hash": "cb4497eb06c3aa29ec80828a3a2f084f5a41900a571d98f72137fba0d2d6ce38",
+            "ctree_index": 25,
+            "source_ea": 4196780,
+            "reason": "IPC uds: Client creates an AF_UNIX SOCK_STREAM socket, connects to /var/run/l2tpctrl, and attempts to write the nonempty input followed by a newline."
+          }
+        ],
+        "status": "verified_agent",
+        "evidence": [
+          {
+            "claim": "socket(1, 2, 0) creates an AF_UNIX SOCK_STREAM descriptor.",
+            "binary_path": "usr/sbin/l2tp-control",
+            "function_name": "sub_4008D0",
+            "function_ea": 4196560,
+            "line_number": 14,
+            "callsite_id": null
+          },
+          {
+            "claim": "The sockaddr is initialized with family 1 and pathname /var/run/l2tpctrl.",
+            "binary_path": "usr/sbin/l2tp-control",
+            "function_name": "sub_4008D0",
+            "function_ea": 4196560,
+            "line_number": 12,
+            "callsite_id": "cs:3c9b56789b831dfecf1a3899"
+          },
+          {
+            "claim": "After successful connection, writev receives the input buffer and a one-byte newline.",
+            "binary_path": "usr/sbin/l2tp-control",
+            "function_name": "sub_4008D0",
+            "function_ea": 4196560,
+            "line_number": 23,
+            "callsite_id": "cs:3c9b56789b831dfecf1a3899"
+          }
+        ],
+        "missing_evidence": []
+      }
+    ],
+    "retrieval_candidates": [],
+    "peer_candidates": [],
+    "status": "verified_agent",
+    "missing_evidence": []
+  },
+  "dependency_assessments": [
+    {
+      "dependency_id": "dependency:dc1449bc0b5e8197a7ea549a",
+      "channel_id": "channel:4c931a2cbae08236ea3d47b7",
+      "consumer_endpoint_ids": [
+        "endpoint:91d9c28691adcb1bc4310b02"
+      ],
+      "peer_requirement": "availability",
+      "local_impact": "operation_affected",
+      "summary": "Absence of a listener or a connect-rejected endpoint makes this command operation fail with perror/close and return -1; a protocol-incompatible accepting peer is not checked here.",
+      "status": "verified_agent",
+      "evidence": [
+        {
+          "claim": "The connect failure branch calls perror(\"connect\"), closes fd, and returns -1.",
+          "binary_path": "usr/sbin/l2tp-control",
+          "function_name": "sub_4008D0",
+          "function_ea": 4196560,
+          "line_number": 27,
+          "callsite_id": "cs:3c9b56789b831dfecf1a3899"
+        },
+        {
+          "claim": "The successful branch performs the writev request attempt and returns fd without reading or validating peer data.",
+          "binary_path": "usr/sbin/l2tp-control",
+          "function_name": "sub_4008D0",
+          "function_ea": 4196560,
+          "line_number": 23,
+          "callsite_id": "cs:3c9b56789b831dfecf1a3899"
+        }
+      ],
+      "missing_evidence": []
+    }
+  ],
+  "unresolved_items": [
+    {
+      "unresolved_item_id": "unresolved:23d1b7573d9e21424bc2a535",
+      "subject_kind": "analysis_scope",
+      "subject_id": "candidate_index",
+      "affected_channel_ids": [
+        "channel:4c931a2cbae08236ea3d47b7"
+      ],
+      "reason": "Dynamic loader calls may bypass DT_NEEDED/import matching.",
+      "missing_evidence": [
+        "lib/libbigballofmud.so imports dlopen/dlsym.",
+        "usr/lib/libcrypto.so.1.0.0 imports dlopen/dlsym.",
+        "usr/sbin/ip imports dlopen/dlsym.",
+        "usr/sbin/ip6tables imports dlopen/dlsym.",
+        "usr/sbin/ip6tables-restore imports dlopen/dlsym.",
+        "usr/sbin/iptables imports dlopen/dlsym.",
+        "usr/sbin/iptables-restore imports dlopen/dlsym.",
+        "usr/sbin/l2tpd imports dlopen/dlsym.",
+        "usr/sbin/pppd imports dlopen/dlsym.",
+        "usr/sbin/tc imports dlopen/dlsym."
+      ],
+      "runtime_evidence_requests": []
+    },
+    {
+      "unresolved_item_id": "unresolved:848d5d3f051ea10e1e80cd8a",
+      "subject_kind": "analysis_scope",
+      "subject_id": "candidate_index",
+      "affected_channel_ids": [
+        "channel:4c931a2cbae08236ea3d47b7"
+      ],
+      "reason": "Provider-entry/caller matching found no inspectable executable candidate.",
+      "missing_evidence": [
+        "A static link, raw syscall, dynamic loader edge, opaque indirect call, or runtime-built identifier may be invisible."
+      ],
+      "runtime_evidence_requests": []
+    },
+    {
+      "unresolved_item_id": "unresolved:d80698e55348f63e3a9cf46b",
+      "subject_kind": "analysis_scope",
+      "subject_id": "candidate_index",
+      "affected_channel_ids": [
+        "channel:4c931a2cbae08236ea3d47b7"
+      ],
+      "reason": "38 mechanism-capable ELFs without the complete named Channel identifier were not opened in IDA.",
+      "missing_evidence": [
+        "Runtime construction of the same identifier remains possible; this is an unresolved coverage item, not a static rejection."
+      ],
+      "runtime_evidence_requests": []
+    }
+  ]
+}

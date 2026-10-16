@@ -1,0 +1,11 @@
+ARG RUNNER_BASE_IMAGE=firmenstein/runner-agent:py312-tools
+FROM ${RUNNER_BASE_IMAGE}
+COPY --chown=runner:runner ida/ /opt/ida/
+COPY --chown=runner:runner ida-user/ /opt/ida-user/
+ENV IDADIR=/opt/ida IDAUSR=/opt/ida-user
+RUN /opt/venv/bin/python -c "import sys; assert sys.version_info[:2] == (3, 12), 'Build the Python 3.12 tools image first'" \
+ && chown runner:runner /opt/ida-user \
+ && chmod 700 /opt/ida-user \
+ && find /opt/ida-user -type f -exec chmod 600 {} + \
+ && pip install --no-index --no-deps /opt/ida/idalib/python/idapro-*.whl
+LABEL org.firmenstein.runner.ida="private-image-v1"

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img"><title>Frankenstein-inspired firmware icon</title>
+    <g fill="#E0E2E6">
+      <rect x="22" y="155" width="15" height="29" rx="4"/>
+      <rect x="219" y="155" width="15" height="29" rx="4"/>
+      <path d="M35 164H59V176H35ZM197 164H221V176H197Z"/>
+      <rect x="101" y="208" width="54" height="23" rx="6"/>
+    </g>
+    <path d="M65 34H191Q205 34 205 48V157Q205 178 188 194L172 208Q163 216 150 216H106Q93 216 84 208L68 194Q51 178 51 157V48Q51 34 65 34Z" fill="#383D45" stroke="#E0E2E6" stroke-width="8"/>
+    <path d="M129 34H191Q205 34 205 48V157Q205 178 188 194L172 208Q163 216 150 216H129Z" fill="#E0E2E6"/>
+    <path d="M65 30H130V74L118 84L105 72L92 84L79 72L67 84H47V48Q47 30 65 30Z" fill="#E0E2E6"/>
+    <path d="M129 42V211" fill="none" stroke="#383D45" stroke-width="5"/>
+    <g fill="none" stroke="#383D45" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M153 64V87H178V108"/>
+      <path d="M157 178H178V154"/>
+    </g>
+    <circle cx="178" cy="109" r="7" fill="#383D45"/>
+    <circle cx="178" cy="144" r="10" fill="#383D45"/>
+    <g fill="none" stroke="#E0E2E6" stroke-width="6" stroke-linecap="round">
+      <path d="M119 102H129M119 164H129M119 193H129"/>
+    </g>
+    <g fill="none" stroke="#383D45" stroke-width="6" stroke-linecap="round">
+      <path d="M129 102H139M129 164H139M129 193H139"/>
+    </g>
+    <rect x="78" y="132" width="23" height="13" rx="4" fill="#E0E2E6"/>
+    <path d="M96 177H111" fill="none" stroke="#E0E2E6" stroke-width="6" stroke-linecap="round"/>
+    </svg>

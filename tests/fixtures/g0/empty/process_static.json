@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "phase": "static",
+  "root_binary": "httpd",
+  "callsites": {},
+  "assessments": {},
+  "skipped": {}
+}

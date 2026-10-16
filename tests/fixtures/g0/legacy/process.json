@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "phase": "full",
+  "root_binary": "httpd",
+  "callsites": {
+    "process-callsite": {
+      "callsite_id": "process-callsite",
+      "binary_name": "httpd",
+      "function_name": "main",
+      "function_ea": 4096,
+      "snapshot_hash": "process-snapshot",
+      "ctree_index": 5,
+      "source_ea": 4144,
+      "line_number": 40,
+      "column_number": 8,
+      "api_name": "exit",
+      "event_kind": "termination"
+    }
+  },
+  "assessments": {
+    "process-callsite": {
+      "callsite_id": "process-callsite",
+      "disposition": "startup_blocker",
+      "trigger_callsites": [],
+      "trigger_inputs": [
+        {
+          "kind": "path",
+          "value": "/dev/nvram",
+          "summary": "The failed nvram open reaches startup exit."
+        }
+      ],
+      "summary": "Missing nvram device terminates startup.",
+      "evidence": [
+        {
+          "claim": "startup exit",
+          "binary_name": "httpd",
+          "function_name": "main",
+          "line_number": 40,
+          "api_name": "exit"
+        }
+      ],
+      "missing_evidence": []
+    }
+  },
+  "skipped": {}
+}

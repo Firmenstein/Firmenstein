@@ -1,0 +1,22 @@
+{
+  "launch_site": {
+    "path": "etc/init.d/httpd",
+    "location": "line 12",
+    "text": "/usr/sbin/httpd -f /etc/httpd.conf &"
+  },
+  "executable_path": "usr/sbin/httpd",
+  "command_template": [
+    "/usr/sbin/httpd",
+    "-f",
+    "/etc/httpd.conf"
+  ],
+  "initialization_chain": [
+    {
+      "path": "etc/init.d/httpd",
+      "location": "line 12",
+      "text": "/usr/sbin/httpd -f /etc/httpd.conf &"
+    }
+  ],
+  "preparation_actions": [],
+  "recipe_id": "launch-httpd"
+}

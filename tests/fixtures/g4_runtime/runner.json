@@ -1,0 +1,11 @@
+{
+  "schema_version": 12,
+  "target_binary": "synthetic-service",
+  "guest_arch": "arm",
+  "selected_recipe_id": null,
+  "status": "stopped",
+  "success_definition": "connect_and_interact",
+  "specification_gap": "Synthetic current-schema replay only; no firmware executed.",
+  "attempts": [],
+  "final_summary": "No live run; missing scenario is not success."
+}

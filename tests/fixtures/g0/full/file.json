@@ -1,0 +1,112 @@
+{
+  "schema_version": 9,
+  "phase": "full",
+  "root_binary": "httpd",
+  "callsites": {
+    "file-callsite#0": {
+      "callsite_id": "file-callsite",
+      "candidate_idx": 0,
+      "profile_key": "file-callsite#0",
+      "binary_name": "httpd",
+      "function_name": "main",
+      "function_ea": 4096,
+      "snapshot_hash": "file-snapshot",
+      "line_number": 10,
+      "column_number": 4,
+      "callsite_ea": 4112,
+      "ctree_index": 2,
+      "api_name": "open",
+      "path_arg_index": 1,
+      "requested_path": "/dev/nvram",
+      "path_value": "/dev/nvram",
+      "path_kind": "concrete",
+      "resolution_source": "literal_static",
+      "resolution_evidence": [],
+      "resource_class": "pseudo_fs_dev",
+      "resource_group_id": "file_dev_nvram"
+    }
+  },
+  "skipped": {},
+  "path_resolution_gaps": {},
+  "queued_for_path_agent": [],
+  "resources": {
+    "file_dev_nvram": {
+      "resource_group_id": "file_dev_nvram",
+      "path_value": "/dev/nvram",
+      "path_kind": "concrete",
+      "resource_class": "pseudo_fs_dev",
+      "callsites": [
+        {
+          "callsite_id": "file-callsite",
+          "candidate_idx": 0,
+          "profile_key": "file-callsite#0",
+          "binary_name": "httpd",
+          "function_name": "main",
+          "function_ea": 4096,
+          "snapshot_hash": "file-snapshot",
+          "line_number": 10,
+          "column_number": 4,
+          "callsite_ea": 4112,
+          "ctree_index": 2,
+          "api_name": "open",
+          "path_arg_index": 1,
+          "requested_path": "/dev/nvram",
+          "path_value": "/dev/nvram",
+          "path_kind": "concrete",
+          "resolution_source": "literal_static",
+          "resolution_evidence": [],
+          "resource_class": "pseudo_fs_dev",
+          "resource_group_id": "file_dev_nvram"
+        }
+      ]
+    }
+  },
+  "resource_reports": {
+    "file_dev_nvram": {
+      "resource_group_id": "file_dev_nvram",
+      "primary_path": "/dev/nvram",
+      "resource_class": "pseudo_fs_dev",
+      "callsite_reports": [
+        {
+          "callsite_id": "file-callsite",
+          "containing_function_purpose": "opens nvram",
+          "setup_details": "read-only open",
+          "usage_reports": [],
+          "resource_usage_sites": [],
+          "total_usage_sites": 0
+        }
+      ],
+      "contract": {
+        "expectation": "expected_present",
+        "violation_effect": "fatal_exit"
+      },
+      "coverage_flows": [],
+      "summary": "The service requires the nvram device during startup.",
+      "observed_apis": []
+    }
+  },
+  "resource_analysis_gaps": {},
+  "counts_by_resolution_source": {
+    "literal_static": 1,
+    "global_static": 0,
+    "dataflow_static": 0,
+    "file_path_agent": 0
+  },
+  "counts_by_resource_class": {
+    "pseudo_fs_dev": 1
+  },
+  "covered_api_calls": [
+    {
+      "binary_name": "httpd",
+      "function_name": "main",
+      "api_name": "open",
+      "line_number": 10,
+      "column_number": 4,
+      "function_ea": 4096,
+      "snapshot_hash": "file-snapshot",
+      "ctree_index": 2,
+      "source_ea": 4112,
+      "reason": "filesystem open on pseudo_fs_dev"
+    }
+  ]
+}

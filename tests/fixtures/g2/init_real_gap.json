@@ -1,0 +1,37 @@
+{
+  "schema_version": 5,
+  "phase": "full",
+  "target_identity": {
+    "target_basename": "httpd",
+    "selected_rootfs_path": "usr/sbin/httpd",
+    "target_aliases": []
+  },
+  "finding_target": {
+    "path": "usr/sbin/httpd",
+    "sha256": "39227120d341932b5d79b7a919593f305ea5ce8f311e97b695a12cada0953fe4"
+  },
+  "initialization_roots": [
+    "sbin/init",
+    "sbin/rc"
+  ],
+  "planning_findings": {},
+  "launch_recipes": {},
+  "analysis_gaps": [
+    {
+      "source": {
+        "path": "sbin/rc",
+        "location": "0x42a6e8",
+        "text": "0x42a6e8: lw $s0, -0x7fd8($gp)\n0x42a6ec: lw $a0, -0x7fd8($gp)\n0x42a6f0: lw $t9, -0x7b98($gp)\n0x42a6f4: addiu $a0, $a0, 0x4b58\n0x42a6f8: jalr $t9\n0x42a6fc: addiu $a1, $s0, 0x4b68\n0x42a764: lw $v0, -0x7fd8($gp)\n0x42a76c: addiu $v0, $v0, 0x1f90\n0x42a774: lw $v0, -0x7fd8($gp)\n0x42a778: addiu $v1, $s0, 0x4b68\n0x42a77c: lw $t9, -0x7a18($gp)\n0x42a780: addiu $v0, $v0, 0x4b78\n0x42a784: sw $v1, 0x18($sp)\n0x42a788: sw $a0, 0x20($sp)\n0x42a79c: sw $v0, 0x24($sp)\n0x42a7a0: jalr $t9\n0x42a7a4: sw $zero, 0x28($sp)"
+      },
+      "reason": "A candidate start_gn_httpd routine passes /usr/sbin/httpd and /tmp/gn-httpd to an unresolved helper, then constructs argv beginning /tmp/gn-httpd, -p, a value obtained through gn_http_port, -G. The launched path is not the selected executable and no alias was supplied; a direct initialization call edge to this routine from the stripped indirect startup dispatch was also not recoverable."
+    },
+    {
+      "source": {
+        "path": "sbin/rc",
+        "location": "0x438988",
+        "text": "0x438988: lw $s0, -0x7fd8($gp)\n0x43898c: lw $a0, -0x7fd8($gp)\n0x438990: lw $t9, -0x7b98($gp)\n0x438994: addiu $a1, $s0, 0x7150\n0x438998: jalr $t9\n0x43899c: addiu $a0, $a0, 0x4b58\n0x4389e4: lw $v0, -0x7fd8($gp)\n0x4389ec: addiu $v0, $v0, 0x1f90\n0x4389f4: lw $v0, -0x7fd8($gp)\n0x4389f8: addiu $v1, $s0, 0x7150\n0x4389fc: lw $t9, -0x7a18($gp)\n0x438a00: addiu $v0, $v0, 0x26e4\n0x438a04: sw $v1, 0x18($sp)\n0x438a08: sw $a0, 0x20($sp)\n0x438a1c: sw $v0, 0x24($sp)\n0x438a20: jalr $t9\n0x438a24: sw $zero, 0x28($sp)"
+      },
+      "reason": "A candidate start_wl_warning_httpd routine passes /usr/sbin/httpd and /tmp/wm-httpd to an unresolved helper, then constructs argv beginning /tmp/wm-httpd, -p, a value obtained through warning_http_port, -w. The launched path is not the selected executable and no alias was supplied; a direct initialization call edge to this routine from the stripped indirect startup dispatch was not recoverable."
+    }
+  ]
+}

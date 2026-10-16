@@ -1,0 +1,106 @@
+# Process event assessment
+
+- schema_version: ` 5 `
+- root_binary: ` "nvram" `
+- callsite:
+  - callsite_id: ` "process-event:015ab1793704480029ae30aa" `
+  - binary_name: ` "nvram" `
+  - function_name: ` "usage" `
+  - function_ea: ` 4196624 `
+  - snapshot_hash: ` "cf3c99134b9f6c081cdf102d44cfe566a3d8292d6df97ff541fe620bf4bab8cb" `
+  - ctree_index: ` 9 `
+  - source_ea: ` 4196696 `
+  - line_number: ` 4 `
+  - column_number: ` 2 `
+  - api_name: ` "exit" `
+  - event_kind: ` "termination" `
+- assessment:
+  - callsite_id: ` "process-event:015ab1793704480029ae30aa" `
+  - disposition: ` "expected_lifecycle" `
+  - trigger_callsites:
+    - [0]:
+      - callsite_id: ` "process-trigger:da2849493e841bb71b07bfce" `
+      - binary_name: ` "nvram" `
+      - function_name: ` "main" `
+      - function_ea: ` 4196704 `
+      - snapshot_hash: ` "c5636833a40b1949b2a3c6fb378071ace740364a67e36dcbdda70e7865f1aa57" `
+      - ctree_index: ` 17 `
+      - source_ea: ` 4197508 `
+      - line_number: ` 16 `
+      - column_number: ` 4 `
+      - api_name: ` "usage" `
+    - [1]:
+      - callsite_id: ` "process-trigger:60506a4c84b61377a116f5f4" `
+      - binary_name: ` "nvram" `
+      - function_name: ` "main" `
+      - function_ea: ` 4196704 `
+      - snapshot_hash: ` "c5636833a40b1949b2a3c6fb378071ace740364a67e36dcbdda70e7865f1aa57" `
+      - ctree_index: ` 104 `
+      - source_ea: ` 4197552 `
+      - line_number: ` 53 `
+      - column_number: ` 10 `
+      - api_name: ` "usage" `
+  - trigger_inputs:
+    - [0]:
+      - kind: ` "argv" `
+      - value: ` "argv[1]" `
+      - summary: ` "A missing initial command directly enters usage()." `
+    - [1]:
+      - kind: ` "other" `
+      - value: ` "v3" `
+      - summary: ` "The current command is rejected when it is neither get, set, unset, commit, show, nor dump." `
+    - [2]:
+      - kind: ` "argv" `
+      - value: ` "*v4" `
+      - summary: ` "After each dispatch iteration, the next current command is loaded from the argv entry referenced by *v4." `
+  - summary: ` "Both reachable calls to usage are deliberate command-line usage/rejection paths. They print the usage text and terminate normally via exit(0), whether no initial command is supplied or an unsupported current command is encountered later in the dispatch loop. No runtime dependency failure guard or startup-blocking propagation is shown." `
+  - evidence:
+    - [0]:
+      - claim: ` "usage attempts to write the fixed command-line usage text to stderr before terminating." `
+      - binary_name: ` "nvram" `
+      - function_name: ` "usage" `
+      - line_number: ` 3 `
+      - api_name: ` "fwrite" `
+    - [1]:
+      - claim: ` "The supplied event is the custom usage function's exit(0), producing normal termination status 0." `
+      - binary_name: ` "nvram" `
+      - function_name: ` "usage" `
+      - line_number: ` 4 `
+      - api_name: ` "exit" `
+    - [2]:
+      - claim: ` "main initializes the current command from argv[1]." `
+      - binary_name: ` "nvram" `
+      - function_name: ` "main" `
+      - line_number: ` 13 `
+      - api_name: ` null `
+    - [3]:
+      - claim: ` "A missing argv[1] is guarded directly by a call to usage()." `
+      - binary_name: ` "nvram" `
+      - function_name: ` "main" `
+      - line_number: ` 15 `
+      - api_name: ` null `
+    - [4]:
+      - claim: ` "The no-command guard reaches usage() before the dispatch loop proceeds." `
+      - binary_name: ` "nvram" `
+      - function_name: ` "main" `
+      - line_number: ` 16 `
+      - api_name: ` "usage" `
+    - [5]:
+      - claim: ` "The current command is tested against show and dump after the other supported command checks." `
+      - binary_name: ` "nvram" `
+      - function_name: ` "main" `
+      - line_number: ` 52 `
+      - api_name: ` "strcmp" `
+    - [6]:
+      - claim: ` "When the current command is neither show nor dump, the rejection branch calls usage()." `
+      - binary_name: ` "nvram" `
+      - function_name: ` "main" `
+      - line_number: ` 53 `
+      - api_name: ` "usage" `
+    - [7]:
+      - claim: ` "After dispatch processing, the next current command is loaded from the argv entry referenced by *v4." `
+      - binary_name: ` "nvram" `
+      - function_name: ` "main" `
+      - line_number: ` 67 `
+      - api_name: ` null `
+  - missing_evidence: ` [] `

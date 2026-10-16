@@ -1,0 +1,26 @@
+{
+  "schema_version": 9,
+  "phase": "static",
+  "root_binary": "httpd",
+  "callsites": {},
+  "skipped": {},
+  "path_resolution_gaps": {
+    "file-callsite": [
+      "Working directory is unknown; relative path 'nvram' cannot be resolved."
+    ]
+  },
+  "queued_for_path_agent": [
+    "file-callsite"
+  ],
+  "resources": {},
+  "resource_reports": {},
+  "resource_analysis_gaps": {},
+  "counts_by_resolution_source": {
+    "literal_static": 0,
+    "global_static": 0,
+    "dataflow_static": 0,
+    "file_path_agent": 0
+  },
+  "counts_by_resource_class": {},
+  "covered_api_calls": []
+}

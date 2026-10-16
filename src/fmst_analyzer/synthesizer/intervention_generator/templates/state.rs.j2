@@ -1,0 +1,9 @@
+//! Top-level GlobalState. Each Intervention Unit owns one state namespace.
+//! Generated — do not edit.
+
+#[derive(Default)]
+pub struct GlobalState {
+{%- for module in modules %}
+    pub {{ module }}: crate::{{ module }}::state::State,
+{%- endfor %}
+}

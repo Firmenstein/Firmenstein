@@ -1,0 +1,1520 @@
+# File Resolver Report — `nvram`
+
+- Structured source of truth: [file_resolver_result.json](file_resolver_result.json)
+- schema_version: `12`
+- phase: `full`
+
+## execution
+
+- execution:
+  - tasks: ` {} `
+  - status: ` "complete" `
+
+## root_binary
+
+- root_binary: ` "nvram" `
+
+## finding_target
+
+- finding_target:
+  - path: ` "usr/sbin/nvram" `
+  - sha256: ` "690e220908417414f4b4b003811dda7b4f380c14eb9ec0657744bda44913c33d" `
+
+## callsites
+
+- callsites:
+  - libnvram.so::nvram_commit::L12::fopen@ctree4#0:
+    - callsite_id: ` "libnvram.so::nvram_commit::L12::fopen@ctree4" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::nvram_commit::L12::fopen@ctree4#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - line_number: ` 12 `
+    - column_number: ` 7 `
+    - callsite_ea: ` 6196 `
+    - ctree_index: ` 4 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/dev/console" `
+    - path_value: ` "/dev/console" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "literal_static" `
+    - resolution_evidence: ` [] `
+    - resource_class: ` "pseudo_fs_dev" `
+    - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+  - libnvram.so::nvram_commit::L21::fopen@ctree32#0:
+    - callsite_id: ` "libnvram.so::nvram_commit::L21::fopen@ctree32" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::nvram_commit::L21::fopen@ctree32#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - line_number: ` 21 `
+    - column_number: ` 9 `
+    - callsite_ea: ` 6832 `
+    - ctree_index: ` 32 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/dev/console" `
+    - path_value: ` "/dev/console" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "literal_static" `
+    - resolution_evidence: ` [] `
+    - resource_class: ` "pseudo_fs_dev" `
+    - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+  - libnvram.so::nvram_commit::L41::fopen@ctree110#0:
+    - callsite_id: ` "libnvram.so::nvram_commit::L41::fopen@ctree110" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::nvram_commit::L41::fopen@ctree110#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - line_number: ` 41 `
+    - column_number: ` 11 `
+    - callsite_ea: ` 6696 `
+    - ctree_index: ` 110 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/dev/console" `
+    - path_value: ` "/dev/console" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "literal_static" `
+    - resolution_evidence: ` [] `
+    - resource_class: ` "pseudo_fs_dev" `
+    - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+  - libnvram.so::nvram_commit::L51::fopen@ctree155#0:
+    - callsite_id: ` "libnvram.so::nvram_commit::L51::fopen@ctree155" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::nvram_commit::L51::fopen@ctree155#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - line_number: ` 51 `
+    - column_number: ` 7 `
+    - callsite_ea: ` 6456 `
+    - ctree_index: ` 155 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/dev/console" `
+    - path_value: ` "/dev/console" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "literal_static" `
+    - resolution_evidence: ` [] `
+    - resource_class: ` "pseudo_fs_dev" `
+    - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+  - libnvram.so::check_action::L28::fopen@ctree28#0:
+    - callsite_id: ` "libnvram.so::check_action::L28::fopen@ctree28" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::check_action::L28::fopen@ctree28#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - line_number: ` 28 `
+    - column_number: ` 9 `
+    - callsite_ea: ` 4948 `
+    - ctree_index: ` 28 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/dev/console" `
+    - path_value: ` "/dev/console" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "literal_static" `
+    - resolution_evidence: ` [] `
+    - resource_class: ` "pseudo_fs_dev" `
+    - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+  - libnvram.so::check_action::L39::fopen@ctree59#0:
+    - callsite_id: ` "libnvram.so::check_action::L39::fopen@ctree59" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::check_action::L39::fopen@ctree59#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - line_number: ` 39 `
+    - column_number: ` 9 `
+    - callsite_ea: ` 5100 `
+    - ctree_index: ` 59 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/dev/console" `
+    - path_value: ` "/dev/console" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "literal_static" `
+    - resolution_evidence: ` [] `
+    - resource_class: ` "pseudo_fs_dev" `
+    - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+  - libnvram.so::check_action::L50::fopen@ctree90#0:
+    - callsite_id: ` "libnvram.so::check_action::L50::fopen@ctree90" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::check_action::L50::fopen@ctree90#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - line_number: ` 50 `
+    - column_number: ` 9 `
+    - callsite_ea: ` 5252 `
+    - ctree_index: ` 90 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/dev/console" `
+    - path_value: ` "/dev/console" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "literal_static" `
+    - resolution_evidence: ` [] `
+    - resource_class: ` "pseudo_fs_dev" `
+    - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+  - libnvram.so::check_action::L61::fopen@ctree121#0:
+    - callsite_id: ` "libnvram.so::check_action::L61::fopen@ctree121" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::check_action::L61::fopen@ctree121#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - line_number: ` 61 `
+    - column_number: ` 9 `
+    - callsite_ea: ` 5388 `
+    - ctree_index: ` 121 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/dev/console" `
+    - path_value: ` "/dev/console" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "literal_static" `
+    - resolution_evidence: ` [] `
+    - resource_class: ` "pseudo_fs_dev" `
+    - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+  - libnvram.so::check_action::L72::fopen@ctree152#0:
+    - callsite_id: ` "libnvram.so::check_action::L72::fopen@ctree152" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::check_action::L72::fopen@ctree152#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - line_number: ` 72 `
+    - column_number: ` 9 `
+    - callsite_ea: ` 5524 `
+    - ctree_index: ` 152 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/dev/console" `
+    - path_value: ` "/dev/console" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "literal_static" `
+    - resolution_evidence: ` [] `
+    - resource_class: ` "pseudo_fs_dev" `
+    - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+  - libnvram.so::check_action::L83::fopen@ctree183#0:
+    - callsite_id: ` "libnvram.so::check_action::L83::fopen@ctree183" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::check_action::L83::fopen@ctree183#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - line_number: ` 83 `
+    - column_number: ` 10 `
+    - callsite_ea: ` 5660 `
+    - ctree_index: ` 183 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/dev/console" `
+    - path_value: ` "/dev/console" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "literal_static" `
+    - resolution_evidence: ` [] `
+    - resource_class: ` "pseudo_fs_dev" `
+    - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+  - libnvram.so::check_action::L98::fopen@ctree228#0:
+    - callsite_id: ` "libnvram.so::check_action::L98::fopen@ctree228" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::check_action::L98::fopen@ctree228#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - line_number: ` 98 `
+    - column_number: ` 12 `
+    - callsite_ea: ` 5792 `
+    - ctree_index: ` 228 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/dev/console" `
+    - path_value: ` "/dev/console" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "literal_static" `
+    - resolution_evidence: ` [] `
+    - resource_class: ` "pseudo_fs_dev" `
+    - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+  - libnvram.so::nvram_init::L7::open@ctree11#0:
+    - callsite_id: ` "libnvram.so::nvram_init::L7::open@ctree11" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::nvram_init::L7::open@ctree11#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_init" `
+    - function_ea: ` 5876 `
+    - snapshot_hash: ` "450d07a170440cdd9031af34cddd7605b736e9d88fba451f3da7524dfc264198" `
+    - line_number: ` 7 `
+    - column_number: ` 7 `
+    - callsite_ea: ` 5976 `
+    - ctree_index: ` 11 `
+    - api_name: ` "open" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/dev/nvram" `
+    - path_value: ` "/dev/nvram" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "literal_static" `
+    - resolution_evidence: ` [] `
+    - resource_class: ` "pseudo_fs_dev" `
+    - resource_group_id: ` "file_dev_nvram_c4646f467f82" `
+  - libnvram.so::buf_to_file::L7::fopen@ctree4#0:
+    - callsite_id: ` "libnvram.so::buf_to_file::L7::fopen@ctree4" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::buf_to_file::L7::fopen@ctree4#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "buf_to_file" `
+    - function_ea: ` 4400 `
+    - snapshot_hash: ` "081dde2eb7e1441564b3c0bc189816766b74b9e2ade290b125554edb88475868" `
+    - line_number: ` 7 `
+    - column_number: ` 7 `
+    - callsite_ea: ` 4448 `
+    - ctree_index: ` 4 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/tmp/action" `
+    - path_value: ` "/tmp/action" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "file_path_agent" `
+    - resolution_evidence:
+      - ` "libnvram.so::nvram_commit L33 and L40 are the only callsites of buf_to_file; both pass the literal \"/tmp/action\" as arg[0]." `
+      - ` "libnvram.so::buf_to_file assembly at 0x1150 preserves arg[0] and fopen at 0x1160 consumes it as the path argument." `
+    - resource_class: ` "missing_non_pseudo_fs" `
+    - resource_group_id: ` null `
+  - libnvram.so::file_to_buf::L7::fopen@ctree9#0:
+    - callsite_id: ` "libnvram.so::file_to_buf::L7::fopen@ctree9" `
+    - candidate_idx: ` 0 `
+    - profile_key: ` "libnvram.so::file_to_buf::L7::fopen@ctree9#0" `
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "file_to_buf" `
+    - function_ea: ` 4560 `
+    - snapshot_hash: ` "08d22e5eba64223f90da364c2ea795823a86296f42202f1b479801fe072a0ee0" `
+    - line_number: ` 7 `
+    - column_number: ` 7 `
+    - callsite_ea: ` 4644 `
+    - ctree_index: ` 9 `
+    - api_name: ` "fopen" `
+    - path_arg_index: ` 0 `
+    - requested_path: ` "/tmp/action" `
+    - path_value: ` "/tmp/action" `
+    - path_kind: ` "concrete" `
+    - resolution_source: ` "file_path_agent" `
+    - resolution_evidence:
+      - ` "libnvram.so::check_action L24 passes \"/tmp/action\" as arg[0] to file_to_buf." `
+      - ` "libnvram.so::check_action assembly /source-workspace/Firmenstein/tmp/g2/20260907T070000Z/real-work/FW_E2500_3.0.05.002_20180914__01785697c512/disassembled_code/libnvram.so/check_action.s at 0x12f0 loads aTmpAction (\"/tmp/action\") into $a0 before the file_to_buf call at 0x12f8." `
+      - ` "libnvram.so::file_to_buf L7 passes its first argument directly to fopen." `
+    - resource_class: ` "missing_non_pseudo_fs" `
+    - resource_group_id: ` null `
+
+## path_resolution_gaps
+
+- path_resolution_gaps: ` {} `
+
+## queued_for_path_agent
+
+- queued_for_path_agent: ` [] `
+
+## resources
+
+- resources:
+  - file_dev_console_ea534adc55ad:
+    - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+    - path_value: ` "/dev/console" `
+    - path_kind: ` "concrete" `
+    - resource_class: ` "pseudo_fs_dev" `
+    - callsites:
+      - [0]:
+        - callsite_id: ` "libnvram.so::check_action::L28::fopen@ctree28" `
+        - candidate_idx: ` 0 `
+        - profile_key: ` "libnvram.so::check_action::L28::fopen@ctree28#0" `
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - line_number: ` 28 `
+        - column_number: ` 9 `
+        - callsite_ea: ` 4948 `
+        - ctree_index: ` 28 `
+        - api_name: ` "fopen" `
+        - path_arg_index: ` 0 `
+        - requested_path: ` "/dev/console" `
+        - path_value: ` "/dev/console" `
+        - path_kind: ` "concrete" `
+        - resolution_source: ` "literal_static" `
+        - resolution_evidence: ` [] `
+        - resource_class: ` "pseudo_fs_dev" `
+        - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+      - [1]:
+        - callsite_id: ` "libnvram.so::check_action::L39::fopen@ctree59" `
+        - candidate_idx: ` 0 `
+        - profile_key: ` "libnvram.so::check_action::L39::fopen@ctree59#0" `
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - line_number: ` 39 `
+        - column_number: ` 9 `
+        - callsite_ea: ` 5100 `
+        - ctree_index: ` 59 `
+        - api_name: ` "fopen" `
+        - path_arg_index: ` 0 `
+        - requested_path: ` "/dev/console" `
+        - path_value: ` "/dev/console" `
+        - path_kind: ` "concrete" `
+        - resolution_source: ` "literal_static" `
+        - resolution_evidence: ` [] `
+        - resource_class: ` "pseudo_fs_dev" `
+        - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+      - [2]:
+        - callsite_id: ` "libnvram.so::check_action::L50::fopen@ctree90" `
+        - candidate_idx: ` 0 `
+        - profile_key: ` "libnvram.so::check_action::L50::fopen@ctree90#0" `
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - line_number: ` 50 `
+        - column_number: ` 9 `
+        - callsite_ea: ` 5252 `
+        - ctree_index: ` 90 `
+        - api_name: ` "fopen" `
+        - path_arg_index: ` 0 `
+        - requested_path: ` "/dev/console" `
+        - path_value: ` "/dev/console" `
+        - path_kind: ` "concrete" `
+        - resolution_source: ` "literal_static" `
+        - resolution_evidence: ` [] `
+        - resource_class: ` "pseudo_fs_dev" `
+        - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+      - [3]:
+        - callsite_id: ` "libnvram.so::check_action::L61::fopen@ctree121" `
+        - candidate_idx: ` 0 `
+        - profile_key: ` "libnvram.so::check_action::L61::fopen@ctree121#0" `
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - line_number: ` 61 `
+        - column_number: ` 9 `
+        - callsite_ea: ` 5388 `
+        - ctree_index: ` 121 `
+        - api_name: ` "fopen" `
+        - path_arg_index: ` 0 `
+        - requested_path: ` "/dev/console" `
+        - path_value: ` "/dev/console" `
+        - path_kind: ` "concrete" `
+        - resolution_source: ` "literal_static" `
+        - resolution_evidence: ` [] `
+        - resource_class: ` "pseudo_fs_dev" `
+        - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+      - [4]:
+        - callsite_id: ` "libnvram.so::check_action::L72::fopen@ctree152" `
+        - candidate_idx: ` 0 `
+        - profile_key: ` "libnvram.so::check_action::L72::fopen@ctree152#0" `
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - line_number: ` 72 `
+        - column_number: ` 9 `
+        - callsite_ea: ` 5524 `
+        - ctree_index: ` 152 `
+        - api_name: ` "fopen" `
+        - path_arg_index: ` 0 `
+        - requested_path: ` "/dev/console" `
+        - path_value: ` "/dev/console" `
+        - path_kind: ` "concrete" `
+        - resolution_source: ` "literal_static" `
+        - resolution_evidence: ` [] `
+        - resource_class: ` "pseudo_fs_dev" `
+        - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+      - [5]:
+        - callsite_id: ` "libnvram.so::check_action::L83::fopen@ctree183" `
+        - candidate_idx: ` 0 `
+        - profile_key: ` "libnvram.so::check_action::L83::fopen@ctree183#0" `
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - line_number: ` 83 `
+        - column_number: ` 10 `
+        - callsite_ea: ` 5660 `
+        - ctree_index: ` 183 `
+        - api_name: ` "fopen" `
+        - path_arg_index: ` 0 `
+        - requested_path: ` "/dev/console" `
+        - path_value: ` "/dev/console" `
+        - path_kind: ` "concrete" `
+        - resolution_source: ` "literal_static" `
+        - resolution_evidence: ` [] `
+        - resource_class: ` "pseudo_fs_dev" `
+        - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+      - [6]:
+        - callsite_id: ` "libnvram.so::check_action::L98::fopen@ctree228" `
+        - candidate_idx: ` 0 `
+        - profile_key: ` "libnvram.so::check_action::L98::fopen@ctree228#0" `
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "check_action" `
+        - function_ea: ` 4768 `
+        - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+        - line_number: ` 98 `
+        - column_number: ` 12 `
+        - callsite_ea: ` 5792 `
+        - ctree_index: ` 228 `
+        - api_name: ` "fopen" `
+        - path_arg_index: ` 0 `
+        - requested_path: ` "/dev/console" `
+        - path_value: ` "/dev/console" `
+        - path_kind: ` "concrete" `
+        - resolution_source: ` "literal_static" `
+        - resolution_evidence: ` [] `
+        - resource_class: ` "pseudo_fs_dev" `
+        - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+      - [7]:
+        - callsite_id: ` "libnvram.so::nvram_commit::L12::fopen@ctree4" `
+        - candidate_idx: ` 0 `
+        - profile_key: ` "libnvram.so::nvram_commit::L12::fopen@ctree4#0" `
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - line_number: ` 12 `
+        - column_number: ` 7 `
+        - callsite_ea: ` 6196 `
+        - ctree_index: ` 4 `
+        - api_name: ` "fopen" `
+        - path_arg_index: ` 0 `
+        - requested_path: ` "/dev/console" `
+        - path_value: ` "/dev/console" `
+        - path_kind: ` "concrete" `
+        - resolution_source: ` "literal_static" `
+        - resolution_evidence: ` [] `
+        - resource_class: ` "pseudo_fs_dev" `
+        - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+      - [8]:
+        - callsite_id: ` "libnvram.so::nvram_commit::L21::fopen@ctree32" `
+        - candidate_idx: ` 0 `
+        - profile_key: ` "libnvram.so::nvram_commit::L21::fopen@ctree32#0" `
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - line_number: ` 21 `
+        - column_number: ` 9 `
+        - callsite_ea: ` 6832 `
+        - ctree_index: ` 32 `
+        - api_name: ` "fopen" `
+        - path_arg_index: ` 0 `
+        - requested_path: ` "/dev/console" `
+        - path_value: ` "/dev/console" `
+        - path_kind: ` "concrete" `
+        - resolution_source: ` "literal_static" `
+        - resolution_evidence: ` [] `
+        - resource_class: ` "pseudo_fs_dev" `
+        - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+      - [9]:
+        - callsite_id: ` "libnvram.so::nvram_commit::L41::fopen@ctree110" `
+        - candidate_idx: ` 0 `
+        - profile_key: ` "libnvram.so::nvram_commit::L41::fopen@ctree110#0" `
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - line_number: ` 41 `
+        - column_number: ` 11 `
+        - callsite_ea: ` 6696 `
+        - ctree_index: ` 110 `
+        - api_name: ` "fopen" `
+        - path_arg_index: ` 0 `
+        - requested_path: ` "/dev/console" `
+        - path_value: ` "/dev/console" `
+        - path_kind: ` "concrete" `
+        - resolution_source: ` "literal_static" `
+        - resolution_evidence: ` [] `
+        - resource_class: ` "pseudo_fs_dev" `
+        - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+      - [10]:
+        - callsite_id: ` "libnvram.so::nvram_commit::L51::fopen@ctree155" `
+        - candidate_idx: ` 0 `
+        - profile_key: ` "libnvram.so::nvram_commit::L51::fopen@ctree155#0" `
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - line_number: ` 51 `
+        - column_number: ` 7 `
+        - callsite_ea: ` 6456 `
+        - ctree_index: ` 155 `
+        - api_name: ` "fopen" `
+        - path_arg_index: ` 0 `
+        - requested_path: ` "/dev/console" `
+        - path_value: ` "/dev/console" `
+        - path_kind: ` "concrete" `
+        - resolution_source: ` "literal_static" `
+        - resolution_evidence: ` [] `
+        - resource_class: ` "pseudo_fs_dev" `
+        - resource_group_id: ` "file_dev_console_ea534adc55ad" `
+  - file_dev_nvram_c4646f467f82:
+    - resource_group_id: ` "file_dev_nvram_c4646f467f82" `
+    - path_value: ` "/dev/nvram" `
+    - path_kind: ` "concrete" `
+    - resource_class: ` "pseudo_fs_dev" `
+    - callsites:
+      - [0]:
+        - callsite_id: ` "libnvram.so::nvram_init::L7::open@ctree11" `
+        - candidate_idx: ` 0 `
+        - profile_key: ` "libnvram.so::nvram_init::L7::open@ctree11#0" `
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_init" `
+        - function_ea: ` 5876 `
+        - snapshot_hash: ` "450d07a170440cdd9031af34cddd7605b736e9d88fba451f3da7524dfc264198" `
+        - line_number: ` 7 `
+        - column_number: ` 7 `
+        - callsite_ea: ` 5976 `
+        - ctree_index: ` 11 `
+        - api_name: ` "open" `
+        - path_arg_index: ` 0 `
+        - requested_path: ` "/dev/nvram" `
+        - path_value: ` "/dev/nvram" `
+        - path_kind: ` "concrete" `
+        - resolution_source: ` "literal_static" `
+        - resolution_evidence: ` [] `
+        - resource_class: ` "pseudo_fs_dev" `
+        - resource_group_id: ` "file_dev_nvram_c4646f467f82" `
+
+## counts_by_resolution_source
+
+- counts_by_resolution_source:
+  - literal_static: ` 12 `
+  - global_static: ` 0 `
+  - dataflow_static: ` 0 `
+  - file_path_agent: ` 2 `
+
+## counts_by_resource_class
+
+- counts_by_resource_class:
+  - pseudo_fs_dev: ` 12 `
+  - missing_non_pseudo_fs: ` 2 `
+
+## covered_api_calls
+
+- covered_api_calls:
+  - [0]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fopen" `
+    - line_number: ` 12 `
+    - column_number: ` 7 `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - ctree_index: ` 4 `
+    - source_ea: ` 6196 `
+    - reason: ` "filesystem fopen on pseudo_fs_dev" `
+  - [1]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fopen" `
+    - line_number: ` 21 `
+    - column_number: ` 9 `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - ctree_index: ` 32 `
+    - source_ea: ` 6832 `
+    - reason: ` "filesystem fopen on pseudo_fs_dev" `
+  - [2]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fopen" `
+    - line_number: ` 41 `
+    - column_number: ` 11 `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - ctree_index: ` 110 `
+    - source_ea: ` 6696 `
+    - reason: ` "filesystem fopen on pseudo_fs_dev" `
+  - [3]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fopen" `
+    - line_number: ` 51 `
+    - column_number: ` 7 `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - ctree_index: ` 155 `
+    - source_ea: ` 6456 `
+    - reason: ` "filesystem fopen on pseudo_fs_dev" `
+  - [4]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fopen" `
+    - line_number: ` 28 `
+    - column_number: ` 9 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 28 `
+    - source_ea: ` 4948 `
+    - reason: ` "filesystem fopen on pseudo_fs_dev" `
+  - [5]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fopen" `
+    - line_number: ` 39 `
+    - column_number: ` 9 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 59 `
+    - source_ea: ` 5100 `
+    - reason: ` "filesystem fopen on pseudo_fs_dev" `
+  - [6]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fopen" `
+    - line_number: ` 50 `
+    - column_number: ` 9 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 90 `
+    - source_ea: ` 5252 `
+    - reason: ` "filesystem fopen on pseudo_fs_dev" `
+  - [7]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fopen" `
+    - line_number: ` 61 `
+    - column_number: ` 9 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 121 `
+    - source_ea: ` 5388 `
+    - reason: ` "filesystem fopen on pseudo_fs_dev" `
+  - [8]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fopen" `
+    - line_number: ` 72 `
+    - column_number: ` 9 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 152 `
+    - source_ea: ` 5524 `
+    - reason: ` "filesystem fopen on pseudo_fs_dev" `
+  - [9]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fopen" `
+    - line_number: ` 83 `
+    - column_number: ` 10 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 183 `
+    - source_ea: ` 5660 `
+    - reason: ` "filesystem fopen on pseudo_fs_dev" `
+  - [10]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fopen" `
+    - line_number: ` 98 `
+    - column_number: ` 12 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 228 `
+    - source_ea: ` 5792 `
+    - reason: ` "filesystem fopen on pseudo_fs_dev" `
+  - [11]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_init" `
+    - api_name: ` "open" `
+    - line_number: ` 7 `
+    - column_number: ` 7 `
+    - function_ea: ` 5876 `
+    - snapshot_hash: ` "450d07a170440cdd9031af34cddd7605b736e9d88fba451f3da7524dfc264198" `
+    - ctree_index: ` 11 `
+    - source_ea: ` 5976 `
+    - reason: ` "filesystem open on pseudo_fs_dev" `
+  - [12]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "buf_to_file" `
+    - api_name: ` "fopen" `
+    - line_number: ` 7 `
+    - column_number: ` 7 `
+    - function_ea: ` 4400 `
+    - snapshot_hash: ` "081dde2eb7e1441564b3c0bc189816766b74b9e2ade290b125554edb88475868" `
+    - ctree_index: ` 4 `
+    - source_ea: ` 4448 `
+    - reason: ` "filesystem fopen on missing_non_pseudo_fs" `
+  - [13]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "file_to_buf" `
+    - api_name: ` "fopen" `
+    - line_number: ` 7 `
+    - column_number: ` 7 `
+    - function_ea: ` 4560 `
+    - snapshot_hash: ` "08d22e5eba64223f90da364c2ea795823a86296f42202f1b479801fe072a0ee0" `
+    - ctree_index: ` 9 `
+    - source_ea: ` 4644 `
+    - reason: ` "filesystem fopen on missing_non_pseudo_fs" `
+  - [14]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 32 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fwrite on pseudo_fs_dev" `
+  - [15]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 33 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fclose on pseudo_fs_dev" `
+  - [16]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 43 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fwrite on pseudo_fs_dev" `
+  - [17]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 44 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fclose on pseudo_fs_dev" `
+  - [18]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 54 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fwrite on pseudo_fs_dev" `
+  - [19]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 55 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fclose on pseudo_fs_dev" `
+  - [20]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 65 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fwrite on pseudo_fs_dev" `
+  - [21]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 66 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fclose on pseudo_fs_dev" `
+  - [22]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 76 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fwrite on pseudo_fs_dev" `
+  - [23]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 77 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fclose on pseudo_fs_dev" `
+  - [24]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 87 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fwrite on pseudo_fs_dev" `
+  - [25]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 88 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fclose on pseudo_fs_dev" `
+  - [26]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 102 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fwrite on pseudo_fs_dev" `
+  - [27]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 103 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fclose on pseudo_fs_dev" `
+  - [28]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fprintf" `
+    - line_number: ` 16 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fprintf on pseudo_fs_dev" `
+  - [29]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fclose" `
+    - line_number: ` 17 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fclose on pseudo_fs_dev" `
+  - [30]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 25 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fwrite on pseudo_fs_dev" `
+  - [31]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fclose" `
+    - line_number: ` 26 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fclose on pseudo_fs_dev" `
+  - [32]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fprintf" `
+    - line_number: ` 45 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fprintf on pseudo_fs_dev" `
+  - [33]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fclose" `
+    - line_number: ` 58 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fclose on pseudo_fs_dev" `
+  - [34]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fprintf" `
+    - line_number: ` 56 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem fprintf on pseudo_fs_dev" `
+  - [35]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_init" `
+    - api_name: ` "mmap" `
+    - line_number: ` 11 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem mmap on pseudo_fs_dev" `
+  - [36]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_init" `
+    - api_name: ` "close" `
+    - line_number: ` 14 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem close on pseudo_fs_dev" `
+  - [37]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "ioctl" `
+    - line_number: ` 37 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem ioctl on pseudo_fs_dev" `
+  - [38]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_get" `
+    - api_name: ` "read" `
+    - line_number: ` 23 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem read on pseudo_fs_dev" `
+  - [39]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_getall" `
+    - api_name: ` "read" `
+    - line_number: ` 11 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem read on pseudo_fs_dev" `
+  - [40]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "sub_1B5C" `
+    - api_name: ` "write" `
+    - line_number: ` 28 `
+    - column_number: ` null `
+    - function_ea: ` null `
+    - snapshot_hash: ` null `
+    - ctree_index: ` null `
+    - source_ea: ` null `
+    - reason: ` "filesystem write on pseudo_fs_dev" `
+  - [41]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 32 `
+    - column_number: ` 6 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 40 `
+    - source_ea: ` 4988 `
+    - reason: ` "use: write TFTP upgrade diagnostic" `
+  - [42]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 33 `
+    - column_number: ` 6 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 47 `
+    - source_ea: ` 5012 `
+    - reason: ` "use: close console stream" `
+  - [43]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 43 `
+    - column_number: ` 6 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 71 `
+    - source_ea: ` 5140 `
+    - reason: ` "use: write HTTPS upgrade diagnostic" `
+  - [44]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 44 `
+    - column_number: ` 6 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 78 `
+    - source_ea: ` 5164 `
+    - reason: ` "use: close console stream" `
+  - [45]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 54 `
+    - column_number: ` 6 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 102 `
+    - source_ea: ` 5292 `
+    - reason: ` "use: write HTTP upgrade diagnostic" `
+  - [46]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 55 `
+    - column_number: ` 6 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 109 `
+    - source_ea: ` 5316 `
+    - reason: ` "use: close console stream" `
+  - [47]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 65 `
+    - column_number: ` 6 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 133 `
+    - source_ea: ` 5428 `
+    - reason: ` "use: write web restore diagnostic" `
+  - [48]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 66 `
+    - column_number: ` 6 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 140 `
+    - source_ea: ` 5452 `
+    - reason: ` "use: close console stream" `
+  - [49]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 76 `
+    - column_number: ` 6 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 164 `
+    - source_ea: ` 5564 `
+    - reason: ` "use: write reset-button restore diagnostic" `
+  - [50]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 77 `
+    - column_number: ` 6 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 171 `
+    - source_ea: ` 5588 `
+    - reason: ` "use: close console stream" `
+  - [51]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 87 `
+    - column_number: ` 6 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 195 `
+    - source_ea: ` 5700 `
+    - reason: ` "use: write NVRAM commit diagnostic" `
+  - [52]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 88 `
+    - column_number: ` 6 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 202 `
+    - source_ea: ` 5724 `
+    - reason: ` "use: close console stream" `
+  - [53]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 102 `
+    - column_number: ` 8 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 240 `
+    - source_ea: ` 5832 `
+    - reason: ` "use: write NVRAM erase diagnostic" `
+  - [54]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "check_action" `
+    - api_name: ` "fclose" `
+    - line_number: ` 103 `
+    - column_number: ` 8 `
+    - function_ea: ` 4768 `
+    - snapshot_hash: ` "ee27445cff415bd1b79172a3d0d5336fc7ca2ac61a0fdc19f9dde2e36586ce56" `
+    - ctree_index: ` 247 `
+    - source_ea: ` 5856 `
+    - reason: ` "use: close console stream" `
+  - [55]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fprintf" `
+    - line_number: ` 16 `
+    - column_number: ` 4 `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - ctree_index: ` 17 `
+    - source_ea: ` 6252 `
+    - reason: ` "use: write commit-start diagnostic" `
+  - [56]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fclose" `
+    - line_number: ` 17 `
+    - column_number: ` 4 `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - ctree_index: ` 23 `
+    - source_ea: ` 6276 `
+    - reason: ` "use: close console stream" `
+  - [57]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fwrite" `
+    - line_number: ` 25 `
+    - column_number: ` 6 `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - ctree_index: ` 44 `
+    - source_ea: ` 6872 `
+    - reason: ` "use: write wait diagnostic" `
+  - [58]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fclose" `
+    - line_number: ` 26 `
+    - column_number: ` 6 `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - ctree_index: ` 51 `
+    - source_ea: ` 6896 `
+    - reason: ` "use: close console stream" `
+  - [59]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fprintf" `
+    - line_number: ` 45 `
+    - column_number: ` 8 `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - ctree_index: ` 123 `
+    - source_ea: ` 6752 `
+    - reason: ` "use: write commit-end diagnostic" `
+  - [60]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fclose" `
+    - line_number: ` 58 `
+    - column_number: ` 2 `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - ctree_index: ` 182 `
+    - source_ea: ` 6776 `
+    - reason: ` "use: close console stream" `
+  - [61]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "fprintf" `
+    - line_number: ` 56 `
+    - column_number: ` 2 `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - ctree_index: ` 176 `
+    - source_ea: ` 6508 `
+    - reason: ` "use: write no-op commit diagnostic" `
+  - [62]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_init" `
+    - api_name: ` "mmap" `
+    - line_number: ` 11 `
+    - column_number: ` 23 `
+    - function_ea: ` 5876 `
+    - snapshot_hash: ` "450d07a170440cdd9031af34cddd7605b736e9d88fba451f3da7524dfc264198" `
+    - ctree_index: ` 24 `
+    - source_ea: ` 6020 `
+    - reason: ` "setup: map 61440-byte shared read-only device window" `
+  - [63]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_init" `
+    - api_name: ` "close" `
+    - line_number: ` 14 `
+    - column_number: ` 4 `
+    - function_ea: ` 5876 `
+    - snapshot_hash: ` "450d07a170440cdd9031af34cddd7605b736e9d88fba451f3da7524dfc264198" `
+    - ctree_index: ` 40 `
+    - source_ea: ` 6060 `
+    - reason: ` "cleanup: close fd after mmap failure" `
+  - [64]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_commit" `
+    - api_name: ` "ioctl" `
+    - line_number: ` 37 `
+    - column_number: ` 11 `
+    - function_ea: ` 6132 `
+    - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+    - ctree_index: ` 86 `
+    - source_ea: ` 6636 `
+    - reason: ` "use: commit NVRAM via device ioctl" `
+  - [65]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_get" `
+    - api_name: ` "read" `
+    - line_number: ` 23 `
+    - column_number: ` 7 `
+    - function_ea: ` 8528 `
+    - snapshot_hash: ` "f5545d7e8a76754e5e4672b016187c952c292d074f6685959a265b75f2e55860" `
+    - ctree_index: ` 59 `
+    - source_ea: ` 8672 `
+    - reason: ` "use: read one NVRAM value" `
+  - [66]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "nvram_getall" `
+    - api_name: ` "read" `
+    - line_number: ` 11 `
+    - column_number: ` 7 `
+    - function_ea: ` 8320 `
+    - snapshot_hash: ` "777310b474d57f2dc15a8e95e040dd40064dffd3b3635d7a5d65661e34eba046" `
+    - ctree_index: ` 22 `
+    - source_ea: ` 8440 `
+    - reason: ` "use: read the complete NVRAM buffer" `
+  - [67]:
+    - binary_name: ` "libnvram.so" `
+    - function_name: ` "sub_1B5C" `
+    - api_name: ` "write" `
+    - line_number: ` 28 `
+    - column_number: ` 7 `
+    - function_ea: ` 7004 `
+    - snapshot_hash: ` "63b2cf48c2b7cd9578ba5ddb307851d3df835e80fd5b5b9df00603725075efd8" `
+    - ctree_index: ` 76 `
+    - source_ea: ` 7216 `
+    - reason: ` "use: write an NVRAM key/value record" `
+
+## resource_reports
+
+- file_dev_console_ea534adc55ad: [md](file_dev_console_ea534adc55ad.md) / [json](file_dev_console_ea534adc55ad_result.json)
+- file_dev_nvram_c4646f467f82: [md](file_dev_nvram_c4646f467f82.md) / [json](file_dev_nvram_c4646f467f82_result.json)
+
+## planning_findings
+
+### finding:file:v1:427fd2685a0f5138fc8cf51d5a5f9ec465cc241eab015fe5b4a92c7570535532
+
+- finding_ref: ` "finding:file:v1:427fd2685a0f5138fc8cf51d5a5f9ec465cc241eab015fe5b4a92c7570535532" `
+- summary: ` "The observed nvram_commit and check_action paths use /dev/console only for best-effort diagnostic output: successful opens produce one fixed message and are closed, while failed opens skip that output without a reported fatal termination. Runtime delivery and device-side effects remain unknown." `
+- boundary:
+  - kind: ` "resource" `
+  - anchors:
+    - [0]:
+      - kind: ` "path" `
+      - ref: ` "/resources/file_dev_console_ea534adc55ad/path_value" `
+  - reachability_refs: ` [] `
+  - coverage_refs:
+    - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/0" `
+    - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/1" `
+    - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/2" `
+    - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/3" `
+    - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/4" `
+    - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/5" `
+    - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/6" `
+    - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/7" `
+    - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/8" `
+    - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/9" `
+    - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/10" `
+- claims:
+  - [0]:
+    - kind: ` "guarantee" `
+    - statement: ` "On each observed path, a successful fopen(\"/dev/console\", \"w\") yields a FILE* that is passed to one fwrite or fprintf diagnostic operation and then to fclose." `
+    - evidence_refs:
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/0/setup/0" `
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/0/use/0" `
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/0/use/1" `
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/7/setup/0" `
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/7/use/0" `
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/7/use/1" `
+    - unknown_kind: ` null `
+  - [1]:
+    - kind: ` "state" `
+    - statement: ` "The resource is used as a write-only diagnostic sink; the stream is local to each callsite and is closed on successful-open paths, with no persistent descriptor or buffer state reported across calls." `
+    - evidence_refs:
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/0/use/1" `
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/7/use/1" `
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/9/use/1" `
+    - unknown_kind: ` null `
+  - [2]:
+    - kind: ` "fallback" `
+    - statement: ` "No native creation, replacement, alternate sink, retry, or recovery path for /dev/console is reported; an fopen failure bypasses the associated diagnostic use and does not reach a reported exit or abort." `
+    - evidence_refs:
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/0/setup/0" `
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/7/setup/0" `
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/10/setup/0" `
+    - unknown_kind: ` null `
+  - [3]:
+    - kind: ` "unknown" `
+    - statement: ` "Whether /dev/console exists and accepts the writes at runtime, whether each fwrite or fprintf actually delivers its message, and what external console effects result are unknown because runtime device state is unavailable and write return values are ignored." `
+    - evidence_refs:
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/0/use/0" `
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/7/use/0" `
+      - ` "/resource_reports/file_dev_console_ea534adc55ad/coverage_flows/9/use/0" `
+    - unknown_kind: ` "external_effects" `
+- domain:
+  - kind: ` "file" `
+  - resource_id: ` "file_dev_console_ea534adc55ad" `
+  - path: ` "/dev/console" `
+  - resource_class: ` "pseudo_fs_dev" `
+  - callsite_ids:
+    - ` "libnvram.so::check_action::L28::fopen@ctree28" `
+    - ` "libnvram.so::check_action::L39::fopen@ctree59" `
+    - ` "libnvram.so::check_action::L50::fopen@ctree90" `
+    - ` "libnvram.so::check_action::L61::fopen@ctree121" `
+    - ` "libnvram.so::check_action::L72::fopen@ctree152" `
+    - ` "libnvram.so::check_action::L83::fopen@ctree183" `
+    - ` "libnvram.so::check_action::L98::fopen@ctree228" `
+    - ` "libnvram.so::nvram_commit::L12::fopen@ctree4" `
+    - ` "libnvram.so::nvram_commit::L21::fopen@ctree32" `
+    - ` "libnvram.so::nvram_commit::L41::fopen@ctree110" `
+    - ` "libnvram.so::nvram_commit::L51::fopen@ctree155" `
+
+### finding:file:v1:d27ee85ecfd492bea5c61dac6de98a9ccaa0f2af556c4054457efb60a5a1121d
+
+- finding_ref: ` "finding:file:v1:d27ee85ecfd492bea5c61dac6de98a9ccaa0f2af556c4054457efb60a5a1121d" `
+- summary: ` "The analyzed library establishes a cached O_RDWR descriptor and shared mapping for /dev/nvram. Read, bulk-read, write, and commit callers apply explicit return-value checks or propagate status, but the visible nvram CLI does not terminate on initialization failure. Concrete device data and ioctl side effects are unknown." `
+- boundary:
+  - kind: ` "resource" `
+  - anchors:
+    - [0]:
+      - kind: ` "path" `
+      - ref: ` "/resources/file_dev_nvram_c4646f467f82/path_value" `
+  - reachability_refs:
+    - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/resource_usage_sites/0" `
+    - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/2" `
+    - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/3" `
+    - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/4" `
+    - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/5" `
+  - coverage_refs:
+    - ` "/resource_reports/file_dev_nvram_c4646f467f82/coverage_flows/0" `
+    - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/0" `
+    - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/2" `
+    - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/3" `
+    - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/4" `
+    - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/5" `
+- claims:
+  - [0]:
+    - kind: ` "guarantee" `
+    - statement: ` "When open succeeds and mmap does not return MAP_FAILED, GVar_fdata remains the cached live descriptor and GVar_dword_436F0 stores the 61440-byte shared read-only mapping; later nvram_init calls return success while the descriptor remains nonnegative." `
+    - evidence_refs:
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/setup_details" `
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/0" `
+    - unknown_kind: ` null `
+  - [1]:
+    - kind: ` "state" `
+    - statement: ` "If mmap fails after open, the descriptor is closed and GVar_fdata is reset to -1 before perror and errno are returned; open failure similarly returns errno without creating a fallback resource." `
+    - evidence_refs:
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/setup_details" `
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/1" `
+    - unknown_kind: ` null `
+  - [2]:
+    - kind: ` "fallback" `
+    - statement: ` "Visible read, bulk-read, write, and commit paths do not exit on /dev/nvram initialization failure: they return zero or status values, log with perror where applicable, or continue while ignoring the status in the nvram command-line caller." `
+    - evidence_refs:
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/2" `
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/3" `
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/4" `
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/5" `
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/resource_usage_sites/0" `
+    - unknown_kind: ` null `
+  - [3]:
+    - kind: ` "unknown" `
+    - statement: ` "The concrete bytes returned by /dev/nvram and the device-side effects of ioctl command 1213418566 cannot be determined from the inspected code." `
+    - evidence_refs:
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/0" `
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/2" `
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/3" `
+    - unknown_kind: ` "instance_data" `
+  - [4]:
+    - kind: ` "unknown" `
+    - statement: ` "The external semantic effect of the commit ioctl is not represented in the available static artifacts." `
+    - evidence_refs:
+      - ` "/resource_reports/file_dev_nvram_c4646f467f82/callsite_reports/0/usage_reports/2" `
+    - unknown_kind: ` "external_effects" `
+- domain:
+  - kind: ` "file" `
+  - resource_id: ` "file_dev_nvram_c4646f467f82" `
+  - path: ` "/dev/nvram" `
+  - resource_class: ` "pseudo_fs_dev" `
+  - callsite_ids:
+    - ` "libnvram.so::nvram_init::L7::open@ctree11" `

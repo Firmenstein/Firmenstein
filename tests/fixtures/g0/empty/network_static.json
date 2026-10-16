@@ -1,0 +1,10 @@
+{
+  "schema_version": 8,
+  "phase": "static",
+  "root_binary": "httpd",
+  "callsites": {},
+  "analyses": [],
+  "skipped": {},
+  "pending_callsite_ids": [],
+  "covered_api_calls": []
+}

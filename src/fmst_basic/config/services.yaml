@@ -1,0 +1,92 @@
+# Firmenstein Service Configuration
+# This file contains various service identifiers and patterns used for 
+# firmware analysis and security research
+
+# Web-related configurations
+web:
+  roots:
+    - "www"
+    - "www.eng"
+    - "web" 
+    - "webs"
+  
+  extensions:
+    - "html"
+    - "htm"
+    - "xhtm"
+    - "jhtm"
+    - "cgi"
+    - "xml"
+    - "js"
+    - "wss"
+    - "php"
+    - "php4"
+    - "php3"
+    - "phtml"
+    - "rss"
+    - "svg"
+    - "dll"
+    - "asp"
+    - "aspx"
+    - "axd"
+    - "asx"
+    - "asmx"
+    - "ashx"
+    - "cfm"
+    - "swf"
+
+# Backup file patterns
+backup:
+  tags:
+    - "bak"
+    - "bak2"
+    - "bkup"
+
+# Potential service binaries
+services:
+  http_servers:
+    - "httpd"
+    - "uhttpd"
+    - "lighttpd"
+    - "jjhttpd"
+    - "shttpd"
+    - "thttpd"
+    - "minihttpd"
+    - "mini_httpd"
+    - "mini_httpds"
+    - "dhttpd"
+    - "alphapd"
+    - "goahead"
+    - "boa"
+    - "appweb"
+    - "shgw_httpd"
+    - "tenda_httpd"
+    - "funjsq_httpd"
+    - "webs"
+    - "hunt_server"
+    - "hydra"
+  
+  upnp_servers:
+    - "miniupnpd"
+    - "miniupnpc"
+    - "mini_upnpd"
+    - "miniupnpd_ap"
+    - "miniupnpd_wsc"
+    - "upnp"
+    - "upnpc"
+    - "upnpd"
+    - "upnpc-static"
+    - "upnprenderer"
+    - "bcmupnp"
+    - "wscupnpd"
+    - "upnp_app"
+    - "upnp_igd"
+    - "upnp_tv_devices"
+  
+  dns_servers:
+    - "ddnsd"
+    - "dnsmasq"
+  
+  dhcp_servers:
+    - "udhcpd"
+    - "dnsmasq" 

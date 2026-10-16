@@ -1,0 +1,15 @@
+ARG RUNNER_BASE_IMAGE=firmenstein/runner-agent:py312-ida-private
+FROM ${RUNNER_BASE_IMAGE} AS tooling
+RUN /opt/venv/bin/python -c "import os, sys; assert sys.version_info[:2] == (3, 12), 'Rebuild the private base with Python 3.12'; assert callable(os.setns) and callable(os.unshare)"
+RUN apt-get update && apt-get install --no-install-recommends -y \
+ build-essential lld libssl-dev zlib1g-dev libffi-dev gpg \
+ && rm -rf /var/lib/apt/lists/*
+RUN curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key \
+ | gpg --batch --yes --dearmor -o /usr/share/keyrings/llvm-snapshot.gpg \
+ && . /etc/os-release \
+ && echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] https://apt.llvm.org/${VERSION_CODENAME}/ llvm-toolchain-${VERSION_CODENAME}-22 main" > /etc/apt/sources.list.d/llvm22.list \
+ && apt-get update && apt-get install --no-install-recommends -y llvm-22 \
+ && rm -rf /var/lib/apt/lists/*
+ENV RUSTUP_TOOLCHAIN=1.98.0 LLVM_CONFIG_PATH=/usr/bin/llvm-config-22
+RUN rustup component add --toolchain 1.98.0 rustfmt clippy
+RUN pip install --no-cache-dir 'httpx==0.28.1'

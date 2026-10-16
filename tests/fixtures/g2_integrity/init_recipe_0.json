@@ -1,0 +1,34 @@
+{
+  "launch_site": {
+    "path": "etc/init.d/rcS",
+    "location": "line 2",
+    "text": "/sbin/httpd -f /etc/httpd.conf"
+  },
+  "context_anchor": {
+    "path": "etc/init.d/rcS",
+    "location": "line 2",
+    "text": "/sbin/httpd -f /etc/httpd.conf"
+  },
+  "applicability": "The captured initialization entry directly invokes this command after creating /var/run.",
+  "executable_path": "/sbin/httpd",
+  "command_template": [
+    "/sbin/httpd",
+    "-f",
+    "/etc/httpd.conf"
+  ],
+  "initialization_chain": [
+    {
+      "path": "etc/init.d/rcS",
+      "location": "line 2",
+      "text": "/sbin/httpd -f /etc/httpd.conf"
+    }
+  ],
+  "preparation_actions": [
+    {
+      "path": "etc/init.d/rcS",
+      "location": "line 1",
+      "text": "mkdir -p /var/run"
+    }
+  ],
+  "recipe_id": "launch-d72e9735629cbb5c"
+}

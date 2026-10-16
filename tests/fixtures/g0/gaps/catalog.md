@@ -1,0 +1,120 @@
+# Intervention Planning Evidence
+
+This is a deterministic index over persisted analyzer JSON files. It is not an intervention plan and does not select a launch command.
+
+- Structured source of truth: [`planner_input_catalog.json`](planner_input_catalog.json)
+
+- schema_version: `3`
+
+## target_identity
+
+- target_basename: `"httpd"`
+- selected_rootfs_path: `"usr/sbin/httpd"`
+- executable_sha256: `1111111111111111111111111111111111111111111111111111111111111111`
+- argv0: `"httpd"`
+- target_aliases: `[]`
+- firmware_sha256: `2222222222222222222222222222222222222222222222222222222222222222`
+
+## source_artifacts
+
+### source_artifacts.ipc
+
+- source_kind: `ipc`
+- relative_path: [ipc_reports/ipc_analysis_result.json](../ipc_reports/ipc_analysis_result.json)
+- schema_version: `26`
+- phase: `"full"`
+
+### source_artifacts.file
+
+- source_kind: `file`
+- relative_path: [file_reports/file_resolver_result.json](../file_reports/file_resolver_result.json)
+- schema_version: `9`
+- phase: `"full"`
+
+### source_artifacts.network
+
+- source_kind: `network`
+- relative_path: [network_reports/network_analysis_result.json](../network_reports/network_analysis_result.json)
+- schema_version: `8`
+- phase: `"full"`
+
+### source_artifacts.process
+
+- source_kind: `process`
+- relative_path: [process_lifecycle_reports/process_lifecycle_analysis_result.json](../process_lifecycle_reports/process_lifecycle_analysis_result.json)
+- schema_version: `2`
+- phase: `"full"`
+
+### source_artifacts.init_launch
+
+- source_kind: `init_launch`
+- relative_path: [init_launch_reports/init_launch_analysis_result.json](../init_launch_reports/init_launch_analysis_result.json)
+- schema_version: `4`
+- phase: `null`
+
+## evidence_items
+
+Total: `0`
+
+No Analyzer evidence items were indexed.
+
+## launch_candidates
+
+Total: `0`
+
+No concrete launch candidate was recovered.
+
+## gaps
+
+Total: `5`
+
+### gaps.file:path-gap:e0e9f22c3da68dc0
+
+- gap_ref: `file:path-gap:e0e9f22c3da68dc0`
+- source_kind: `file`
+- source_id: `"file-callsite"`
+- subject: file-callsite
+- reasons:
+  - Working directory is unknown; relative path 'nvram' cannot be resolved.
+- related_source_ids: `[]`
+
+### gaps.init_launch:gap:4951dac5022327b1
+
+- gap_ref: `init_launch:gap:4951dac5022327b1`
+- source_kind: `init_launch`
+- source_id: `null`
+- subject: target launch discovery
+- reasons:
+  - No concrete target invocation is supported by the available init scripts.
+- related_source_ids: `[]`
+
+### gaps.ipc:unresolved:unresolved:site
+
+- gap_ref: `ipc:unresolved:unresolved:site`
+- source_kind: `ipc`
+- source_id: `"unresolved:site"`
+- subject: function:usr/sbin/httpd::main
+- reasons:
+  - Resource identity remained unresolved after analysis.
+  - resource identity
+- related_source_ids: `["usr/sbin/httpd::main"]`
+
+### gaps.network:gap:network:6cc0d68a3dce81a29786d899
+
+- gap_ref: `network:gap:network:6cc0d68a3dce81a29786d899`
+- source_kind: `network`
+- source_id: `"network:6cc0d68a3dce81a29786d899"`
+- subject: Resource-level network analysis did not produce a validated result.
+- reasons:
+  - The address family and socket buffer layout are unavailable.
+- related_source_ids: `["network-callsite"]`
+
+### gaps.process:gap:process-callsite
+
+- gap_ref: `process:gap:process-callsite`
+- source_kind: `process`
+- source_id: `"process-callsite"`
+- subject: httpd::main:L40:C8 exit
+- reasons:
+  - caller branch condition
+- related_source_ids: `[]`

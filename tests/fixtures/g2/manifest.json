@@ -1,0 +1,521 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "path": "process_static.json",
+      "markdown": "process_static.md",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessLifecycleAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_index",
+      "provenance": "real E2500 usr/sbin/nvram; static collection",
+      "sha256": "3b559efd213e32e04ca4c0be14dd0030607379de52520082191b7e1c0704e797",
+      "markdown_sha256": "2a8a66d673c79240531b97bb278b74d886cb7ee9f636e926083cd304853e21ce"
+    },
+    {
+      "path": "process_full.json",
+      "markdown": "process_full.md",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessLifecycleAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_index",
+      "provenance": "real E2500 usr/sbin/nvram; reviewed Agent output after lifecycle correction",
+      "sha256": "029d870cbf4e1b89cedfcd86bf25bd20b206b4f367218c60303bda8cdff5f84c",
+      "markdown_sha256": "5f988e569c8ee12e3603523627474b2e36722699f6fd5a5bda2f2d87fb9387e5"
+    },
+    {
+      "path": "process_empty_static.json",
+      "markdown": "process_empty_static.md",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessLifecycleAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_index",
+      "provenance": "synthetic empty result",
+      "sha256": "34bab7aa7027184f2f36a9513676fc48f35be6513a21143f4ab53ac4a922d992",
+      "markdown_sha256": "56fa37d8310868f0ed805a31a51142b8fc0da1b63421fbfebc14e09b25573dba"
+    },
+    {
+      "path": "process_empty_full.json",
+      "markdown": "process_empty_full.md",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessLifecycleAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_index",
+      "provenance": "synthetic empty result",
+      "sha256": "238e62d6cc270a74befcdcf5a1f1f93eb277968e15101551357c21b1300fe968",
+      "markdown_sha256": "968e2f8eb3b9e32e5fb594720aadabeff4de70ed1de0a2a13e89523658c036df"
+    },
+    {
+      "path": "process_gap.json",
+      "markdown": "process_gap.md",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessLifecycleAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_index",
+      "provenance": "synthetic failed semantic analysis",
+      "sha256": "76dbde4966f767a73bffdea68afabeb4f1abe1010a665bd442e4a0be8e751e66",
+      "markdown_sha256": "9ce5971233d1c336d07b60421b40a0af550ae74f0f14039aa6fadfaceb5d4cef"
+    },
+    {
+      "path": "init_static.json",
+      "markdown": "init_static.md",
+      "model": "fmst_analyzer.analysis.init_launch.analyzer_schema:InitLaunchAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.init_launch.reports:render_index",
+      "provenance": "real E2500 usr/sbin/httpd; deterministic initialization entries only",
+      "sha256": "50bdd569488ec0c6da102c025542b27575d3a303332a48f11f20ecdbf5e16943",
+      "markdown_sha256": "b34cb0ca611981254123834646172379362b73325bcec8baf6d7ff51ed5399bf"
+    },
+    {
+      "path": "init_full.json",
+      "markdown": "init_full.md",
+      "model": "fmst_analyzer.analysis.init_launch.analyzer_schema:InitLaunchAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.init_launch.reports:render_index",
+      "provenance": "synthetic source-validated launch with preparation; no Agent run",
+      "sha256": "c9fc08ca494627060074d0c720b834e248cd3042540640468e8cfe74644a0fde",
+      "markdown_sha256": "9dd0dcb6ecc1ab971d93ea4904c3b471aad43d9fcabf680cb6668c9f3a246a11"
+    },
+    {
+      "path": "init_gap.json",
+      "markdown": "init_gap.md",
+      "model": "fmst_analyzer.analysis.init_launch.analyzer_schema:InitLaunchAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.init_launch.reports:render_index",
+      "provenance": "synthetic full analysis gap",
+      "sha256": "6e88727dadf8a57e055679415c61eaebee8330cd6c3bc9f56e5e04764c081074",
+      "markdown_sha256": "bcc52ff32d30654e48537e6ef5d439ed9db150d93703d5bcfadce676d9c9d200"
+    },
+    {
+      "path": "file_static.json",
+      "markdown": "file_static.md",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResolverResult",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_index",
+      "provenance": "real E2500 nvram; static collection",
+      "sha256": "86a8abdb640febf6642f01f62afc059e5f4526e87d13e8d874a446b3ac01d898",
+      "markdown_sha256": "7f597c3cd7b39402365b6c5da1c2083f46543f42c027b3e7fbe78a283d8f5149"
+    },
+    {
+      "path": "file_full.json",
+      "markdown": "file_full.md",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResolverResult",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_index",
+      "provenance": "real E2500 nvram; small resource and map/reduce Agents, reviewed against C/S",
+      "sha256": "8537a59ed7bc08fecf7335435020975d3e70c7661c104c96b0525ba6dec83e93",
+      "markdown_sha256": "824271b9f77f5e58b8c9a860b969f7ba56662b6cc49c35dfb7a7a458f4f5635f"
+    },
+    {
+      "path": "file_empty_static.json",
+      "markdown": "file_empty_static.md",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResolverResult",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_index",
+      "provenance": "synthetic empty result",
+      "sha256": "e9da4af0100b86e556fbeb843b386f354ab49b27897c532c6ce7a660429f7f2f",
+      "markdown_sha256": "debf7637be5941dfeacea332d417665a7371fc9e8e50c60f194705b209fdda4c"
+    },
+    {
+      "path": "file_empty_full.json",
+      "markdown": "file_empty_full.md",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResolverResult",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_index",
+      "provenance": "synthetic empty result",
+      "sha256": "2e839f52d4a85b1f5a5b8ea96256c2bae18b58d469b4268cd0be2e4463e0ce66",
+      "markdown_sha256": "77f1feb096bc4cecf70829a9e0046e54e41046acd7774b03e7c6fe7efb689988"
+    },
+    {
+      "path": "file_gap.json",
+      "markdown": "file_gap.md",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResolverResult",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_index",
+      "provenance": "synthetic failed analyses using the real static resource universe",
+      "sha256": "e9cdb41bbfad504bface392806a4d1a7f196aa9df73e81d3b2c496b2e4178d67",
+      "markdown_sha256": "62ca698783cde01f0637e0a9c42febbfdc1137ba3a402d163440176787d598f1"
+    },
+    {
+      "path": "ipc_static.json",
+      "markdown": "ipc_static.md",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_index",
+      "provenance": "real E2500 l2tp-control; static collection",
+      "sha256": "635951abc70a9887470eb976eebd725be4375a67a56e9eebe29025f950c3a3bc",
+      "markdown_sha256": "c28c27566ea5bd3b0c97e290d24d9d8d43c9feb711ee67c3b439b28272e4418a"
+    },
+    {
+      "path": "ipc_full.json",
+      "markdown": "ipc_full.md",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_index",
+      "provenance": "real E2500 l2tp-control; Site Resolution Agent, one UDS channel, no verified peer",
+      "sha256": "280e73d70e27e58282e9196b9d15fe9f271b068f3c5b798162a465012ce72e91",
+      "markdown_sha256": "9ad1276cd2ef5d2f9fb17c37e1d049a047d3832b590b0ba66de11b3a991dbfc9"
+    },
+    {
+      "path": "ipc_empty_static.json",
+      "markdown": "ipc_empty_static.md",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_index",
+      "provenance": "synthetic empty result",
+      "sha256": "4b0be31afc6f06eace4c0a23cad33b5c4205d17281a3b8ae2be68a9f3675473f",
+      "markdown_sha256": "4f2daf4815eac52dda81d37681325245a3b8a59956aff169f84be4fbf81754a3"
+    },
+    {
+      "path": "ipc_empty_full.json",
+      "markdown": "ipc_empty_full.md",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_index",
+      "provenance": "synthetic empty result",
+      "sha256": "59c7806b70e0bfd285106818b9ce29c99982f5ac799d58b05f6e7efccdc2f269",
+      "markdown_sha256": "03d3047daa60d6924402203d0573401989828da288a9f509fbc0007a64253995"
+    },
+    {
+      "path": "ipc_gap.json",
+      "markdown": "ipc_gap.md",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_index",
+      "provenance": "synthetic full analysis with unresolved callsite and no channel",
+      "sha256": "22eb7f1a07362da9824acd9b46d7ff52bd593465f68f76f7a98c4c35c7736c6e",
+      "markdown_sha256": "52fa76e4392f51683d7adff9ed2e1955863f29683cf37ce7c0a435cba4cf3bea"
+    },
+    {
+      "path": "init_real_gap.json",
+      "markdown": "init_real_gap.md",
+      "model": "fmst_analyzer.analysis.init_launch.analyzer_schema:InitLaunchAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.init_launch.reports:render_index",
+      "provenance": "unchanged real httpd Agent output replayed after correcting sparse assembly validation; no launch recipe proved",
+      "sha256": "d42d84a051a86f4f82220d535ff7909bd9a1f43bd6d615004eacc9abd5f0a72f",
+      "markdown_sha256": "f3d953a30a800f1c533ab5a1bc654e41a4ca481cc29b0bed8d3c883ea32f0daf"
+    },
+    {
+      "path": "network_static.json",
+      "markdown": "network_static.md",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_index",
+      "provenance": "real E2500 ntpclient; static collection",
+      "sha256": "b826c34328cc98d7e10b8cd16b6905b40c92eb321c9679331a5a822bd3de4592",
+      "markdown_sha256": "1c7fd6318ad2bed2fc310eedf5baa2c64277a55367bb04540bc0473d5f282545"
+    },
+    {
+      "path": "network_full.json",
+      "markdown": "network_full.md",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_index",
+      "provenance": "saved real socket output revalidated; remaining Agent seeds completed; mismatched callsite identities retained as an explicit gap",
+      "sha256": "527bc679e00b767f5481639cd814cb20c1d654bec2894c88c4bef7871576e7b9",
+      "markdown_sha256": "19ef53a83b6298f58e42e8f18473f2f19f6cc563cbac686fab1aef047f0c6b1e"
+    },
+    {
+      "path": "network_empty_static.json",
+      "markdown": "network_empty_static.md",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_index",
+      "provenance": "synthetic empty result",
+      "sha256": "31958c3266e0d6f139940e1685952150b0de9977c93cbe459a751cbae70000a6",
+      "markdown_sha256": "2eb6a3fbebb850799373d0372caafce7bf2fba3d48b5ecec2bf6c2f4244ee80d"
+    },
+    {
+      "path": "network_empty_full.json",
+      "markdown": "network_empty_full.md",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_index",
+      "provenance": "synthetic empty result",
+      "sha256": "827e36a44ed885450b3d877aeeecb282d788f3ac30f9d1371f122b7a97252438",
+      "markdown_sha256": "fdd2f42da3588cea2358cbae2116ef831199df0c3849bb01f6e9ac5ffbd69619"
+    },
+    {
+      "path": "network_gap.json",
+      "markdown": "network_gap.md",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkAnalysisResult",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_index",
+      "provenance": "synthetic failed analyses with real callsite identities",
+      "sha256": "0f7d7cd600132dc90e5c5aa953a1ddf2466f1911a2c4d544579a4b14c65f2eda",
+      "markdown_sha256": "a8464bb20dcf42cb2b8872f6555fcff1b0eeb81390b4c7e616ca724ac5562e6a"
+    }
+  ],
+  "run_path": "tmp/g2/20260907T070000Z",
+  "source_snapshot": "tmp/g2/20260907T070000Z/final/source_manifest.json",
+  "before_source_digest": "c022a00acce0d90b2dc20c3a3d750d58c5724114803c43a0d483bdf515d445c2",
+  "report_entries": [
+    {
+      "path": "file_file_dev_console_ea534adc55ad.json",
+      "markdown": "file_file_dev_console_ea534adc55ad.md",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResourceReport",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_per_resource_report",
+      "provenance": "real File per-resource projection from the full Result",
+      "sha256": "42b1eb989c5422e2431819c6d694114e513d9ec9d733e6575278e7c04f42dca8",
+      "markdown_sha256": "13747486db39de43305f4f25629416a5e5fc5dcf5d6aa0e7fac48f782756194f"
+    },
+    {
+      "path": "file_file_dev_nvram_c4646f467f82.json",
+      "markdown": "file_file_dev_nvram_c4646f467f82.md",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResourceReport",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_per_resource_report",
+      "provenance": "real File per-resource projection from the full Result",
+      "sha256": "0fb2bab9bebe73bfe64822c1a3a97f1ca9ce73b65ee328a90ea8bce84b4eb7e7",
+      "markdown_sha256": "364fdbbc37eb30096ec7d5456ed7b1eb6b0fce0c1b13859fe285f9b6933cb162"
+    },
+    {
+      "path": "process_unit_0.json",
+      "markdown": "process_unit_0.md",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessEventAssessmentReport",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_assessment_report",
+      "provenance": "real per-unit projection of the reviewed top-level Result",
+      "sha256": "ee488d39f3078e62b16b34346fd82250e4d796da744bed4f78faaf6d61c2be86",
+      "markdown_sha256": "a1346b292b6b4c880890db5da84fe20e334f9ec22ef880e6488ef991bb69adb5"
+    },
+    {
+      "path": "ipc_callsite_0.json",
+      "markdown": "ipc_callsite_0.md",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCCallsiteReport",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_callsite",
+      "provenance": "real per-unit projection of the reviewed top-level Result",
+      "sha256": "8db0dd31aafebab8a214500fe9044eec244bdbad52f6bbf7547758f6320c4bda",
+      "markdown_sha256": "2eca99f3026e673e010ec653527b701a3e79f439f7bc68a95cc9032e81d18703"
+    },
+    {
+      "path": "ipc_channel_0.json",
+      "markdown": "ipc_channel_0.md",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCChannelReport",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_channel",
+      "provenance": "real per-unit projection of the reviewed top-level Result",
+      "sha256": "ceabb850c601f0f4b651bd1045271f33e88a4d071ad58e8d155504fa1867f417",
+      "markdown_sha256": "80a726bb99225b8d20e34df40cdb09b2f6be3334561ff9e646b1a311115d84cd"
+    },
+    {
+      "path": "network_unit_0.json",
+      "markdown": "network_unit_0.md",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkInteractionReport",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_interaction",
+      "provenance": "real per-unit projection of the reviewed top-level Result",
+      "sha256": "6ee706b318138d55cff0d0c622f38715e216e78e94acc31ab3321618cd431b3d",
+      "markdown_sha256": "10c08cb00ea2b57f87d9618d242fac65aff8bd1f32542d653723b939b1a1eb41"
+    },
+    {
+      "path": "network_unit_1.json",
+      "markdown": "network_unit_1.md",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkInteractionReport",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_interaction",
+      "provenance": "real per-unit projection of the reviewed top-level Result",
+      "sha256": "220a7697999f3037a6645a9e1eb674f0306ff145882320587c9c53e2faf4a6d4",
+      "markdown_sha256": "c2de46ab552688ad7fa2b288a733f9d9ab146c3c77374b1f26ca594e5f6e6cd4"
+    },
+    {
+      "path": "network_unit_2.json",
+      "markdown": "network_unit_2.md",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkInteractionReport",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_interaction",
+      "provenance": "real per-unit projection of the reviewed top-level Result",
+      "sha256": "298bd37de2fa00e14efa39f1458f5d7272b4dae5e5bd8ffa1e963905be352032",
+      "markdown_sha256": "ee34798086d4ae8db81f4429d64b0eb75cfc7fe43bb77993d323a0ab5f513c54"
+    },
+    {
+      "path": "init_recipe_0.json",
+      "markdown": "init_recipe_0.md",
+      "model": "fmst_analyzer.analysis.init_launch.analyzer_schema:LaunchRecipe",
+      "renderer": "fmst_analyzer.analysis.init_launch.reports:render_recipe",
+      "provenance": "synthetic validated recipe projection",
+      "sha256": "b00a14fc55d32a9786b974b6c9e8a9e97002d752a1e39f43943a4128168b9af1",
+      "markdown_sha256": "4f2dfbdaa6330f2837c2f5468e30845dceac51bad751cea609a09ddbb6e786fc"
+    }
+  ],
+  "source_artifacts": [
+    {
+      "path": "sources/l2tp-control/main.c",
+      "sha256": "975138aacbc9f3d089c0dd56dd60a65d4bffcafaf4e99516048a36fd40836f3a"
+    },
+    {
+      "path": "sources/l2tp-control/main.s",
+      "sha256": "19503d7db60a3abd19ad4c728bf2c14999d77c81dc7e4ec4987d7eb31f38b44c"
+    },
+    {
+      "path": "sources/l2tp-control/sub_4008D0.c",
+      "sha256": "cf3dc662c71690894e73fcfd7fe328a4b360116ea7bbf31038b9372d6409888d"
+    },
+    {
+      "path": "sources/l2tp-control/sub_4008D0.s",
+      "sha256": "2471347adea5734b0552014061c0845edc93ff8291897ec0161bfa1d58781e5a"
+    },
+    {
+      "path": "sources/libnvram.so/buf_to_file.c",
+      "sha256": "d3b857b992b49bbc016c4ff571c195e519f7171c175c5e94d8c45c6aae3ceb06"
+    },
+    {
+      "path": "sources/libnvram.so/buf_to_file.s",
+      "sha256": "429b78c78dbcfaa23a10eede4a27ebfbb3a2fc452f5fe77075c757d66c916bd3"
+    },
+    {
+      "path": "sources/libnvram.so/check_action.c",
+      "sha256": "c5e4bcacd0c722a5b8cb8c151f4993ee0426f150edc3710261807d7fff4e963c"
+    },
+    {
+      "path": "sources/libnvram.so/check_action.s",
+      "sha256": "c55389ed505c6d51262901ee804723eb6f03b91e9c0a0b755d4a4bb7945f4aba"
+    },
+    {
+      "path": "sources/libnvram.so/file_to_buf.c",
+      "sha256": "a41c111a57b73104e8f4d9ff01b0dd0b951cebefb54a44116be21634e9400302"
+    },
+    {
+      "path": "sources/libnvram.so/file_to_buf.s",
+      "sha256": "6829d1b42456c636151108b9402ced8b71d8741347dc4b22cf84eb0551760f9d"
+    },
+    {
+      "path": "sources/libnvram.so/nvram_commit.c",
+      "sha256": "99d05e3176048bfe8adbf7171f9654d620191293bba14af72261b61d3bd49930"
+    },
+    {
+      "path": "sources/libnvram.so/nvram_commit.s",
+      "sha256": "1d9f90614d12690a32522f032838705eb3aff5935b0a19821eb4db90f0a9078f"
+    },
+    {
+      "path": "sources/libnvram.so/nvram_get.c",
+      "sha256": "53f720efe96fcf56bbd96dced5ee988e1f7f023e5540534ad3221f08a0f6d345"
+    },
+    {
+      "path": "sources/libnvram.so/nvram_get.s",
+      "sha256": "e0cfbb1ae43dd0a0cfde42af047aeff068711e42bc68c61e421b20c77dd3380f"
+    },
+    {
+      "path": "sources/libnvram.so/nvram_getall.c",
+      "sha256": "d6f6c6e7a803c3a42f724758cb701fc5983610da65ed0229d4f2510aad41034a"
+    },
+    {
+      "path": "sources/libnvram.so/nvram_getall.s",
+      "sha256": "7553a4dc4afd76f72a587b9f5b0a1ea713d8c3beaffe929c722edbecc23303e8"
+    },
+    {
+      "path": "sources/libnvram.so/nvram_init.c",
+      "sha256": "ed00f592f6981bc920acb9fd4ee328fda203b338bb53325c9979901a9bac4efe"
+    },
+    {
+      "path": "sources/libnvram.so/nvram_init.s",
+      "sha256": "37bb6730067e9ae616a93d3ad7b0ca7278d5c96a013a888c65e0cce745098738"
+    },
+    {
+      "path": "sources/libnvram.so/sub_1B5C.c",
+      "sha256": "ea6a80314726b5a074c2c570363d4689a6d5b3ffbb7a2bfe44e0519d48407a69"
+    },
+    {
+      "path": "sources/libnvram.so/sub_1B5C.s",
+      "sha256": "690fb3f6098e6cc3128b37876612bd619263496e7019a6ffe6cfb8bf48f9d9a5"
+    },
+    {
+      "path": "sources/ntpclient/main.c",
+      "sha256": "84f2b44fc4339c2158adcee2f83f72eba7139d01a25f7d570a740f47f4bf8abd"
+    },
+    {
+      "path": "sources/ntpclient/main.s",
+      "sha256": "8e19f3b9ad1473f5486ae0f7d86746610603685d8cdd3cda919b23555e4c5096"
+    },
+    {
+      "path": "sources/ntpclient/setup_receive.c",
+      "sha256": "99ffba8f4f20de4bfa3f04741cf04e4fc0480cbdc83b65463ccf68b28607227d"
+    },
+    {
+      "path": "sources/ntpclient/setup_receive.s",
+      "sha256": "7ef7fdb8cf0af2ba7b909f9230ccdaae250cb0dffffb048c768ee847234d535e"
+    },
+    {
+      "path": "sources/ntpclient/setup_transmit.c",
+      "sha256": "1bacbcc5ff12bd43ba4014f324f528e66e6a134d2f00fa8db2e502392c813fff"
+    },
+    {
+      "path": "sources/ntpclient/setup_transmit.s",
+      "sha256": "9c081d0c800512c13cb7b12f9b28fdfbbf1bf76529e07d0969475cff8b0a3880"
+    },
+    {
+      "path": "sources/ntpclient/stuff_net_addr.c",
+      "sha256": "f7dc91be4445c7bf6759fc92da70fb87b7522a84399e1aa87bfa952b166ab63c"
+    },
+    {
+      "path": "sources/ntpclient/stuff_net_addr.s",
+      "sha256": "d630771d2824a1c86db0ac7a111378e0c9de26610e011a9d8f73a2237bb31d3e"
+    },
+    {
+      "path": "sources/ntpclient/stuff_net_addr6.c",
+      "sha256": "23844353c5f9d614875e678c7400848f138ec4b7e2a68e48b33b096ef0c02748"
+    },
+    {
+      "path": "sources/ntpclient/stuff_net_addr6.s",
+      "sha256": "e3093fed5f47903bcca9d11f4b1c16b8e83b65fceef6ef0d366ba8eb6a20e433"
+    },
+    {
+      "path": "sources/nvram/main.c",
+      "sha256": "061386aee42574362dd5a5a3f7c398d766825b9e4715f346af5c70b797c9a966"
+    },
+    {
+      "path": "sources/nvram/main.s",
+      "sha256": "6780f0b574c35e20a699ff8c885e16b84251d5a6aab088951be18e615b652967"
+    },
+    {
+      "path": "sources/nvram/nvram_commit.c",
+      "sha256": "d35805c4393ae6b7789e703fa3368d8a3dc67374ca6074803510fe82352d65f7"
+    },
+    {
+      "path": "sources/nvram/nvram_commit.s",
+      "sha256": "3e6cd3580796caae7ade8af6754d452121fa03393e4132b926e27ffe0f4914b9"
+    },
+    {
+      "path": "sources/nvram/nvram_get.c",
+      "sha256": "eb64da71210ec60a8e9856945b889ebb6cb070cfdcc57f2b7dcfc51653dd7482"
+    },
+    {
+      "path": "sources/nvram/nvram_get.s",
+      "sha256": "fa4059f7e6357c68061d318d4b2d765749d3341260efc0d44199d9a4ab008492"
+    },
+    {
+      "path": "sources/nvram/nvram_getall.c",
+      "sha256": "101be4401d31e2f7ea806c11acafc2202935413fd6d7daba81c0b50b6a0f1641"
+    },
+    {
+      "path": "sources/nvram/nvram_getall.s",
+      "sha256": "874c7aba2b569a5d4d108a63f11b5ec76547bc4903ec70e9268b46b6d409eae8"
+    },
+    {
+      "path": "sources/nvram/nvram_set.c",
+      "sha256": "02031b90748b71042f21bc6b09584fcee24563ccfa98023b9b06c7c67a1d92cc"
+    },
+    {
+      "path": "sources/nvram/nvram_set.s",
+      "sha256": "2f7cfdf02d8c19839441ed335f95368fc35e478f1a12626c721a8e886bcb907a"
+    },
+    {
+      "path": "sources/nvram/nvram_unset.c",
+      "sha256": "5af769b625cf609c3a2cf2a7ee67a07dc0fa48afb00028366e7e964f89a2c66d"
+    },
+    {
+      "path": "sources/nvram/nvram_unset.s",
+      "sha256": "d7b20abf6eb8aede0c2a21b72f5a92e90219183ff87572737da178d49e41435c"
+    },
+    {
+      "path": "sources/nvram/usage.c",
+      "sha256": "e9d424728277e5febcdeaf365f8d6c06d1ca66b492661cdd73c2804272c270e9"
+    },
+    {
+      "path": "sources/nvram/usage.s",
+      "sha256": "df4b4861b56bc2018be7d265db49b2de66a23b7b25fa28aa735a74d41d84de9b"
+    }
+  ],
+  "rejected_entries": [
+    {
+      "path": "network_swapped_callsites.json",
+      "sha256": "136445b28f7a7e883a52be8bd689068efcf06eb1f6aa640c736a4b222a1fa764",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkAnalysisResult",
+      "expected_error": "disagrees with its catalog location",
+      "provenance": "real Agent output: IPv4/IPv6 connect IDs disagree with quoted source lines; retained only as a rejection regression"
+    }
+  ],
+  "elf_excerpts": [
+    {
+      "path": "init_real_excerpt_0.bin",
+      "sha256": "8008b796bd079d0547774fd7f725a1e25371278384672c4e2857fdc946a084c8",
+      "binary_path": "sbin/rc",
+      "binary_sha256": "e9bcd7ecbff0839f4b036b2201fc710ab29da176c50e5631ee7fdd34f3b9e178",
+      "machine": "MIPS",
+      "address": 4368104,
+      "location": "0x42a6e8",
+      "gap_index": 0
+    },
+    {
+      "path": "init_real_excerpt_1.bin",
+      "sha256": "858f4df2104e1d001b14723b03f2c1ad07f70d6be72094e9c3339fbe864c324e",
+      "binary_path": "sbin/rc",
+      "binary_sha256": "e9bcd7ecbff0839f4b036b2201fc710ab29da176c50e5631ee7fdd34f3b9e178",
+      "machine": "MIPS",
+      "address": 4426120,
+      "location": "0x438988",
+      "gap_index": 1
+    }
+  ],
+  "path_redaction": {
+    "scope": "Personal host workspace prefix in file_full JSON/Markdown source-evidence prose only; semantic claims and guest paths are unchanged. Fixture digest references describe the anonymized copies.",
+    "pre_redaction_sha256": "41bd77b5e2d07fb96a4254a245a76f6ed98dbbe6eb0c5decd1e1a3f12667544d",
+    "pre_redaction_markdown_sha256": "f0b8e3bcc71a1e005f77de3ef2c2f5fb36316b7246a6202d770877754f69df28"
+  }
+}

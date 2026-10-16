@@ -1,0 +1,19 @@
+[package]
+name    = "{{ test_crate_name }}"
+version = "0.1.0"
+edition = "2021"
+
+# Standalone workspace.
+[workspace]
+
+[dependencies]
+{{ crate_name }} = { path = "{{ intervention_relpath }}" }
+
+[dev-dependencies]
+fmst-iib-api = { path = "{{ iib_api_relpath }}", features = {{ mock_features }} }
+{% for test in test_targets %}
+
+[[test]]
+name = "{{ test.name }}"
+path = "{{ test.path }}"
+{% endfor %}

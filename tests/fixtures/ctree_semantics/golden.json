@@ -1,0 +1,44 @@
+{
+  "required_functions": [
+    "direct_return",
+    "call_shapes",
+    "nested_call",
+    "same_line_calls",
+    "merged_tail_call",
+    "flow_cycle",
+    "mixed_rhs",
+    "indirect_call",
+    "aggregate_ops"
+  ],
+  "call_shapes": {
+    "minimum_leaf_calls": 4
+  },
+  "nested_call": {
+    "outer": "combine",
+    "inner": "leaf"
+  },
+  "same_line_calls": {
+    "minimum_leaf_calls": 4,
+    "contains_same_line_calls": true
+  },
+  "merged_tail_call": {
+    "callee": "leaf"
+  },
+  "direct_return": {
+    "callee": "leaf",
+    "return_name": "DIRECT_RET"
+  },
+  "flow_cycle": {
+    "initial": "first",
+    "related": ["input", "first", "second"]
+  },
+  "mixed_rhs": {
+    "required_flow_types": ["CALL", "EXPR", "LITERAL_NUMBER"]
+  },
+  "indirect_call": {
+    "required_call_kind": "indirect"
+  },
+  "aggregate_ops": {
+    "required_global": "GVar_global_counter"
+  }
+}

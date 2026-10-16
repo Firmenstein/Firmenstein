@@ -1,0 +1,114 @@
+{
+  "schema_version": 17,
+  "unit": {
+    "behavior_scopes": [
+      {
+        "finding_ref": "file:file_dev_nvram",
+        "claim_indices": [
+          0
+        ],
+        "applicability": "The fixture's documented invocation context"
+      },
+      {
+        "finding_ref": "process:process-callsite",
+        "claim_indices": [
+          0
+        ],
+        "applicability": "The fixture's documented invocation context"
+      }
+    ],
+    "unit_id": "unit-1111111111111111",
+    "strategy": "function_stub",
+    "anchors": [
+      {
+        "kind": "function",
+        "binary_name": "libnvram.so",
+        "function_name": "nvram_get",
+        "function_ea": 4096
+      }
+    ],
+    "summary": "Known key-value semantics allow stable synthetic NVRAM values even when device-specific values are unknown.",
+    "contract": {
+      "applicability": [
+        "claim only the supplied Unit anchors"
+      ],
+      "owned_resources": [
+        "planner anchor 1"
+      ],
+      "operations": [
+        "Return a stable guest string for a known key and NULL for an unknown key."
+      ],
+      "state": [
+        "preserve state for the declared Unit lifetime"
+      ],
+      "native_fallback": [
+        "fall through when the Unit does not claim the interaction"
+      ],
+      "required_iib_capabilities": [],
+      "verification": [
+        "cover every legacy mock_contract item exactly once"
+      ],
+      "allowed_refinement_scope": [
+        "implementation details inside this Unit"
+      ]
+    },
+    "finding_refs": [
+      "file:file_dev_nvram",
+      "process:process-callsite"
+    ]
+  },
+  "generation": {
+    "unit_id": "unit-1111111111111111",
+    "contract_digest": "e0b141866c625cb2c178e58f611321bb836e002a205b82210d92b9883ec73fcf",
+    "report_stem": "nvram_get",
+    "strategy": "function_stub",
+    "status": "ok",
+    "failure_reason": null,
+    "failure_code": null,
+    "last_failure_signal": null,
+    "generated_files": [
+      "src/unit_nvram/mod.rs",
+      "tests/unit_nvram/main.rs"
+    ],
+    "round_traces": [
+      {
+        "round_index": 1,
+        "generator_trace_path": "round-01__generator.md",
+        "reviewer_trace_path": "round-01__reviewer.md"
+      },
+      {
+        "round_index": 2,
+        "generator_trace_path": "round-02__generator.md",
+        "reviewer_trace_path": "round-02__reviewer.md"
+      }
+    ],
+    "revision_count": 1,
+    "review_history": [
+      {
+        "verdict": "revision_required",
+        "contract_reviews": [
+          {
+            "contract_index": 0,
+            "status": "test_gap",
+            "evidence": "Only known-key behavior was covered in this synthetic round.",
+            "required_change": "Cover NULL for an unknown key."
+          }
+        ],
+        "summary": "Unknown-key behavior needs a regression case."
+      },
+      {
+        "verdict": "approved",
+        "contract_reviews": [
+          {
+            "contract_index": 0,
+            "status": "satisfied",
+            "evidence": "implementation and test cover this contract item",
+            "required_change": null
+          }
+        ],
+        "summary": "Synthetic fixture: both known and unknown keys are covered."
+      }
+    ]
+  },
+  "environment_script_path": null
+}

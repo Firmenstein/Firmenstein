@@ -1,0 +1,73 @@
+{
+  "execution": {
+    "tasks": {},
+    "status": "complete"
+  },
+  "schema_version": 5,
+  "phase": "full",
+  "root_binary": "httpd",
+  "finding_target": {
+    "path": "usr/sbin/httpd",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "planning_findings": {
+    "finding:process:v1:8926cfdf59b75fa9946aeb59ed107f99297c25614a4cfa7c47ff53516dcb3e01": {
+      "finding_ref": "finding:process:v1:8926cfdf59b75fa9946aeb59ed107f99297c25614a4cfa7c47ff53516dcb3e01",
+      "summary": "classified process event",
+      "boundary": {
+        "kind": "callsite",
+        "anchors": [
+          {
+            "kind": "callsite",
+            "ref": "/callsites/process-event:abc"
+          }
+        ],
+        "reachability_refs": [],
+        "coverage_refs": []
+      },
+      "claims": [
+        {
+          "kind": "unknown",
+          "statement": "dynamic caller",
+          "evidence_refs": [
+            "/assessments/process-event:abc/missing_evidence/0"
+          ],
+          "unknown_kind": "semantics"
+        }
+      ],
+      "domain": {
+        "kind": "process",
+        "callsite_id": "process-event:abc",
+        "event_kind": "termination"
+      }
+    }
+  },
+  "callsites": {
+    "process-event:abc": {
+      "callsite_id": "process-event:abc",
+      "binary_name": "httpd",
+      "function_name": "main",
+      "function_ea": 4096,
+      "snapshot_hash": "snap",
+      "ctree_index": 7,
+      "source_ea": 4160,
+      "line_number": 10,
+      "column_number": 6,
+      "api_name": "exit",
+      "event_kind": "termination"
+    }
+  },
+  "assessments": {
+    "process-event:abc": {
+      "callsite_id": "process-event:abc",
+      "disposition": "unresolved",
+      "trigger_callsites": [],
+      "trigger_inputs": [],
+      "summary": "classified process event",
+      "evidence": [],
+      "missing_evidence": [
+        "dynamic caller"
+      ]
+    }
+  }
+}

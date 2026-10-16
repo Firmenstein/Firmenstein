@@ -1,0 +1,25 @@
+{
+  "schema_version": 10,
+  "phase": "static",
+  "root_binary": "empty-fixture",
+  "finding_target": {
+    "path": "usr/sbin/nvram",
+    "sha256": "690e220908417414f4b4b003811dda7b4f380c14eb9ec0657744bda44913c33d"
+  },
+  "planning_findings": {},
+  "callsites": {},
+  "skipped": {},
+  "path_resolution_gaps": {},
+  "queued_for_path_agent": [],
+  "resources": {},
+  "resource_reports": {},
+  "resource_analysis_gaps": {},
+  "counts_by_resolution_source": {
+    "literal_static": 0,
+    "global_static": 0,
+    "dataflow_static": 0,
+    "file_path_agent": 0
+  },
+  "counts_by_resource_class": {},
+  "covered_api_calls": []
+}

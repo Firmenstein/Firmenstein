@@ -1,0 +1,14 @@
+[
+  {
+    "source": "tests/fixtures/g0/pipeline/unit.json",
+    "sha256": "2e96d758c3417dd401797a5292a3a626124a4f652a1d10306df0117bfb6be3de",
+    "output": "tests/fixtures/g2_integrity/pipeline/unit.json",
+    "purpose": "Serialization adaptation of frozen synthetic fixture; not a real Agent run. Generation plan digest is explicitly synthetic."
+  },
+  {
+    "source": "tests/fixtures/g0/pipeline/generator.json",
+    "sha256": "2cdf0ede5c4c0e41b9860dc59ab3fa530af5c6f4dace0f312ae7205bf0c460c5",
+    "output": "tests/fixtures/g2_integrity/pipeline/generator.json",
+    "purpose": "Serialization adaptation of frozen synthetic fixture; not a real Agent run. Generation plan digest is explicitly synthetic."
+  }
+]

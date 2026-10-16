@@ -1,0 +1,43 @@
+{
+  "schema_version": 15,
+  "completion_status": "complete",
+  "target_binary": "httpd",
+  "arch": "arm",
+  "total_units": 1,
+  "ok_count": 0,
+  "not_ready_count": 1,
+  "skipped_count": 0,
+  "units": [
+    {
+      "unit_id": "unit-1111111111111111",
+      "contract_digest": "e0b141866c625cb2c178e58f611321bb836e002a205b82210d92b9883ec73fcf",
+      "report_stem": "nvram_get",
+      "strategy": "function_stub",
+      "status": "plan_mismatch",
+      "failure_reason": "Unknown response layout: the supplied evidence does not establish the caller-visible buffer semantics.",
+      "failure_code": "input_validation",
+      "last_failure_signal": {
+        "code": "input_validation",
+        "phase": "input_validation",
+        "file_path": null,
+        "message": "Unknown response layout: the supplied evidence does not establish the caller-visible buffer semantics."
+      },
+      "generated_files": [],
+      "round_traces": [],
+      "revision_count": 0,
+      "review_history": []
+    }
+  ],
+  "cargo_build_status": "not_run",
+  "cargo_test_status": "not_run",
+  "cargo_build_failure": null,
+  "cargo_test_failure": null,
+  "intervention_crate_path": null,
+  "test_crate_path": null,
+  "environment": {
+    "status": "not_needed",
+    "unit_ids": [],
+    "script_path": null,
+    "reason": "No environment units."
+  }
+}

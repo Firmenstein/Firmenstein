@@ -1,0 +1,38 @@
+{
+  "schema_version": 8,
+  "phase": "static",
+  "root_binary": "httpd",
+  "callsites": {
+    "network-callsite": {
+      "callsite_id": "network-callsite",
+      "location": {
+        "binary_name": "httpd",
+        "binary_path": "usr/sbin/httpd",
+        "binary_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "function_name": "serve",
+        "function_ea": 4352,
+        "snapshot_hash": "network-snapshot",
+        "ctree_index": 4,
+        "source_ea": 4384,
+        "line_number": 30,
+        "column_number": 6
+      },
+      "api_name": "bind",
+      "api_family": "socket_endpoint",
+      "api_binding": {
+        "symbol": "bind",
+        "call_kind": "direct",
+        "verified": true
+      },
+      "expression_text": "bind(fd, addr, 16)",
+      "arguments": [],
+      "return_expression": null
+    }
+  },
+  "analyses": [],
+  "skipped": {},
+  "pending_callsite_ids": [
+    "network-callsite"
+  ],
+  "covered_api_calls": []
+}

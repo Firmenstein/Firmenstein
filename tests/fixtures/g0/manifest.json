@@ -1,0 +1,512 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-09-07",
+  "baseline_source_digest": "5b98f181c24388e4f65979744af56886fcff8e09a2eef0c1f48e1bb6aaff4802",
+  "source_paths": {
+    "file": "file_reports/file_resolver_result.json",
+    "network": "network_reports/network_analysis_result.json",
+    "process": "process_lifecycle_reports/process_lifecycle_analysis_result.json",
+    "ipc": "ipc_reports/ipc_analysis_result.json",
+    "init": "init_launch_reports/init_launch_analysis_result.json"
+  },
+  "fixtures": [
+    {
+      "path": "full/file.json",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResolverResult",
+      "schema_version": 9,
+      "phase": "full",
+      "sha256": "a7c46551c60e3fd0dd76a6f33667913ef456dd73fc56170dd47fc86b173819d1",
+      "provenance": "synthetic",
+      "markdown": "full/file.md",
+      "markdown_sha256": "76a1bf4736c56b302edd33a7f23180acd3c527f898a5ff5c3f1ea927cc721212",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_index"
+    },
+    {
+      "path": "full/network.json",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkAnalysisResult",
+      "schema_version": 8,
+      "phase": "full",
+      "sha256": "777994817bc996f890e508dbfe32bc227a94196843634f1743e470d57ed6c955",
+      "provenance": "synthetic",
+      "markdown": "full/network.md",
+      "markdown_sha256": "c81e6ddd73febd3e55f464c2c29bb048fa537d3dd4d1e247f7cf1165a7acb328",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_index"
+    },
+    {
+      "path": "full/process.json",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessLifecycleAnalysisResult",
+      "schema_version": 2,
+      "phase": "full",
+      "sha256": "5f511d969ed75d8e0cb52b5a25466b6182b9f81892d7ce333f85ec6c9db7e474",
+      "provenance": "synthetic",
+      "markdown": "full/process.md",
+      "markdown_sha256": "375482d84a522346b5d46f3aceb9e022f165a6b6043d4a7a837494bdd7f8a4cf",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_index"
+    },
+    {
+      "path": "full/ipc.json",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCAnalysisResult",
+      "schema_version": 26,
+      "phase": "full",
+      "sha256": "9a57d5529d9383509c0c0646c1bd1e152a396da58ead6175aaf63fe706789bde",
+      "provenance": "synthetic",
+      "markdown": "full/ipc.md",
+      "markdown_sha256": "ad782b43c76dafe847a0e05b6158d6893612e9b6dde5e1e0aae6b6131948f626",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_index"
+    },
+    {
+      "path": "full/init.json",
+      "model": "fmst_analyzer.analysis.init_launch.analyzer_schema:InitLaunchAnalysisResult",
+      "schema_version": 4,
+      "phase": null,
+      "sha256": "86407467714012638a01fb51032505f678b5ff371efa894bf385c38318be800b",
+      "provenance": "synthetic",
+      "markdown": "full/init.md",
+      "markdown_sha256": "32d0c9809c5a83da6099f082d948ea9d46365cb9d4fc7041ade9f93ebd76ac78",
+      "renderer": "fmst_analyzer.analysis.init_launch.reports:render_index"
+    },
+    {
+      "path": "static/file.json",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResolverResult",
+      "schema_version": 9,
+      "phase": "static",
+      "sha256": "daaf21ed58fe96ac32de669f32509cccb44f01728d4381dcbdc835bbdf7e62c4",
+      "provenance": "synthetic",
+      "markdown": "static/file.md",
+      "markdown_sha256": "71cd9c702c404e9790777dfe2406ff62c9422031b4e21c4573c6763feb693fe1",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_index"
+    },
+    {
+      "path": "empty/file_static.json",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResolverResult",
+      "schema_version": 9,
+      "phase": "static",
+      "sha256": "d56acd97cc4780e1e89dc9e4cb4a365420f3806e0bfbc0e0075f25ca424c2ff9",
+      "provenance": "synthetic",
+      "markdown": "empty/file_static.md",
+      "markdown_sha256": "17ca01ac7880bdbeb90e152cb9f4b9ebdfc7670f1c2e33d82be74bcc2470dd0e",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_index"
+    },
+    {
+      "path": "empty/file_full.json",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResolverResult",
+      "schema_version": 9,
+      "phase": "full",
+      "sha256": "d0b38e399180c62df65ad582bb9d531bfc8c4d2364dde53ad005c0bea0a2f5f7",
+      "provenance": "synthetic",
+      "markdown": "empty/file_full.md",
+      "markdown_sha256": "2b454c970c8f48a1a28412cc7392c54a5512f7ab521e12e042e096440a9a6716",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_index"
+    },
+    {
+      "path": "static/network.json",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkAnalysisResult",
+      "schema_version": 8,
+      "phase": "static",
+      "sha256": "5309efeffc5fa2fca67d457cf86ecbd5c63f8171b11cdb0555e6a83fa70ea885",
+      "provenance": "synthetic",
+      "markdown": "static/network.md",
+      "markdown_sha256": "dc8f04031105595af95de34dafdb8d1a97355013f4465e00163b2ca49c7171d3",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_index"
+    },
+    {
+      "path": "empty/network_static.json",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkAnalysisResult",
+      "schema_version": 8,
+      "phase": "static",
+      "sha256": "3e795cb1808e2f2b976a7889ac83de9cf6e6a3dfb618e40aa6882b9a769bdfdc",
+      "provenance": "synthetic",
+      "markdown": "empty/network_static.md",
+      "markdown_sha256": "5b07b83846b3e9c210958b12443ded03888a16c67f0eef4846255789da54dbd9",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_index"
+    },
+    {
+      "path": "empty/network_full.json",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkAnalysisResult",
+      "schema_version": 8,
+      "phase": "full",
+      "sha256": "46dd952d918c253d54afde85cfd4ad209fd0518c6032d61a7787d5e9b38863fd",
+      "provenance": "synthetic",
+      "markdown": "empty/network_full.md",
+      "markdown_sha256": "afc9d20265a8984873de2e10a66665db872eaba1918eba90455ef9688ff91edd",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_index"
+    },
+    {
+      "path": "static/process.json",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessLifecycleAnalysisResult",
+      "schema_version": 2,
+      "phase": "static",
+      "sha256": "521adace87ea980c73375a8b38c6fca0239213c3e63c0d9e00bf782a9131dd84",
+      "provenance": "synthetic",
+      "markdown": "static/process.md",
+      "markdown_sha256": "bfcab91655dd361a14b42d28827964ea66abceb8c3e7c2ba62f735b1cc4be6af",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_index"
+    },
+    {
+      "path": "empty/process_static.json",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessLifecycleAnalysisResult",
+      "schema_version": 2,
+      "phase": "static",
+      "sha256": "e9d45e3271b0205bb4080eb9ca901398418b64a1ecdfdefc84ee6923a8112efe",
+      "provenance": "synthetic",
+      "markdown": "empty/process_static.md",
+      "markdown_sha256": "c1778dd87111d0a9cab6080c788da6888dc9735fd20643a94a5504cc00080cab",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_index"
+    },
+    {
+      "path": "empty/process_full.json",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessLifecycleAnalysisResult",
+      "schema_version": 2,
+      "phase": "full",
+      "sha256": "03ab7f2209b33a2a3f4c96c34e03af54cc73e527c38392d3a00ab5701e64334c",
+      "provenance": "synthetic",
+      "markdown": "empty/process_full.md",
+      "markdown_sha256": "7579b1a54602691e566e02d0db0b1acfc23fc0f63fec2450cb5a41198680fbb3",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_index"
+    },
+    {
+      "path": "static/ipc.json",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCAnalysisResult",
+      "schema_version": 26,
+      "phase": "static",
+      "sha256": "3146dac8b6bba4da04aaf6d673bcdc23639b9c2738b3b38bae7cbfa8271f1689",
+      "provenance": "synthetic",
+      "markdown": "static/ipc.md",
+      "markdown_sha256": "56c743a67114c5f88f220d266dbf64ae9d72d5e747cbe09cf24356ab01d055b3",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_index"
+    },
+    {
+      "path": "empty/ipc_static.json",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCAnalysisResult",
+      "schema_version": 26,
+      "phase": "static",
+      "sha256": "61f185ff776e07655f1b98a56cfdac2ee48920d324103d5afb2af1eb841ea749",
+      "provenance": "synthetic",
+      "markdown": "empty/ipc_static.md",
+      "markdown_sha256": "b27600918e823952146dc44b6ddecc6996cbe5bb6cd3cc739fffbfbe2937b8d8",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_index"
+    },
+    {
+      "path": "empty/ipc_full.json",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCAnalysisResult",
+      "schema_version": 26,
+      "phase": "full",
+      "sha256": "f389d6e606792bccfb3c8335a91775c177087cccf56f777036ead961d8dd624b",
+      "provenance": "synthetic",
+      "markdown": "empty/ipc_full.md",
+      "markdown_sha256": "afd93412ab7a643f253a7b5c5d565e5a9ee62a892df8c49ee3286aada93efb10",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_index"
+    },
+    {
+      "path": "gaps/file.json",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResolverResult",
+      "schema_version": 9,
+      "phase": "static",
+      "sha256": "d1bbe558d5dc64a20d881d4af4e482ebb3710772787fac174d5d44ba73144a35",
+      "provenance": "synthetic",
+      "markdown": "gaps/file.md",
+      "markdown_sha256": "0c4592e66c1c79639d632b03819a7f3525150347bf3198cf32cca605c69776a8",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_index"
+    },
+    {
+      "path": "gaps/network.json",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkAnalysisResult",
+      "schema_version": 8,
+      "phase": "full",
+      "sha256": "80860c6f0db5801b688272f29d350243aad919928e7cdb4cb8101ae1650c0ea8",
+      "provenance": "synthetic",
+      "markdown": "gaps/network.md",
+      "markdown_sha256": "9ad0e02ea6db03b9870d9cf9648051db28b712ac4577c229dbd139753b68e992",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_index"
+    },
+    {
+      "path": "gaps/process.json",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessLifecycleAnalysisResult",
+      "schema_version": 2,
+      "phase": "full",
+      "sha256": "1d9866ac1144bc09f8608d68043bed9335f29e15c4e7fbaef15c2b01d25d1e26",
+      "provenance": "synthetic",
+      "markdown": "gaps/process.md",
+      "markdown_sha256": "1c039d61f4709519b0ddc33d8d144111533e8778528fc2689618d41db310a407",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_index"
+    },
+    {
+      "path": "gaps/ipc.json",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCAnalysisResult",
+      "schema_version": 26,
+      "phase": "full",
+      "sha256": "26467b08e89f9610221eb91f2d6a5cc60600648cf4093c87e0692adbd511f738",
+      "provenance": "synthetic",
+      "markdown": "gaps/ipc.md",
+      "markdown_sha256": "bdd3e73c8b0b966f931a2f65c7adcc83469917daed3c807e832083cf94329d21",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_index"
+    },
+    {
+      "path": "gaps/init.json",
+      "model": "fmst_analyzer.analysis.init_launch.analyzer_schema:InitLaunchAnalysisResult",
+      "schema_version": 4,
+      "phase": null,
+      "sha256": "ae851ea4c4a3df81a820cce227106e510fccc5bc3469f43b30a9887cbd6f650f",
+      "provenance": "synthetic",
+      "markdown": "gaps/init.md",
+      "markdown_sha256": "a603342e33841649126d106e21e80c27277fa05e29fdde26d2b3c148170895ac",
+      "renderer": "fmst_analyzer.analysis.init_launch.reports:render_index"
+    },
+    {
+      "path": "legacy/file.json",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResolverResult",
+      "schema_version": 8,
+      "phase": "full",
+      "sha256": "c3402cd7893d001ff532b9826fca97016ae871f677dd27a60796f9c2ecfa5b23",
+      "provenance": "synthetic",
+      "expected_error": "schema_version|schema version"
+    },
+    {
+      "path": "legacy/network.json",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkAnalysisResult",
+      "schema_version": 7,
+      "phase": "full",
+      "sha256": "e0be085c657495bada4b982430cbbbaa32701a30a96b3e38a6db2b0d87844772",
+      "provenance": "synthetic",
+      "expected_error": "schema_version|schema version"
+    },
+    {
+      "path": "legacy/process.json",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessLifecycleAnalysisResult",
+      "schema_version": 1,
+      "phase": "full",
+      "sha256": "4b80d89c4e8def37797713e49d1ab2f01aa34c964556e1c29c87c2877d8b7b27",
+      "provenance": "synthetic",
+      "expected_error": "schema_version|schema version"
+    },
+    {
+      "path": "legacy/ipc.json",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCAnalysisResult",
+      "schema_version": 25,
+      "phase": "full",
+      "sha256": "514ef9c65728a3921c4649afaa01832ce04c627e34a29fa32714a30e3f25ee9c",
+      "provenance": "synthetic",
+      "expected_error": "schema_version|schema version"
+    },
+    {
+      "path": "legacy/init.json",
+      "model": "fmst_analyzer.analysis.init_launch.analyzer_schema:InitLaunchAnalysisResult",
+      "schema_version": 3,
+      "phase": null,
+      "sha256": "25629c983f8fd79aeefd899e92be732315c9625927943995a5f5d064375143cb",
+      "provenance": "synthetic",
+      "expected_error": "schema_version|schema version"
+    },
+    {
+      "path": "units/file.json",
+      "model": "fmst_analyzer.analysis.file_resolver.analyzer_schema:FileResourceReport",
+      "schema_version": null,
+      "phase": null,
+      "sha256": "7871c31c4f1f01a5d377bed110be9f11dbbfe01f18c161938d46451ce0b3915c",
+      "provenance": "synthetic",
+      "markdown": "units/file.md",
+      "markdown_sha256": "57c10eae878e960cc9f04c0c4abd1fa93afe9606b8d175017d5a6719a25be572",
+      "renderer": "fmst_analyzer.analysis.file_resolver.reports:render_per_resource_report"
+    },
+    {
+      "path": "units/network.json",
+      "model": "fmst_analyzer.analysis.network_analyzer.analyzer_schema:NetworkInteractionReport",
+      "schema_version": 8,
+      "phase": null,
+      "sha256": "b9abaf533eebfc13235c3a3e3934e05133f54586f4257c257a52dcf62ab3d6bb",
+      "provenance": "synthetic",
+      "markdown": "units/network.md",
+      "markdown_sha256": "114427dd054728449e5eefcc90d94092cf8cd8aa7d3a77de224a0b1c325e1973",
+      "renderer": "fmst_analyzer.analysis.network_analyzer.reports:render_interaction"
+    },
+    {
+      "path": "units/process.json",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessEventAssessmentReport",
+      "schema_version": 2,
+      "phase": null,
+      "sha256": "dd8bcb108ad6ea189c7d8d7e3b41d4254f0fa1f14219c082c98468ed75a18332",
+      "provenance": "synthetic",
+      "markdown": "units/process.md",
+      "markdown_sha256": "37cea66f1b92c547162bfdf926a258cc17a937ffe5bbcd779a3f9ca624ff4c2b",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_assessment_report"
+    },
+    {
+      "path": "units/ipc_callsite.json",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCCallsiteReport",
+      "schema_version": 26,
+      "phase": "full",
+      "sha256": "509d50e996037b3a5670d87f17d7b0e767d094d0a47ce664e839119332758b63",
+      "provenance": "synthetic",
+      "markdown": "units/ipc_callsite.md",
+      "markdown_sha256": "8dd5b65222a3afa97507200a31087d627c51bb8275ced627d5c6bcbd06ac27c6",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_callsite"
+    },
+    {
+      "path": "units/ipc_channel.json",
+      "model": "fmst_analyzer.analysis.ipc_analyzer.schema:IPCChannelReport",
+      "schema_version": 26,
+      "phase": "full",
+      "sha256": "f9d71656e84187aba01534c91a1a59e4f9b9e5214ea79e227ecce714b729271f",
+      "provenance": "synthetic",
+      "markdown": "units/ipc_channel.md",
+      "markdown_sha256": "57ffdb4ef9439ce8f01f1072d60e847e76976791278cf877885bc6ee078b4093",
+      "renderer": "fmst_analyzer.analysis.ipc_analyzer.reports:render_channel"
+    },
+    {
+      "path": "units/launch.json",
+      "model": "fmst_analyzer.analysis.init_launch.analyzer_schema:LaunchRecipe",
+      "schema_version": null,
+      "phase": null,
+      "sha256": "cc969eb5a8e6603294117ccf5e1ea34468e64dc1b1f984d34b721ac7745733cd",
+      "provenance": "synthetic",
+      "markdown": "units/launch.md",
+      "markdown_sha256": "6f5f22b345341ac19e3b0c895e5ad370de45b8b68970195777c390d2f05447eb",
+      "renderer": "fmst_analyzer.analysis.init_launch.reports:render_recipe"
+    },
+    {
+      "path": "pipeline/catalog.json",
+      "model": "fmst_analyzer.synthesizer.intervention_plan_analyzer.catalog.schema:PlanningEvidenceCatalog",
+      "schema_version": 3,
+      "phase": null,
+      "sha256": "1fdadb8fd025991295489070cff3a8a987db502dc444971740f5a95495751ac8",
+      "provenance": "synthetic",
+      "markdown": "pipeline/catalog.md",
+      "markdown_sha256": "890c9b5a50c8cc2e66e9e7fbd034002f23f5b8b32ffcfb8c67851cd5f6b16566",
+      "renderer": "fmst_analyzer.synthesizer.intervention_plan_analyzer.catalog.reports:render_index"
+    },
+    {
+      "path": "pipeline/plan.json",
+      "model": "fmst_analyzer.synthesizer.intervention_plan_analyzer.schema:InterventionPlanResult",
+      "schema_version": 9,
+      "phase": null,
+      "sha256": "798b75e344f5e56940e0f14be49ebf0b4c0d31435f9bef1846cd5a0558e7062d",
+      "provenance": "synthetic",
+      "markdown": "pipeline/plan.md",
+      "markdown_sha256": "56c491e4a4be73bc569c8ccf877f72cdab34a6de8922c991af4c14aeb7811d23",
+      "renderer": "fmst_analyzer.synthesizer.intervention_plan_analyzer.reports:render_index",
+      "renderer_inputs": [
+        "pipeline/catalog.json",
+        "pipeline/plan.json"
+      ]
+    },
+    {
+      "path": "pipeline/unit.json",
+      "model": "fmst_analyzer.synthesizer.intervention_generator.schema:UnitGenerationReport",
+      "schema_version": 15,
+      "phase": null,
+      "sha256": "2e96d758c3417dd401797a5292a3a626124a4f652a1d10306df0117bfb6be3de",
+      "provenance": "synthetic",
+      "markdown": "pipeline/unit.md",
+      "markdown_sha256": "06498461b4f69e8e907a97b60848bd5731ab88864afd89dbb9f37078e3032a77",
+      "renderer": "fmst_analyzer.synthesizer.intervention_generator.reports:render_unit"
+    },
+    {
+      "path": "pipeline/reviewer.json",
+      "model": "fmst_analyzer.synthesizer.intervention_generator.review_schema:UnitReviewOutcome",
+      "schema_version": null,
+      "phase": null,
+      "sha256": "3ea66d430e7a872e4b08d03b7a8b43464d59d7759d012b956303285bb257f44a",
+      "provenance": "synthetic"
+    },
+    {
+      "path": "pipeline/generator.json",
+      "model": "fmst_analyzer.synthesizer.intervention_generator.schema:InterventionGenerationResult",
+      "schema_version": 15,
+      "phase": null,
+      "sha256": "2cdf0ede5c4c0e41b9860dc59ab3fa530af5c6f4dace0f312ae7205bf0c460c5",
+      "provenance": "synthetic",
+      "markdown": "pipeline/generator.md",
+      "markdown_sha256": "f038da47548b5d6ee13a321a06fed6c6f96439bbac9ddc49d68e6c208c0cf42e",
+      "renderer": "fmst_analyzer.synthesizer.intervention_generator.reports:render_index"
+    },
+    {
+      "path": "gaps/generator.json",
+      "model": "fmst_analyzer.synthesizer.intervention_generator.schema:InterventionGenerationResult",
+      "schema_version": 15,
+      "phase": null,
+      "sha256": "25dd4632e0340fb955f9e2c764fce24d1640ecefdb8d8b1911d7c6c94ec90beb",
+      "provenance": "synthetic",
+      "markdown": "gaps/generator.md",
+      "markdown_sha256": "e7991d65dced3c4db051626c34cd1dc0c798bc02b2ad3cf4011cadd6347ccdaa",
+      "renderer": "fmst_analyzer.synthesizer.intervention_generator.reports:render_index"
+    },
+    {
+      "path": "pipeline/runner.json",
+      "model": "fmst_analyzer.runner.schema:RehostingResult",
+      "schema_version": 10,
+      "phase": null,
+      "sha256": "09905f481d316d19c7967df6159471b93656e26c92ccfaf85faa6007345cc353",
+      "provenance": "synthetic",
+      "markdown": "pipeline/runner.md",
+      "markdown_sha256": "87019c775849a545492ee0a64f49ecf9dfb8f02260b119dd432bd63d6807e406",
+      "renderer": "fmst_analyzer.runner.reports:render_index"
+    },
+    {
+      "path": "real/e2500_nvram_process_static.json",
+      "model": "fmst_analyzer.analysis.process_lifecycle.analyzer_schema:ProcessLifecycleAnalysisResult",
+      "schema_version": 2,
+      "phase": "static",
+      "sha256": "b40f6e0301c3638012ca67ce03849cbb7e3b9036876efd9f5f673c02faf950bf",
+      "provenance": "real-static-capture",
+      "markdown": "real/e2500_nvram_process_static.md",
+      "markdown_sha256": "f659f4930d82208a7772e05078073ce353c3bb2018ab512a59aa7617f1c60689",
+      "renderer": "fmst_analyzer.analysis.process_lifecycle.reports:render_index"
+    },
+    {
+      "path": "legacy/catalog.json",
+      "model": "fmst_analyzer.synthesizer.intervention_plan_analyzer.catalog.schema:PlanningEvidenceCatalog",
+      "schema_version": 2,
+      "phase": null,
+      "sha256": "8bdce087169ba84492e26be71fc46db72cdb724048e629cc8404ef0e6cea32a1",
+      "provenance": "synthetic",
+      "expected_error": "schema_version"
+    },
+    {
+      "path": "legacy/plan.json",
+      "model": "fmst_analyzer.synthesizer.intervention_plan_analyzer.schema:InterventionPlanResult",
+      "schema_version": 8,
+      "phase": null,
+      "sha256": "50015582d5ba69010aab15bba36a3bfbdc8f602b2bb0f098afdcb7ea0fef7f13",
+      "provenance": "synthetic",
+      "expected_error": "schema_version"
+    },
+    {
+      "path": "legacy/generator.json",
+      "model": "fmst_analyzer.synthesizer.intervention_generator.schema:InterventionGenerationResult",
+      "schema_version": 14,
+      "phase": null,
+      "sha256": "5e4422c55fbba114950a65c09769bd9f28222cd02fd5107836ed84f772808cf1",
+      "provenance": "synthetic",
+      "expected_error": "schema_version"
+    },
+    {
+      "path": "legacy/runner.json",
+      "model": "fmst_analyzer.runner.schema:RehostingResult",
+      "schema_version": 9,
+      "phase": null,
+      "sha256": "1b21d95c225d45e2dc6c4efdeaddae46c657f717249027e4a78c38f1ec957eb6",
+      "provenance": "synthetic",
+      "expected_error": "schema_version"
+    },
+    {
+      "path": "invalid/init_empty.json",
+      "model": "fmst_analyzer.analysis.init_launch.analyzer_schema:InitLaunchAnalysisResult",
+      "schema_version": 4,
+      "phase": null,
+      "sha256": "a0ef100782d3dfa252f53a50b92a2266ad8dfbd0c32e00722733f0d346a78abb",
+      "provenance": "synthetic",
+      "expected_error": "launch recipe or analysis gap"
+    },
+    {
+      "path": "gaps/catalog.json",
+      "model": "fmst_analyzer.synthesizer.intervention_plan_analyzer.catalog.schema:PlanningEvidenceCatalog",
+      "schema_version": 3,
+      "phase": null,
+      "sha256": "19939c8b28fbd6ae199ef198c9f876d068c2e27c4b0922c1712f2e0d6e0c22a1",
+      "provenance": "synthetic",
+      "renderer": "fmst_analyzer.synthesizer.intervention_plan_analyzer.catalog.reports:render_index",
+      "markdown": "gaps/catalog.md",
+      "markdown_sha256": "27bcc7fcd3b23d24d395cd29621f7da18006ee37191f7f152a5ce8a68a56ce58"
+    }
+  ]
+}

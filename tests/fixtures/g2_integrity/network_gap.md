@@ -1,0 +1,396 @@
+# NetworkAnalyzer — ntpclient
+
+This report accounts for reachable calls that establish, identify, query, or configure network resources. `network` entries describe external network-stack dependencies. `internal_ipc` and `file_resource` describe domain observations; `not_network` is a proven non-network use or target-infeasible API branch; `unresolved` records the exact missing evidence. Each analysis is rooted at one resource anchor. A shared helper callsite may be referenced by more than one analysis.
+
+- Structured source of truth: [`network_analysis_result.json`](network_analysis_result.json)
+
+## Summary
+
+- schema_version: `11`
+- phase: `full`
+- root_binary: `ntpclient`
+- callsites: 9
+- analyses: 0
+- analysis_callsite_references: 0
+- analyzed_unique_callsites: 0
+- shared_callsite_ids: 0
+- pending_callsite_ids: 0
+- disposition `network`: 0
+- disposition `internal_ipc`: 0
+- disposition `file_resource`: 0
+- disposition `not_network`: 0
+- disposition `unresolved`: 0
+
+## Analyses
+
+_No full-phase analyses are present._
+
+## pending_callsite_ids
+
+_None._
+
+## finding_target
+
+- finding_target:
+  - path: ` "usr/sbin/ntpclient" `
+  - sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+
+## callsites
+
+- callsites:
+  - network-cs:f92a752c1d859967a3e6eea0:
+    - callsite_id: ` "network-cs:f92a752c1d859967a3e6eea0" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "setup_receive" `
+      - function_ea: ` 4200388 `
+      - snapshot_hash: ` "6164471d5f4ec4dbbf05d9634455f45615c852aaf7b09014e25de393ea9149ad" `
+      - ctree_index: ` 80 `
+      - source_ea: ` 4200540 `
+      - line_number: ` 14 `
+      - column_number: ` 9 `
+    - api_name: ` "bind" `
+    - api_family: ` "endpoint" `
+    - api_binding:
+      - symbol: ` "bind" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "bind(fd, &addr, 0x10u)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "fd" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "&addr" `
+      - [2]:
+        - index: ` 3 `
+        - expression: ` "0x10u" `
+    - return_expression: ` null `
+  - network-cs:363953ebe71c78115cc96dae:
+    - callsite_id: ` "network-cs:363953ebe71c78115cc96dae" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "setup_receive" `
+      - function_ea: ` 4200388 `
+      - snapshot_hash: ` "6164471d5f4ec4dbbf05d9634455f45615c852aaf7b09014e25de393ea9149ad" `
+      - ctree_index: ` 134 `
+      - source_ea: ` 4200740 `
+      - line_number: ` 26 `
+      - column_number: ` 9 `
+    - api_name: ` "bind" `
+    - api_family: ` "endpoint" `
+    - api_binding:
+      - symbol: ` "bind" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "bind(fd, &v8, 0x1Cu)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "fd" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "&v8" `
+      - [2]:
+        - index: ` 3 `
+        - expression: ` "0x1Cu" `
+    - return_expression: ` null `
+  - network-cs:7924a19494cb40a40d66ba2a:
+    - callsite_id: ` "network-cs:7924a19494cb40a40d66ba2a" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "setup_receive" `
+      - function_ea: ` 4200388 `
+      - snapshot_hash: ` "6164471d5f4ec4dbbf05d9634455f45615c852aaf7b09014e25de393ea9149ad" `
+      - ctree_index: ` 145 `
+      - source_ea: ` 4200868 `
+      - line_number: ` 33 `
+      - column_number: ` 9 `
+    - api_name: ` "listen" `
+    - api_family: ` "endpoint" `
+    - api_binding:
+      - symbol: ` "listen" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "listen(fd, 3)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "fd" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "3" `
+    - return_expression: ` "DIRECT_RET" `
+  - network-cs:39bb9f95507166c5fb900c1e:
+    - callsite_id: ` "network-cs:39bb9f95507166c5fb900c1e" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "stuff_net_addr6" `
+      - function_ea: ` 4200900 `
+      - snapshot_hash: ` "a41f0f4733866ae8e6d0a177ab76ad46fa3e5dd43b1263d7e4c62f13cf62f0c3" `
+      - ctree_index: ` 4 `
+      - source_ea: ` 4200952 `
+      - line_number: ` 9 `
+      - column_number: ` 7 `
+    - api_name: ` "gethostbyname2" `
+    - api_family: ` "resolver" `
+    - api_binding:
+      - symbol: ` "gethostbyname2" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "gethostbyname2(a2, 10)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "a2" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "10" `
+    - return_expression: ` "v4" `
+  - network-cs:a8dd2b3fb261fbd1ee505766:
+    - callsite_id: ` "network-cs:a8dd2b3fb261fbd1ee505766" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "stuff_net_addr" `
+      - function_ea: ` 4201104 `
+      - snapshot_hash: ` "b676da05e57f15fbb5430fc1a8131eb257dcba8b6d6803546c5593ced975eadc" `
+      - ctree_index: ` 4 `
+      - source_ea: ` 4201152 `
+      - line_number: ` 6 `
+      - column_number: ` 7 `
+    - api_name: ` "gethostbyname" `
+    - api_family: ` "resolver" `
+    - api_binding:
+      - symbol: ` "gethostbyname" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "gethostbyname(a2)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "a2" `
+    - return_expression: ` "v4" `
+  - network-cs:8f599518f411b9ce79196d25:
+    - callsite_id: ` "network-cs:8f599518f411b9ce79196d25" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "setup_transmit" `
+      - function_ea: ` 4201320 `
+      - snapshot_hash: ` "c5eb2b1717658899c545ddfcd3b63c1da357c99127067a1980dadddaf68697fe" `
+      - ctree_index: ` 81 `
+      - source_ea: ` 4201496 `
+      - line_number: ` 24 `
+      - column_number: ` 9 `
+    - api_name: ` "connect" `
+    - api_family: ` "endpoint" `
+    - api_binding:
+      - symbol: ` "connect" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "connect(fd, &addr, 0x10u)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "fd" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "&addr" `
+      - [2]:
+        - index: ` 3 `
+        - expression: ` "0x10u" `
+    - return_expression: ` null `
+  - network-cs:82725831377ea8559bf93ed1:
+    - callsite_id: ` "network-cs:82725831377ea8559bf93ed1" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "setup_transmit" `
+      - function_ea: ` 4201320 `
+      - snapshot_hash: ` "c5eb2b1717658899c545ddfcd3b63c1da357c99127067a1980dadddaf68697fe" `
+      - ctree_index: ` 139 `
+      - source_ea: ` 4201632 `
+      - line_number: ` 38 `
+      - column_number: ` 9 `
+    - api_name: ` "connect" `
+    - api_family: ` "endpoint" `
+    - api_binding:
+      - symbol: ` "connect" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "connect(fd, &v9, 0x1Cu)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "fd" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "&v9" `
+      - [2]:
+        - index: ` 3 `
+        - expression: ` "0x1Cu" `
+    - return_expression: ` null `
+  - network-cs:a1d17dfad6ecd7edc5aa50e1:
+    - callsite_id: ` "network-cs:a1d17dfad6ecd7edc5aa50e1" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "main" `
+      - function_ea: ` 4206032 `
+      - snapshot_hash: ` "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d" `
+      - ctree_index: ` 586 `
+      - source_ea: ` 4208208 `
+      - line_number: ` 235 `
+      - column_number: ` 15 `
+    - api_name: ` "getaddrinfo" `
+    - api_family: ` "resolver" `
+    - api_binding:
+      - symbol: ` "getaddrinfo" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "getaddrinfo(name, 0, req, pai)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "name" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "0" `
+      - [2]:
+        - index: ` 3 `
+        - expression: ` "req" `
+      - [3]:
+        - index: ` 4 `
+        - expression: ` "pai" `
+    - return_expression: ` null `
+  - network-cs:e9787221d8daea4979557966:
+    - callsite_id: ` "network-cs:e9787221d8daea4979557966" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "main" `
+      - function_ea: ` 4206032 `
+      - snapshot_hash: ` "6f9b7e7aa827058b7de5c01cbf93c7d7c2e2e8ccae07a80427598832e3bb2c3d" `
+      - ctree_index: ` 616 `
+      - source_ea: ` 4208284 `
+      - line_number: ` 241 `
+      - column_number: ` 16 `
+    - api_name: ` "socket" `
+    - api_family: ` "socket" `
+    - api_binding:
+      - symbol: ` "socket" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "socket(v21, 1, 17)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "v21" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "1" `
+      - [2]:
+        - index: ` 3 `
+        - expression: ` "17" `
+    - return_expression: ` "v23" `
+
+## covered_api_calls
+
+- covered_api_calls: ` [] `
+
+## planning_findings
+
+`{}`
+
+
+## execution
+
+- tasks:
+  - network:network-cs:f92a752c1d859967a3e6eea0:
+    - subject_id: ` "network-cs:f92a752c1d859967a3e6eea0" `
+    - status: ` "failed" `
+    - failure:
+      - kind: ` "invalid_output" `
+      - reason: ` "Synthetic semantic analysis failure; retain the unresolved interaction." `
+      - provider: ` null `
+      - code: ` null `
+  - network:network-cs:363953ebe71c78115cc96dae:
+    - subject_id: ` "network-cs:363953ebe71c78115cc96dae" `
+    - status: ` "failed" `
+    - failure:
+      - kind: ` "invalid_output" `
+      - reason: ` "Synthetic semantic analysis failure; retain the unresolved interaction." `
+      - provider: ` null `
+      - code: ` null `
+  - network:network-cs:7924a19494cb40a40d66ba2a:
+    - subject_id: ` "network-cs:7924a19494cb40a40d66ba2a" `
+    - status: ` "failed" `
+    - failure:
+      - kind: ` "invalid_output" `
+      - reason: ` "Synthetic semantic analysis failure; retain the unresolved interaction." `
+      - provider: ` null `
+      - code: ` null `
+  - network:network-cs:39bb9f95507166c5fb900c1e:
+    - subject_id: ` "network-cs:39bb9f95507166c5fb900c1e" `
+    - status: ` "failed" `
+    - failure:
+      - kind: ` "invalid_output" `
+      - reason: ` "Synthetic semantic analysis failure; retain the unresolved interaction." `
+      - provider: ` null `
+      - code: ` null `
+  - network:network-cs:a8dd2b3fb261fbd1ee505766:
+    - subject_id: ` "network-cs:a8dd2b3fb261fbd1ee505766" `
+    - status: ` "failed" `
+    - failure:
+      - kind: ` "invalid_output" `
+      - reason: ` "Synthetic semantic analysis failure; retain the unresolved interaction." `
+      - provider: ` null `
+      - code: ` null `
+  - network:network-cs:8f599518f411b9ce79196d25:
+    - subject_id: ` "network-cs:8f599518f411b9ce79196d25" `
+    - status: ` "failed" `
+    - failure:
+      - kind: ` "invalid_output" `
+      - reason: ` "Synthetic semantic analysis failure; retain the unresolved interaction." `
+      - provider: ` null `
+      - code: ` null `
+  - network:network-cs:82725831377ea8559bf93ed1:
+    - subject_id: ` "network-cs:82725831377ea8559bf93ed1" `
+    - status: ` "failed" `
+    - failure:
+      - kind: ` "invalid_output" `
+      - reason: ` "Synthetic semantic analysis failure; retain the unresolved interaction." `
+      - provider: ` null `
+      - code: ` null `
+  - network:network-cs:a1d17dfad6ecd7edc5aa50e1:
+    - subject_id: ` "network-cs:a1d17dfad6ecd7edc5aa50e1" `
+    - status: ` "failed" `
+    - failure:
+      - kind: ` "invalid_output" `
+      - reason: ` "Synthetic semantic analysis failure; retain the unresolved interaction." `
+      - provider: ` null `
+      - code: ` null `
+  - network:network-cs:e9787221d8daea4979557966:
+    - subject_id: ` "network-cs:e9787221d8daea4979557966" `
+    - status: ` "failed" `
+    - failure:
+      - kind: ` "invalid_output" `
+      - reason: ` "Synthetic semantic analysis failure; retain the unresolved interaction." `
+      - provider: ` null `
+      - code: ` null `
+- status: ` "failed" `

@@ -1,0 +1,175 @@
+{
+  "schema_version": 3,
+  "target_identity": {
+    "target_basename": "httpd",
+    "selected_rootfs_path": "usr/sbin/httpd",
+    "executable_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "argv0": "httpd",
+    "target_aliases": [],
+    "firmware_sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "source_artifacts": {
+    "ipc": {
+      "source_kind": "ipc",
+      "relative_path": "ipc_reports/ipc_analysis_result.json",
+      "schema_version": 26,
+      "phase": "full"
+    },
+    "file": {
+      "source_kind": "file",
+      "relative_path": "file_reports/file_resolver_result.json",
+      "schema_version": 9,
+      "phase": "full"
+    },
+    "network": {
+      "source_kind": "network",
+      "relative_path": "network_reports/network_analysis_result.json",
+      "schema_version": 8,
+      "phase": "full"
+    },
+    "process": {
+      "source_kind": "process",
+      "relative_path": "process_lifecycle_reports/process_lifecycle_analysis_result.json",
+      "schema_version": 2,
+      "phase": "full"
+    },
+    "init_launch": {
+      "source_kind": "init_launch",
+      "relative_path": "init_launch_reports/init_launch_analysis_result.json",
+      "schema_version": 4,
+      "phase": null
+    }
+  },
+  "evidence_items": {
+    "file:file_dev_nvram": {
+      "evidence_ref": "file:file_dev_nvram",
+      "source_kind": "file",
+      "source_id": "file_dev_nvram",
+      "evidence_kind": "file_resource",
+      "subject": "/dev/nvram",
+      "summary": "The service requires the nvram device during startup.",
+      "facts": {
+        "path_kind": "concrete",
+        "resource_class": "pseudo_fs_dev",
+        "expectation": "expected_present",
+        "violation_effect": "fatal_exit",
+        "observed_apis": [],
+        "code_owners": [
+          "httpd::main@0x1000"
+        ],
+        "code_callsites": [
+          "file-callsite"
+        ]
+      },
+      "related_source_ids": [
+        "file-callsite"
+      ]
+    },
+    "ipc:dependency-uds": {
+      "evidence_ref": "ipc:dependency-uds",
+      "source_kind": "ipc",
+      "source_id": "dependency-uds",
+      "evidence_kind": "ipc_dependency",
+      "subject": "httpd startup requires the peer UDS endpoint.",
+      "summary": "httpd startup requires the peer UDS endpoint.",
+      "facts": {
+        "channel_id": "channel-uds",
+        "mechanism": "uds",
+        "resources": [
+          "uds_path=/var/run/peer.sock"
+        ],
+        "verified_peers": [
+          "usr/sbin/peer|argv0=peer|role=server"
+        ],
+        "peer_requirement": "availability",
+        "local_impact": "process_blocked",
+        "verification_status": "verified_agent",
+        "code_owners": [
+          "usr/sbin/httpd::main@0x1000"
+        ],
+        "code_callsites": [
+          "ipc-callsite"
+        ]
+      },
+      "related_source_ids": [
+        "channel-uds",
+        "endpoint-target"
+      ]
+    },
+    "network:network-listener": {
+      "evidence_ref": "network:network-listener",
+      "source_kind": "network",
+      "source_id": "network-listener",
+      "evidence_kind": "network_interaction",
+      "subject": "listener, local=0.0.0.0, local_port=80",
+      "summary": "httpd creates a TCP listener on port 80.",
+      "facts": {
+        "interaction_kind": "listener",
+        "identity_resolution": "exact",
+        "family": "AF_INET",
+        "socket_type": "SOCK_STREAM",
+        "protocol": "TCP",
+        "local_address": "0.0.0.0",
+        "local_port": 80,
+        "remote_address": null,
+        "remote_port": null,
+        "hostname": null,
+        "service": null,
+        "interface": null,
+        "operation": null,
+        "netlink_protocol": null,
+        "expectation": "expected_absent",
+        "violation_effect": "fatal_exit"
+      },
+      "related_source_ids": [
+        "network-callsite"
+      ]
+    },
+    "process:process-callsite": {
+      "evidence_ref": "process:process-callsite",
+      "source_kind": "process",
+      "source_id": "process-callsite",
+      "evidence_kind": "process_startup_blocker",
+      "subject": "httpd::main:L40:C8 exit",
+      "summary": "Missing nvram device terminates startup.",
+      "facts": {
+        "api_name": "exit",
+        "event_kind": "termination",
+        "disposition": "startup_blocker",
+        "evidence_scope": "static_conditional_witness",
+        "trigger_callsite_ids": [],
+        "trigger_inputs": [
+          "path:/dev/nvram"
+        ]
+      },
+      "related_source_ids": [
+        "process-callsite"
+      ]
+    }
+  },
+  "launch_candidates": {
+    "launch-httpd": {
+      "launch_site": {
+        "path": "etc/init.d/httpd",
+        "location": "line 12",
+        "text": "/usr/sbin/httpd -f /etc/httpd.conf &"
+      },
+      "executable_path": "usr/sbin/httpd",
+      "command_template": [
+        "/usr/sbin/httpd",
+        "-f",
+        "/etc/httpd.conf"
+      ],
+      "initialization_chain": [
+        {
+          "path": "etc/init.d/httpd",
+          "location": "line 12",
+          "text": "/usr/sbin/httpd -f /etc/httpd.conf &"
+        }
+      ],
+      "preparation_actions": [],
+      "recipe_id": "launch-httpd"
+    }
+  },
+  "gaps": {}
+}

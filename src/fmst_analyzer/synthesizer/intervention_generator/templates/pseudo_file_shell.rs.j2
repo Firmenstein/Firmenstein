@@ -1,0 +1,38 @@
+//! Placeholder PseudoFile impl for paths {{ pseudo_file_paths|join(", ") }}.
+//! Agent will overwrite this shell with the Unit's resource behavior.
+//!
+//! Canonical imports (verified against fmst-iib-api): keep these as-is.
+
+use fmst_iib_api::context::IIBContextOps;
+use fmst_iib_api::pseudo_file::{PseudoFile, PseudoFileOpen};
+use fmst_iib_api::types::{Errno, GuestAddr};
+
+pub struct PseudoFileImpl;
+
+impl PseudoFileImpl {
+    /// Select the resource implementation for an exact registered path.
+    /// Agents should replace this with path-specific state construction when
+    /// one Unit owns more than one resource path.
+    pub fn for_path(path: &str) -> Option<Self> {
+        match path {
+{% for path in pseudo_file_paths %}
+            "{{ path }}" => Some(Self),
+{% endfor %}
+            _ => None,
+        }
+    }
+}
+
+impl PseudoFile for PseudoFileImpl {
+    // PLACEHOLDER — agent will override read/write/ioctl/etc. as needed.
+    fn name(&self) -> &str {
+        "{{ pseudo_file_paths[0] }}"
+    }
+}
+
+pub fn factory(path: &str, flags: i64) -> PseudoFileOpen {
+    let _ = flags;
+    PseudoFileImpl::for_path(path)
+        .map(|file| PseudoFileOpen::Handled(Box::new(file) as Box<dyn PseudoFile>))
+        .unwrap_or(PseudoFileOpen::NativeFallback)
+}

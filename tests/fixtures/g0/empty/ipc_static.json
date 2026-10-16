@@ -1,0 +1,16 @@
+{
+  "schema_version": 26,
+  "phase": "static",
+  "firmware_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "target_process": {
+    "executable_path": "usr/sbin/httpd",
+    "executable_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "argv0": "httpd"
+  },
+  "callsites": [],
+  "channels": [],
+  "dependency_assessments": [],
+  "unresolved_items": [],
+  "callsite_accounting": [],
+  "covered_api_calls": []
+}

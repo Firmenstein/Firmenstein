@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "capture_kind": "real firmware, local IDA static analysis, no Agent",
+  "firmware": "Linksys E2500 FW_E2500_3.0.05.002_20180914",
+  "firmware_sha256": "01785697c51209c9df008ee434a15265a2a8b90f791e2443cac2db5506d48e03",
+  "target_path": "usr/sbin/nvram",
+  "target_sha256": "690e220908417414f4b4b003811dda7b4f380c14eb9ec0657744bda44913c33d",
+  "report_sha256": "b40f6e0301c3638012ca67ce03849cbb7e3b9036876efd9f5f673c02faf950bf",
+  "capture_command": "python main.py test --firmware-metadata tmp/g0/20260907T051330Z/firmware/metadata.json --target-binary nvram --workdir tmp/g0/20260907T051330Z/real-work --stage process-lifecycle-static",
+  "capture_log": "tmp/g0/20260907T051330Z/real-static.log",
+  "cache_versions": {
+    "lib_dep_graph_topology": 2,
+    "call_graph": 5,
+    "semantic_snapshot": 4,
+    "semantic_renderer": 1,
+    "ida_domain": "0.5.0",
+    "ipc_agent_cache": 3
+  },
+  "source_hashes": {
+    "src/fmst_analyzer/analysis/process_lifecycle/analyzer.py": "e560496d3f9e8615809b3551cd67e3159a3b14d9278a2fec84088c1dbbb4900d",
+    "src/fmst_analyzer/analysis/process_lifecycle/analyzer_schema.py": "cb65973eec42ca063f008eb7b369181a484b21cbd0a9942ec1ee9e1d3b4677a0",
+    "src/fmst_analyzer/analysis/process_lifecycle/reports.py": "16fc06fe8c3b54e9264a63d27a2f48770951af6ec190a53ee060c08164f09ee0",
+    "src/fmst_analyzer/nodes/decompiler/ida/ctree_visitor.py": "074b4b63e1b519b5f327d8a3c37807cbe045f1a5a077f1f3373a32e21430cf77",
+    "src/fmst_analyzer/nodes/semantic.py": "3ce482b3b07b610477e046432e890d9c04ee9a8c9f5dc644c61bbb1ed96ecb13",
+    "src/fmst_analyzer/graphs/call_graph.py": "211ba15b735dea233fd5e82aa1ec141ae43b828a0d6626d1e32725bc1ba11a1a",
+    "src/fmst_analyzer/graphs/lib_dep_graph.py": "88f8e864bd87042e3635fb33ecd60e75318f787d213ff64717e919dab55f452d"
+  },
+  "result": {
+    "callsites": 1,
+    "agent_assessments": 0,
+    "stages_passed": 1
+  },
+  "replay_requires": [
+    "Python project dependencies"
+  ],
+  "capture_only_requires": [
+    "firmware image",
+    "local Docker extractor",
+    "local IDA SDK/license"
+  ],
+  "code_artifacts": {
+    "nvram_usage.c": "e9d424728277e5febcdeaf365f8d6c06d1ca66b492661cdd73c2804272c270e9",
+    "nvram_usage.s": "df4b4861b56bc2018be7d265db49b2de66a23b7b25fa28aa735a74d41d84de9b"
+  }
+}

@@ -1,0 +1,49 @@
+# unresolved — ntpclient::stuff_net_addr6
+
+- schema_version: ` 11 `
+- root_binary: ` "ntpclient" `
+- analysis:
+  - callsite_ids:
+    - ` "network-cs:39bb9f95507166c5fb900c1e" `
+  - context_anchor: ` null `
+  - applicability: ` "Scope is the captured seed invocation; caller applicability is not revalidated by this historical-response serialization fixture." `
+  - disposition: ` "unresolved" `
+  - interaction_kind: ` null `
+  - identity: ` null `
+  - coverage_flows: ` [] `
+  - api_effects: ` [] `
+  - summary: ` "Resource-level network analysis did not produce a validated result." `
+  - evidence: ` [] `
+  - missing_evidence:
+    - ` "evidence callsite network-cs:8f599518f411b9ce79196d25 disagrees with its catalog location: expected ntpclient::setup_transmit:L24 connect, got ntpclient::setup_transmit:L38 connect" `
+  - interaction_id: ` "network:bdd124e91bdd232909ffa932" `
+  - anchor_callsite_id: ` "network-cs:39bb9f95507166c5fb900c1e" `
+- callsites:
+  - network-cs:39bb9f95507166c5fb900c1e:
+    - callsite_id: ` "network-cs:39bb9f95507166c5fb900c1e" `
+    - location:
+      - binary_name: ` "ntpclient" `
+      - binary_path: ` "usr/sbin/ntpclient" `
+      - binary_sha256: ` "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2" `
+      - function_name: ` "stuff_net_addr6" `
+      - function_ea: ` 4200900 `
+      - snapshot_hash: ` "a41f0f4733866ae8e6d0a177ab76ad46fa3e5dd43b1263d7e4c62f13cf62f0c3" `
+      - ctree_index: ` 4 `
+      - source_ea: ` 4200952 `
+      - line_number: ` 9 `
+      - column_number: ` 7 `
+    - api_name: ` "gethostbyname2" `
+    - api_family: ` "resolver" `
+    - api_binding:
+      - symbol: ` "gethostbyname2" `
+      - call_kind: ` "direct" `
+      - verified: ` true `
+    - expression_text: ` "gethostbyname2(a2, 10)" `
+    - arguments:
+      - [0]:
+        - index: ` 1 `
+        - expression: ` "a2" `
+      - [1]:
+        - index: ` 2 `
+        - expression: ` "10" `
+    - return_expression: ` "v4" `

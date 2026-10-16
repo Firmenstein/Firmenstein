@@ -1,0 +1,179 @@
+# File Resource Report — `/dev/nvram`
+
+- resource_group_id: ` "file_dev_nvram_c4646f467f82" `
+- primary_path: ` "/dev/nvram" `
+- resource_class: ` "pseudo_fs_dev" `
+- callsite_reports:
+  - [0]:
+    - callsite_id: ` "libnvram.so::nvram_init::L7::open@ctree11" `
+    - containing_function_purpose: ` "Initializes the library's cached NVRAM device descriptor and shared mapping for subsequent NVRAM operations." `
+    - setup_details: ` "Calls open(\"/dev/nvram\", 2), equivalent to O_RDWR with no creation flag or mode, and stores the result in global GVar_fdata. If GVar_fdata is already nonnegative, initialization returns 0 without reopening. On success, mmap(0, 61440, 1, 1, fd, 0) creates a PROT_READ, MAP_SHARED mapping stored in GVar_dword_436F0; the descriptor remains cached and no success-path close is observed. If mmap returns -1, close(GVar_fdata) is called and GVar_fdata is reset to -1. The persisted assembly confirms the open call and global store at 0x1750-0x1768 and the mapping-failure cleanup at 0x179c-0x17b8." `
+    - usage_reports:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_init" `
+        - line_number: ` 11 `
+        - api_name: ` "mmap" `
+        - details: ` "Uses address 0, length 61440 (0xF000), protection 1 (PROT_READ), flags 1 (MAP_SHARED), the opened GVar_fdata descriptor, and offset 0. The returned mapping address is stored in global GVar_dword_436F0." `
+        - post_use_constraint: ` "The mapping result is compared with -1 at L12. A non-MAP_FAILED result returns success; -1 enters cleanup, closes GVar_fdata, resets it to -1, calls perror(\"/dev/nvram\"), and returns errno." `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_init" `
+        - line_number: ` 14 `
+        - api_name: ` "close" `
+        - details: ` "Conditionally closes GVar_fdata only after mmap returned -1; the descriptor is the global value written by the preceding open. The global descriptor is reset to -1 at L15 after this call." `
+        - post_use_constraint: ` "The close return value is ignored; execution proceeds to perror(\"/dev/nvram\") and returns the current errno." `
+      - [2]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - line_number: ` 37 `
+        - api_name: ` "ioctl" `
+        - details: ` "Passes the cached GVar_fdata descriptor, command constant 1213418566, and a null third argument. The return value is stored in v4." `
+        - post_use_constraint: ` "A negative ioctl return at L38 triggers perror(\"/dev/nvram\") only; the function continues with the ACT_IDLE update and returns the ioctl status without an observed exit or abort." `
+      - [3]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_get" `
+        - line_number: ` 23 `
+        - api_name: ` "read" `
+        - details: ` "Reads from GVar_fdata into v4, which is the caller's key string buffer (stack buffer v7 for lengths below 0x65, otherwise a malloc'd buffer), using count strlen(a1)+1. The buffer is then interpreted as a 32-bit offset/value source." `
+        - post_use_constraint: ` "The read return value is compared with 4. Exactly four bytes causes the first 32-bit word in v4 to be added to GVar_dword_436F0 and returned; any other count produces a zero result, with no exit." `
+      - [4]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_getall" `
+        - line_number: ` 11 `
+        - api_name: ` "read" `
+        - details: ` "After setting the first byte of caller buffer a1 to zero, reads from GVar_fdata into a1 with caller-supplied count a2. The return count is stored in v6." `
+        - post_use_constraint: ` "A negative count triggers perror(\"/dev/nvram\"). If v6 equals a2, the function returns 0; otherwise it returns the read count, including a short or negative result." `
+      - [5]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "sub_1B5C" `
+        - line_number: ` 28 `
+        - api_name: ` "write" `
+        - details: ` "Writes the constructed key/value record from v7 to GVar_fdata for v6 bytes. v7 points to a stack buffer for small records or a malloc'd buffer for records of length at least 0x65; the data is either \"key=value\" or the key alone when a2 is null." `
+        - post_use_constraint: ` "A negative write count triggers perror(\"/dev/nvram\") and returns the negative count after buffer cleanup. An exact count equal to v6 returns 0; a partial positive count is returned unchanged." `
+    - resource_usage_sites:
+      - [0]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_commit" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_commit → nvram_init" `
+        - context_snippet: ` "" `
+      - [1]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_get" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_get → nvram_init" `
+        - context_snippet: ` "" `
+      - [2]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_getall" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_getall → nvram_init" `
+        - context_snippet: ` "" `
+      - [3]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_set" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_set → sub_1B5C → nvram_init" `
+        - context_snippet: ` "" `
+      - [4]:
+        - binary: ` "nvram" `
+        - function: ` "nvram_unset" `
+        - representative_line: ` 0 `
+        - reached_via: ` "nvram_unset → sub_1B5C → nvram_init" `
+        - context_snippet: ` "" `
+    - total_usage_sites: ` 5 `
+- contract:
+  - expectation: ` "expected_present" `
+  - violation_effect: ` "degraded_continue" `
+- coverage_flows:
+  - [0]:
+    - flow_id: ` "nvram_device_access" `
+    - description: ` "Opens the pre-existing /dev/nvram device, maps its shared read-only window, and services read, write, and commit operations when initialization succeeds." `
+    - setup:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_init" `
+        - api_name: ` "open" `
+        - line_number: ` 7 `
+        - column_number: ` 7 `
+        - function_ea: ` 5876 `
+        - snapshot_hash: ` "450d07a170440cdd9031af34cddd7605b736e9d88fba451f3da7524dfc264198" `
+        - ctree_index: ` 11 `
+        - source_ea: ` 5976 `
+        - reason: ` "setup: open /dev/nvram O_RDWR" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_init" `
+        - api_name: ` "mmap" `
+        - line_number: ` 11 `
+        - column_number: ` 23 `
+        - function_ea: ` 5876 `
+        - snapshot_hash: ` "450d07a170440cdd9031af34cddd7605b736e9d88fba451f3da7524dfc264198" `
+        - ctree_index: ` 24 `
+        - source_ea: ` 6020 `
+        - reason: ` "setup: map 61440-byte shared read-only device window" `
+    - use:
+      - [0]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_init" `
+        - api_name: ` "close" `
+        - line_number: ` 14 `
+        - column_number: ` 4 `
+        - function_ea: ` 5876 `
+        - snapshot_hash: ` "450d07a170440cdd9031af34cddd7605b736e9d88fba451f3da7524dfc264198" `
+        - ctree_index: ` 40 `
+        - source_ea: ` 6060 `
+        - reason: ` "cleanup: close fd after mmap failure" `
+      - [1]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_commit" `
+        - api_name: ` "ioctl" `
+        - line_number: ` 37 `
+        - column_number: ` 11 `
+        - function_ea: ` 6132 `
+        - snapshot_hash: ` "6b06000de420768f1a5f6d0803e30ca81c1009d0dbdd20b492da692401d6d497" `
+        - ctree_index: ` 86 `
+        - source_ea: ` 6636 `
+        - reason: ` "use: commit NVRAM via device ioctl" `
+      - [2]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_get" `
+        - api_name: ` "read" `
+        - line_number: ` 23 `
+        - column_number: ` 7 `
+        - function_ea: ` 8528 `
+        - snapshot_hash: ` "f5545d7e8a76754e5e4672b016187c952c292d074f6685959a265b75f2e55860" `
+        - ctree_index: ` 59 `
+        - source_ea: ` 8672 `
+        - reason: ` "use: read one NVRAM value" `
+      - [3]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "nvram_getall" `
+        - api_name: ` "read" `
+        - line_number: ` 11 `
+        - column_number: ` 7 `
+        - function_ea: ` 8320 `
+        - snapshot_hash: ` "777310b474d57f2dc15a8e95e040dd40064dffd3b3635d7a5d65661e34eba046" `
+        - ctree_index: ` 22 `
+        - source_ea: ` 8440 `
+        - reason: ` "use: read the complete NVRAM buffer" `
+      - [4]:
+        - binary_name: ` "libnvram.so" `
+        - function_name: ` "sub_1B5C" `
+        - api_name: ` "write" `
+        - line_number: ` 28 `
+        - column_number: ` 7 `
+        - function_ea: ` 7004 `
+        - snapshot_hash: ` "63b2cf48c2b7cd9578ba5ddb307851d3df835e80fd5b5b9df00603725075efd8" `
+        - ctree_index: ` 76 `
+        - source_ea: ` 7216 `
+        - reason: ` "use: write an NVRAM key/value record" `
+    - termination: ` [] `
+- summary: ` "The library treats /dev/nvram as a pre-existing read/write pseudo-device and caches its descriptor in the global fdata. Successful initialization also retains a 61440-byte shared read-only mapping in dword_436F0; the descriptor is kept open for later ioctl, read, and write operations. Open or mapping failure reports through perror and returns an error, with mapping failure closing and resetting the cached descriptor. Visible callers return zero or status values, log errors, or ignore those statuses; no exit or abort path is observed. Device contents and the external effect of the commit ioctl remain instance-dependent and unavailable statically." `
+- observed_apis:
+  - ` "close" `
+  - ` "ioctl" `
+  - ` "mmap" `
+  - ` "read" `
+  - ` "write" `

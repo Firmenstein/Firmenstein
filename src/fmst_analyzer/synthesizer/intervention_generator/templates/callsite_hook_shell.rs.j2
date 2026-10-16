@@ -1,0 +1,16 @@
+//! Placeholder hook for callsite {{ callsite_id }}. Agent will overwrite.
+//!
+//! Canonical imports (verified against fmst-iib-api): keep these as-is.
+//! state_of is re-exported at fmst_iib_api::state_of (see fmst_iib_api/src/lib.rs).
+
+use fmst_iib_api::context::IIBContextOps;
+use fmst_iib_api::state_of;
+use crate::state::GlobalState;
+
+pub fn intercept(ctx: &mut dyn IIBContextOps) {
+    // PLACEHOLDER — agent must replace this body.
+    // Example state access (drop the borrow before any `ctx.native_call`):
+    //   let unit_state = &state_of::<GlobalState>(ctx).unit_<id>;
+    let _ = state_of::<GlobalState>(ctx);
+    let _ = ctx.set_return_value(0);
+}

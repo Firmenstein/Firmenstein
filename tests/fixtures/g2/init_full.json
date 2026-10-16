@@ -1,0 +1,85 @@
+{
+  "schema_version": 5,
+  "phase": "full",
+  "target_identity": {
+    "target_basename": "httpd",
+    "selected_rootfs_path": "sbin/httpd",
+    "target_aliases": [
+      "usr/sbin/httpd"
+    ]
+  },
+  "finding_target": {
+    "path": "sbin/httpd",
+    "sha256": "3bdbb4fe8397cd2b842430b39ccff01a8663c751945ef5e9a09e267fb8b1d359"
+  },
+  "initialization_roots": [
+    "etc/init.d/rcS"
+  ],
+  "planning_findings": {
+    "finding:init_launch:v1:855c41085301c4bb606bf4fbb1f46b73f0cd9917f8ae1f363082862c93f1b261": {
+      "finding_ref": "finding:init_launch:v1:855c41085301c4bb606bf4fbb1f46b73f0cd9917f8ae1f363082862c93f1b261",
+      "summary": "Initialization contains a source-backed target invocation.",
+      "boundary": {
+        "kind": "environment",
+        "anchors": [
+          {
+            "kind": "environment",
+            "ref": "/launch_recipes/launch-3e4547a2ab329cf9/launch_site"
+          }
+        ],
+        "reachability_refs": [
+          "/launch_recipes/launch-3e4547a2ab329cf9/initialization_chain/0"
+        ],
+        "coverage_refs": []
+      },
+      "claims": [
+        {
+          "kind": "guarantee",
+          "statement": "The initialization entry attempts the cited target command; readiness is not established.",
+          "evidence_refs": [
+            "/launch_recipes/launch-3e4547a2ab329cf9/launch_site"
+          ],
+          "unknown_kind": null
+        }
+      ],
+      "domain": {
+        "kind": "init_launch",
+        "recipe_id": "launch-3e4547a2ab329cf9",
+        "preparation_refs": [
+          "/launch_recipes/launch-3e4547a2ab329cf9/preparation_actions/0"
+        ]
+      }
+    }
+  },
+  "launch_recipes": {
+    "launch-3e4547a2ab329cf9": {
+      "launch_site": {
+        "path": "etc/init.d/rcS",
+        "location": "line 2",
+        "text": "/sbin/httpd -f /etc/httpd.conf"
+      },
+      "executable_path": "/sbin/httpd",
+      "command_template": [
+        "/sbin/httpd",
+        "-f",
+        "/etc/httpd.conf"
+      ],
+      "initialization_chain": [
+        {
+          "path": "etc/init.d/rcS",
+          "location": "line 2",
+          "text": "/sbin/httpd -f /etc/httpd.conf"
+        }
+      ],
+      "preparation_actions": [
+        {
+          "path": "etc/init.d/rcS",
+          "location": "line 1",
+          "text": "mkdir -p /var/run"
+        }
+      ],
+      "recipe_id": "launch-3e4547a2ab329cf9"
+    }
+  },
+  "analysis_gaps": []
+}

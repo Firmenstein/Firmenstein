@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "phase": "full",
+  "planning_findings": {
+    "finding:file:v1:2d59a814916078856d28452063080ddd9883b4658aa6ea885dc3518d2bd36ff7": {
+      "finding_ref": "finding:file:v1:2d59a814916078856d28452063080ddd9883b4658aa6ea885dc3518d2bd36ff7",
+      "summary": "The returned value layout is unresolved.",
+      "boundary": {
+        "kind": "resource",
+        "anchors": [
+          {
+            "kind": "device",
+            "ref": "/evidence/resource"
+          }
+        ],
+        "reachability_refs": [
+          "/evidence/paths/0"
+        ],
+        "coverage_refs": [
+          "/evidence/coverage/0"
+        ]
+      },
+      "claims": [
+        {
+          "kind": "unknown",
+          "statement": "The evidence does not describe the output buffer layout.",
+          "evidence_refs": [],
+          "unknown_kind": "semantics"
+        }
+      ],
+      "domain": {
+        "kind": "file",
+        "resource_id": "file_dev_nvram",
+        "path": "/dev/nvram",
+        "resource_class": "pseudo_fs_dev",
+        "callsite_ids": [
+          "file-open"
+        ]
+      }
+    }
+  },
+  "evidence": {
+    "resource": {
+      "resource_id": "file_dev_nvram",
+      "path": "/dev/nvram",
+      "resource_class": "pseudo_fs_dev"
+    },
+    "nvram_code": {
+      "binary_path": "usr/lib/libnvram.so",
+      "function_ea": 4096,
+      "function_name": "nvram_get",
+      "text": "/* get returns a pointer into the process-owned cache, valid until nvram_set replaces the value; missing keys return NULL. */"
+    },
+    "caller": {
+      "binary_path": "usr/sbin/httpd",
+      "function_ea": 8192,
+      "text": "value = nvram_get(key); if (!value) value = default_value;"
+    },
+    "file_callsite": {
+      "callsite_id": "file-open",
+      "api_name": "open",
+      "expression": "open(\"/dev/nvram\", O_RDONLY)"
+    },
+    "network": {
+      "interaction_id": "listener-http",
+      "interaction_kind": "listener",
+      "callsite_ids": [
+        "net-bind"
+      ],
+      "family": "AF_INET",
+      "address": "0.0.0.0",
+      "port": 80,
+      "text": "addr.sin_port = htons(80); bind(fd, &addr, sizeof(addr));"
+    },
+    "ipc": {
+      "channel_id": "channel-uds",
+      "mechanism": "uds",
+      "endpoint_ids": [
+        "endpoint-client"
+      ],
+      "path": "/var/run/peer.sock",
+      "text": "connect(fd, &peer_addr, sizeof(peer_addr)); send(fd, query, sizeof(query), 0); close(fd);"
+    },
+    "process": {
+      "callsite_id": "exit-startup",
+      "event_kind": "termination",
+      "text": "if (open(\"/dev/nvram\", O_RDONLY) < 0) exit(1);"
+    },
+    "launch": {
+      "recipe_id": "launch-httpd",
+      "script_path": "etc/init.d/S50httpd",
+      "text": "mkdir -p /var/run/httpd\n/usr/sbin/httpd",
+      "preparation": {
+        "path": "/var/run/httpd",
+        "operation": "mkdir"
+      }
+    },
+    "paths": [
+      {
+        "binary": "httpd",
+        "calls": [
+          "main",
+          "start_service",
+          "nvram_get"
+        ]
+      },
+      {
+        "script": "etc/init.d/S50httpd",
+        "target": "usr/sbin/httpd"
+      }
+    ],
+    "coverage": [
+      {
+        "callsite_id": "file-open",
+        "api_name": "open"
+      },
+      {
+        "callsite_id": "exit-startup",
+        "api_name": "exit"
+      }
+    ]
+  }
+}

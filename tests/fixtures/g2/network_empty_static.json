@@ -1,0 +1,15 @@
+{
+  "schema_version": 9,
+  "phase": "static",
+  "root_binary": "empty-fixture",
+  "finding_target": {
+    "path": "usr/sbin/ntpclient",
+    "sha256": "bc96a6513183bb4ef7e7623798fbfc48c2812de570e1503a7a986a524281b1a2"
+  },
+  "planning_findings": {},
+  "callsites": {},
+  "analyses": [],
+  "skipped": {},
+  "pending_callsite_ids": [],
+  "covered_api_calls": []
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 3,
+  "phase": "static",
+  "root_binary": "empty",
+  "finding_target": {
+    "path": "usr/bin/empty",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "planning_findings": {},
+  "callsites": {},
+  "assessments": {},
+  "skipped": {}
+}

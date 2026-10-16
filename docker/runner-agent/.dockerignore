@@ -1,0 +1,11 @@
+.env
+.env.*
+*.hexlic
+**/*.hexlic
+ida.reg
+**/ida.reg
+.git
+.claude
+.codex
+tmp
+__pycache__

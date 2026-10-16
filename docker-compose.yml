@@ -1,0 +1,16 @@
+services:
+  extractor-1:
+      image: extractor-firmaextractor
+      build:
+        context: ./src/fmst_basic/Extractors/FirmAExtractor
+        dockerfile: Dockerfile
+  extractor-2:
+      image: extractor-unblob
+      build:
+        context: ./src/fmst_basic/Extractors/unblob
+        dockerfile: Dockerfile
+  extractor-3:
+      image: extractor-binwalkv3
+      build:
+        context: ./src/fmst_basic/Extractors/Binwalk_v3
+        dockerfile: Dockerfile

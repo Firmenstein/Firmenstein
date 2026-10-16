@@ -1,0 +1,17 @@
+aiofiles
+httpx==0.28.1
+lief
+capstone>=5,<6
+coloredlogs
+loguru
+PyYAML
+docker
+python-dotenv
+networkx
+pydot
+grandalf
+rich
+sortedcontainers
+pydantic==2.13.5
+claude-agent-sdk==0.2.139
+ida-domain==0.5.0
