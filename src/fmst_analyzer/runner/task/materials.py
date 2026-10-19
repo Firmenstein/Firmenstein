@@ -8,7 +8,7 @@ from pathlib import Path
 from .common import write_json
 from .host import copy_tree, docker
 
-REPORT_EXCLUDES = ('runner_reports', 'runner_task_reports', 'retained-diagnosis', '__pycache__')
+REPORT_EXCLUDES = ('runner_reports', 'runner_task_reports', 'retained-diagnosis', 'traces', '__pycache__')
 
 
 def describe(source: Path, destination: str, kind: str, exclude=()) -> dict:

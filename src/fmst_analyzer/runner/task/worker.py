@@ -12,80 +12,172 @@ from .common import TASK, CONTROL, evidence_file, process_identity, write_json, 
 from .schema import ServiceCompletion
 from .options import RunnerOptions
 
-TASK_INSTRUCTIONS = """You own this firmware rehosting task end to end. Starting from the supplied
-firmware and original Generator candidate, deliver a running local environment
-the user can continue using for testing, analysis and bug reproduction.
-The delivered firmware runs through GuestWeave, with runtime trace for the
-native operations you exercise. Use its native fallback for behavior that needs
-no intervention; keep its instrumentation available while repairing the environment.
+TASK_INSTRUCTIONS = """# Firmware rehosting task
 
-Establish usability through a small, varied set of meaningful native operations,
-usually 3–5 operation types chosen for the service goal. Exercise the main local
-workflow and relevant state transitions, including reads and a reversible change
-with independent readback and restoration where applicable. Use the original
-browser UI for web management. Extend coverage when a finding blocks this scope
-or makes its results unreliable; once it is usable, identify the remaining
-unverified functionality and finish.
+## Objective
 
-Use the Generator intervention code as the primary starting point for repairing
-missing or inconsistent environment behavior. Follow a failing native operation
-to the API or resource behavior it consumes. Preserve ordinary Linux/native paths
-that already work; a failed call alone does not establish a need for intervention.
-Choose a stable boundary that supplies the required returns, outputs, lifetimes
-and side effects. Trace required state from its producer to subsequent consumers,
-and keep cooperating operations consistent. Use packaged defaults, native
-initializers, caller inputs or explicit, reversible emulation assumptions;
-returning success without the state consumed downstream is insufficient.
-Revise or add interventions and bindings, rebuild and load the implementation,
-then retry the affected native operation and observe whether the repair took
-effect. Environment preparation, native peers and private backend repair remain
-available when they address the cause more directly.
+You own this task from start to completion.
+Use the supplied firmware and the original Generator candidate.
+Make the selected service usable for local testing, analysis, and bug reproduction.
+Run the firmware through GuestWeave.
+Keep runtime traces for the native operations that you test.
+Use native fallback for operations that do not need an intervention.
+Keep runtime instrumentation available during repairs.
 
-Judge behavior against the emulated environment and intended local use.
-Unavailable physical or external dependencies may be expected limitations;
-missing local dependencies that block the service goal still need adaptation.
-Preserve native business logic and defects. A reproducible firmware bug can be
-a useful test result: distinguish it from an emulation failure using evidence,
-keep it reproducible, and state uncertainty when the cause is unresolved.
+## Input paths
 
-Consult the native Skill `fmst-task:guestweave-intervention-engineering` when
-implementing or revising an intervention, resolving API/ABI, shared-state or
-binding questions, or diagnosing its build, loading or execution. Read relevant
-references on demand and apply them to the current problem.
+These paths are inside your container.
 
-Work autonomously with full shell, editing, sudo, Internet, compilation, debugger
-and browser access in this private container. Install tools and revise your
-approach as needed. Reports and plans are fallible evidence; historical stage
-permissions do not restrict this working copy. Missing evidence or failed attempts
-call for investigation and reversible experiments. Keep traces, build output and
-browser evidence in /task/evidence and inspect the current execution selectively.
-This is unattended work: ordinary messages are progress, not requests for user
-intervention. Keep working on gaps that prevent the service goal; diagnosis alone
-is not delivery.
+| Material | Path |
+|---|---|
+| Generator code: editable working copy | /task/work/candidate |
+| Generator code: original input | /task/input/candidate |
+| Firmware rootfs: working copy | /task/work/rootfs |
+| GuestWeave and backend: working copy | /task/work/framework/GuestWeave |
+| Material index and path mappings | /task/input/materials.json |
+| Selected target reports | /task/input/reports |
+| Other analyzed targets in this firmware | /task/input/firmware-reports/<target>/ |
+| Existing C, assembly, graphs, and IDB files | /task/analysis |
+| Task identity, input paths, and launch hints | /task/task.json |
 
-Complete when actual native interactions establish a usable local environment
-for this scope. Use complete_service with the observed results, evidence, access
-instructions and limitations, and leave this same instance and service running.
-A successful build, open port, static page or requested action alone is insufficient.
-Use init-owned jobs for processes that must survive your session; the task guide
-describes them. Full physical-device equivalence, exhaustive feature testing and
-fresh-instance replay are not completion prerequisites. Never disclose model
-credentials in logs, artifacts or your final response.
+The material index records supplied files, their source paths, and missing inputs.
+Use its source-to-container mappings to locate files referenced by historical reports.
+Preserve /task/input as the original evidence.
+
+## Use the existing work
+
+Use the Generator code as the primary starting point for investigation and repair.
+At the start, review the material index and available Analyzer, Plan, and Generator report overviews.
+Use them to understand existing findings, dependencies, launch options, and the candidate implementation.
+You may use each Analyzer's review reports as supporting evidence.
+Reports are reference material only.
+They can contain false positives and false negatives.
+Do not use a report alone to confirm that a problem exists.
+Do not treat an omitted issue as proof that no problem exists.
+Read detailed reports, evidence, and related code when the current problem needs them.
+Check earlier findings against the current code and native execution.
+Reuse findings that current evidence supports.
+Investigate gaps and conflicting findings.
+
+The following report directories are under /task/input/reports:
+
+| Report | Directory |
+|---|---|
+| IPC Analyzer | ipc_reports/ |
+| File Analyzer | file_reports/ |
+| Network Analyzer | network_reports/ |
+| Process lifecycle Analyzer | process_lifecycle_reports/ |
+| Init/launch Analyzer | init_launch_reports/ |
+| Plan | intervention_plan_reports/ |
+| Generator | intervention_generation_reports/ |
+
+Start with each available index.md overview.
+Use the material index and task.json.report_paths to locate reports for other supplied targets.
+
+## Check native behavior
+
+Choose meaningful native operations that match the service goal.
+Usually, select 3–5 different operation types.
+Test the main local workflow and relevant state changes.
+Include reads.
+Where applicable, make a reversible change.
+Confirm the change with an independent readback, then restore the previous state.
+Use the original browser UI for web management.
+Extend native checks when a finding blocks this scope or makes the current results unreliable.
+Once the environment is usable for this scope, state which functions remain unverified and finish.
+
+## Repair the environment
+
+Follow a failing native operation to the API or resource behavior that it uses.
+Keep ordinary Linux and native paths that already work.
+A failed call does not, by itself, prove that an intervention is needed.
+Choose a stable API or resource boundary for the repair.
+Supply the required return values, outputs, lifetimes, and side effects.
+Trace required state from its producer to the operations that consume it.
+Keep cooperating operations consistent.
+Use packaged defaults, native initializers, or caller inputs where suitable.
+State any emulation assumptions and keep them reversible.
+A success return is insufficient if later operations do not receive the required state.
+
+Revise or add interventions and bindings as needed.
+Rebuild and load the changed implementation.
+Retry the affected native operation.
+Check whether the repair changed its behavior as intended.
+You may prepare the environment, start native peers, or repair the private backend.
+Choose these options when they address the cause more directly.
+
+## Environment limits and firmware bugs
+
+Judge behavior against this emulated environment and the intended local use.
+Missing physical or external dependencies can be expected limits.
+Adapt missing local dependencies when they block the service goal.
+Preserve native business logic and firmware defects.
+A reproducible firmware bug can be a useful test result.
+Use evidence to distinguish a firmware bug from an emulation failure.
+Keep the bug reproducible.
+If the cause is unresolved, state that it is unknown.
+
+## Tools and engineering Skill
+
+Work autonomously in this private container.
+You have full shell, editing, sudo, Internet, compiler, debugger, and browser access.
+Install tools and change your approach as needed.
+Past stage permissions do not restrict changes to this working copy.
+Investigate missing evidence and failed attempts with reversible experiments.
+This task runs without user attendance.
+Use ordinary messages to report progress.
+Continue the task without waiting for a user reply.
+Keep working on gaps that prevent the service goal.
+
+Consult the native Skill `fmst-task:guestweave-intervention-engineering` when you implement or revise an intervention.
+Also consult it for API, ABI, shared state, binding, build, loading, or execution questions.
+Read relevant references when needed.
+Apply them to the current problem.
+
+## Evidence and completion
+
+Keep runtime traces, build output, and browser evidence in /task/evidence.
+Inspect the current execution as needed for the problem.
+Do not disclose model credentials in logs, files, or responses.
+
+Complete the task when native interactions show a usable local environment for the service goal.
+A successful build, open port, static page, or requested action alone is insufficient.
+Diagnosis alone is insufficient.
+Use complete_service with the observed results, evidence, access instructions, and limits.
+Keep this same instance and service running.
+Use init-owned jobs for processes that must remain after your session ends.
+The task guide explains these jobs.
+Full physical device equivalence, exhaustive feature tests, and a replay in a new instance are not required.
 """
 
 
 def initial_message(task: dict) -> str:
     """Send task requirements and Goal as user input; keep evidence in files."""
     paths = task.get("paths", {})
-    message = (TASK_INSTRUCTIONS + "\nTask and input paths are in /task/task.json. Read the task guide at "
+    message = (TASK_INSTRUCTIONS + "\n## Task references\n\nRead the task guide at "
                "/opt/fmst/src/fmst_analyzer/runner/task/README.md.\n")
+    if task.get("input_mode") == "upstream_repair":
+        message += ("\n## Upstream repair input\n\n"
+                    "Upstream analysis/planning/generation stopped before Runner. "
+                    "Read task.json.upstream_repair and the available reports, including failed-stage reports under .attempts. "
+                    "Failed or missing analysis is not a firmware conclusion and does not prove intervention unnecessary. "
+                    "Use the supplied candidate code as the starting point. ")
+        if task.get("candidate_origin") == "diagnostic_scaffold":
+            message += ("This candidate is a GuestWeave diagnostic scaffold, not a completed Generator intervention. "
+                        "If upstream-generator code is supplied, review it as the primary repair reference, "
+                        "but verify its target, ABI and bindings before reuse. "
+                        "Investigate native loading/launch behavior and implement the necessary interventions. ")
+        message += "Preserve the original input and failure records; complete only from actual native interaction.\n"
     if engineering := paths.get("candidate_engineering"):
-        message += "Candidate layout/build reference, when needed: " + engineering + "\n"
+        message += "Candidate layout and build reference, when needed: " + engineering + "\n"
+    if task.get("delivery_mode") == "rehosting_only":
+        message += ("\n## Run mode\n\nThis task only verifies native rehosting.\n"
+                    "After complete_service, finish your response.\n"
+                    "Keep the same instance running.\n"
+                    "No post-Goal delivery document or image is required.\n")
+    message += "\n## Service goal\n\n"
     if source := task.get("goal_source"):
         message += "Goal source: " + source + "\n"
-    if task.get("delivery_mode") == "rehosting_only":
-        message += ("This run evaluates native rehosting. After complete_service, finish the response "
-                    "and retain this instance; no post-Goal delivery document or image is requested.\n")
     return message + "Goal:\n" + task["goal"]
 
 
@@ -187,6 +279,7 @@ async def run_session(settings, *, resume_message: str | None = None):
         tools.append(analysis_tool)
         event("tools_attached", tools=[item.name for item in tools], analysis="lazy subprocess")
     agent = None
+    primary_error = None
     try:
         agent = create_analysis_agent(provider="claude", model=settings["FMST_CLAUDE_MODEL"],
             reasoning_effort=settings["FMST_CLAUDE_REASONING_EFFORT"], developer_instructions="",
@@ -227,6 +320,14 @@ async def run_session(settings, *, resume_message: str | None = None):
                 "reason": "Post-Goal delivery and image capture were not requested.",
                 "finished_at": time.time()})
             event("delivery_skipped", delivery_mode=delivery_mode)
+    except BaseException as error:
+        primary_error = error
+        from fmst_analyzer.runner.repair_intake import persist_pipeline_failure
+        try:
+            persist_pipeline_failure(TASK / "evidence", error, "runner")
+        except Exception as recording_error:
+            error.add_note("Runner failure record could not be saved: " + type(recording_error).__name__)
+        raise
     finally:
         if completed is not None and not (TASK / "delivery/handoff-status.json").exists():
             write_json(TASK / "delivery/handoff-status.json", {
@@ -235,8 +336,17 @@ async def run_session(settings, *, resume_message: str | None = None):
         try:
             if agent is not None:
                 await agent.aclose()
+        except BaseException as cleanup_error:
+            if primary_error is None:
+                raise
+            primary_error.add_note("Runner Agent close also failed: " + type(cleanup_error).__name__)
         finally:
-            await analysis.close()
+            try:
+                await analysis.close()
+            except BaseException as cleanup_error:
+                if primary_error is None:
+                    raise
+                primary_error.add_note("Runner analysis close also failed: " + type(cleanup_error).__name__)
             finish_agent_phase()
             event("agent_exited", completed=completed is not None)
 

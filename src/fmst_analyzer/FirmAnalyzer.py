@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import sys
 from pathlib import Path
 from typing import List
 
@@ -55,6 +54,10 @@ class FirmAnalyzer:
         )
         self.lib_dep_graph: LibDepGraph | None = None
         self._firmware_import_index = None
+        self._stage = "input"
+        self._runner_entered = False
+        self._view_for_runner = None
+        self._active_generator = None
         logger.info(
             f"[FirmAnalyzer] image={self.image_name}, "
             f"target={self.initial_target_name}"
@@ -64,11 +67,37 @@ class FirmAnalyzer:
         from fmst_basic.FirmProbe.admission import inspect_target_input
         from .analysis.base.report_io import write_model_json, write_text
         from .analysis.base.finding_reports import render_fields
-        admission = inspect_target_input(self.fw_rootfs_path, self.initial_target_path)
         self.global_config.current_target = self.initial_target_name
         report_dir = self.global_config.target_diagnostic_reports_dir()
-        write_model_json(report_dir / "input_admission.json", admission)
-        write_text(report_dir / "input_admission.md", "# Analyzer input admission\n\n" + render_fields(admission.model_dump(mode="json")))
+        try:
+            self._stage = "input"
+            admission = inspect_target_input(self.fw_rootfs_path, self.initial_target_path)
+            write_model_json(report_dir / "input_admission.json", admission)
+            write_text(report_dir / "input_admission.md", "# Analyzer input admission\n\n" + render_fields(admission.model_dump(mode="json")))
+            if self.run_after_generation and not self.skip_synthesis:
+                from .runner.identity import tree_sha256
+                from .analysis.base.input_provenance import file_digest
+                from fmst_basic.utils.guest_paths import resolve_guest_file
+                selected = resolve_guest_file(self.fw_rootfs_path, admission.resolved_path)
+                self._repair_source_identity = {"target_sha256": file_digest(selected[1]),
+                                                "rootfs_sha256": tree_sha256(self.fw_rootfs_path)}
+            await self._run_pipeline()
+        except BaseException as error:
+            from .runner.repair_intake import blocks_new_runner, persist_pipeline_failure
+            try:
+                persist_pipeline_failure(report_dir, error, self._stage)
+            except Exception as recording_error:
+                error.add_note(f"Failure record could not be saved: {type(recording_error).__name__}")
+            if (not isinstance(error, Exception) or self._stage == "input"
+                    or not self.run_after_generation or self.skip_synthesis or self._runner_entered
+                    or getattr(self.global_config, "runner_backend", "agent_container") != "agent_container"
+                    or blocks_new_runner(error)):
+                raise
+            await self._run_upstream_repair(error)
+        logger.info("[FirmAnalyzer] pipeline complete")
+
+    async def _run_pipeline(self) -> None:
+        self._stage = "dependency_graph"
         self.lib_dep_graph = LibDepGraph(
             rootfs_path=self.fw_rootfs_path,
             global_config=self.global_config,
@@ -77,20 +106,51 @@ class FirmAnalyzer:
         self.lib_dep_graph.add_binary(self.initial_target_path)
         target = self.lib_dep_graph.get_node_by_name(self.initial_target_name)
         if target is None:
-            logger.error(
-                f"Initial target {self.initial_target_name} not found in LibDepGraph"
-            )
-            sys.exit(1)
+            raise RuntimeError(f"Initial target {self.initial_target_name} not found in LibDepGraph")
         self.global_config.current_target = target.name
         await self._analyze_target(target)
-        logger.info("[FirmAnalyzer] pipeline complete")
+
+    async def _run_upstream_repair(self, error: Exception) -> None:
+        from .runner import create_runner, runner_succeeded
+        from .runner.repair_intake import UpstreamRepairInput, persist_repair_input
+        from .analysis.base.report_io import write_text
+        import json
+        repair = UpstreamRepairInput.capture(error=error, stage=self._stage,
+                                             rootfs=self.fw_rootfs_path, target=self.initial_target_path)
+        repair.generator_materials_current = bool(self._active_generator and
+                                                   getattr(self._active_generator, "_generation_started", False))
+        if (repair.target_sha256 != self._repair_source_identity["target_sha256"]
+                or repair.rootfs_sha256 != self._repair_source_identity["rootfs_sha256"]):
+            raise ValueError("Target/rootfs changed during upstream analysis; refusing Runner handoff") from error
+        persist_repair_input(self.global_config.target_diagnostic_reports_dir(), repair)
+        self._stage, self._runner_entered = "runner", True
+        try:
+            result = await create_runner(self.global_config, max_attempts=self.runner_max_attempts,
+                                         runtime_timeout_seconds=self.runner_timeout_seconds).run(
+                view=self._view_for_runner, rootfs=self.fw_rootfs_path,
+                runtime_workspace=runtime_workspace(self.global_config), repair_input=repair)
+        except BaseException as runner_error:
+            from .runner.repair_intake import persist_pipeline_failure
+            try:
+                persist_pipeline_failure(self.global_config.target_diagnostic_reports_dir() / "runner_handoff_failure",
+                                         runner_error, "runner")
+            except Exception as recording_error:
+                runner_error.add_note("Runner failure record could not be saved: " + type(recording_error).__name__)
+            raise
+        write_text(self.global_config.target_diagnostic_reports_dir() / "upstream_repair_outcome.json",
+                   json.dumps({"schema_version": 1, "failed_stage": repair.failed_stage,
+                               "runner_status": result.status, "runner_succeeded": runner_succeeded(result)}, indent=2))
+        if not runner_succeeded(result):
+            raise RuntimeError(f"Runner ended with status={result.status}; original upstream failure is retained") from error
 
     async def _analyze_target(self, target: BinaryNode) -> None:
         assert self.lib_dep_graph is not None
+        self._stage = "decompile"
         await self.lib_dep_graph.decompile_analysis(target)
         api_dep_graph = self.lib_dep_graph.get_decompiled_adg(target)
         api_dep_graph.dump_full_graph(self.global_config.graph_dots_dir)
         view = AnalysisView(adg=api_dep_graph)
+        self._stage = "ctree_validation"
         failures = {
             name: result
             for name, result in view.ctree_integrity_check().items()
@@ -98,6 +158,7 @@ class FirmAnalyzer:
         }
         if failures:
             raise RuntimeError(f"CTree decompile-analysis integrity failed: {failures}")
+        self._view_for_runner = view
 
         await self._run_analyzers(target, view)
         if self.skip_synthesis:
@@ -126,6 +187,7 @@ class FirmAnalyzer:
             firmware_sha256=self._fw_metadata["sha256"],
             target_argv0=self.initial_target_name,
         )
+        self._stage = "ipc"
         ipc = await IPCAnalyzer(self.global_config).run(
             view, peer_context=peer_context
         )
@@ -134,17 +196,20 @@ class FirmAnalyzer:
             f"[FirmAnalyzer] IPCAnalyzer: {len(ipc.callsites)} callsites, "
             f"{len(ipc.channels)} channels"
         )
+        self._stage = "file"
         file_result = await FileResolver(self.global_config).run(view, phase="full")
         file_result.execution.require_complete()
         logger.info(
             f"[FirmAnalyzer] FileResolver: {len(file_result.callsites)} callsites"
         )
+        self._stage = "network"
         network = await NetworkAnalyzer(self.global_config).run(view, phase="full")
         network.execution.require_complete()
         logger.info(
             f"[FirmAnalyzer] NetworkAnalyzer: {len(network.callsites)} callsites, "
             f"{len(network.analyses)} analyses"
         )
+        self._stage = "process"
         process = await ProcessLifecycleAnalyzer(self.global_config).run(
             view, phase="full"
         )
@@ -153,6 +218,7 @@ class FirmAnalyzer:
             f"[FirmAnalyzer] ProcessLifecycleAnalyzer: "
             f"{len(process.assessments)} assessments"
         )
+        self._stage = "init_launch"
         launch = await InitLaunchAnalyzer(self.global_config).run(target.binary_path)
         launch.execution.require_complete()
         logger.info(
@@ -168,8 +234,11 @@ class FirmAnalyzer:
             InterventionPlanAnalyzer,
         )
 
+        self._stage = "plan"
         await InterventionPlanAnalyzer(self.global_config).run(view)
-        result = await InterventionGenerator(self.global_config).run(
+        self._stage = "generation"
+        self._active_generator = InterventionGenerator(self.global_config)
+        result = await self._active_generator.run(
             view=view,
             image_name=self.image_name,
             arch=detect_generator_arch(view.root.binary_path),
@@ -196,7 +265,13 @@ class FirmAnalyzer:
             # The selected backend consumes the original published candidate.
             # Container success retains the actual interacted-with instance.
             from fmst_analyzer.runner import create_runner, runner_succeeded
+            from fmst_analyzer.runner.task.inputs import load_bound_candidate
 
+            self._stage = "runner_input_preparation"
+            if getattr(self.global_config, "runner_backend", "agent_container") == "agent_container":
+                load_bound_candidate(self.global_config.target_diagnostic_reports_dir(), self.global_config)
+
+            self._stage, self._runner_entered = "runner", True
             runner_result = await create_runner(
                 self.global_config,
                 max_attempts=self.runner_max_attempts,

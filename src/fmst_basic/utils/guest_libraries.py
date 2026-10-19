@@ -6,6 +6,7 @@ gaps instead of selecting an arbitrary recursive basename match.
 """
 from pathlib import Path, PurePosixPath
 import struct
+import re
 
 import lief
 
@@ -26,13 +27,32 @@ class GuestLibraryResolver:
         # use their ELF class/data to select the standard directories instead
         # of rejecting an otherwise valid dependency root.
         interpreter = PurePosixPath(binary.interpreter).name if binary.interpreter else ""
-        if "uClibc" in interpreter or not interpreter:
+        self._musl = bool(re.fullmatch(r"ld-musl-[A-Za-z0-9_-]+\.so\.1", interpreter))
+        if self._musl:
+            self.default_dirs = self._musl_directories(binary.interpreter)
+        elif "uClibc" in interpreter or not interpreter:
             self.default_dirs = ("/lib", "/usr/lib", "/usr/X11R6/lib")
         elif interpreter.startswith("ld-linux"):
             self.default_dirs = ("/lib64", "/usr/lib64") if binary.header.identity_class == lief.ELF.Header.CLASS.ELF64 else ("/lib", "/usr/lib")
         else:
             raise ValueError(f"Unsupported guest loader {binary.interpreter!r} for {executable}")
-        self.cached_paths = self._read_cache(binary.header.identity_data)
+        self.cached_paths = {} if self._musl else self._read_cache(binary.header.identity_data)
+
+    def _musl_directories(self, interpreter: str) -> tuple[str, ...]:
+        """Read musl's colon/newline path file, relative to the loader prefix.
+
+        An existing empty file disables the default search. musl does not use
+        glibc's ld.so.cache. Guest links are resolved only inside the rootfs.
+        """
+        loader = PurePosixPath(interpreter)
+        config = loader.parent.parent / "etc" / (loader.name.removesuffix(".so.1") + ".path")
+        path = _resolve_guest_symlink(self.rootfs / config.relative_to("/"), self.rootfs)
+        if path is None:
+            return ("/lib", "/usr/local/lib", "/usr/lib")
+        content = path.read_text(encoding="utf-8")
+        if "\x00" in content:
+            raise ValueError(f"Invalid musl library search path file: {config}")
+        return tuple(value for value in re.split(r"[:\n]", content) if value)
 
     def _elf(self, path):
         path = Path(path).absolute()
@@ -95,11 +115,20 @@ class GuestLibraryResolver:
         directories = []
         # RPATH is inherited down the loading chain. RUNPATH applies only to
         # direct dependencies and suppresses that importer's RPATH search.
-        if runpath is None:
+        if self._musl:
+            # musl follows needed_by for both RUNPATH and RPATH, preferring
+            # RUNPATH in each importing image. glibc only inherits RPATH.
+            for owner in (importer, *loader_chain):
+                paths = self._paths(owner, lief.ELF.DynamicEntry.TAG.RUNPATH)
+                if paths is None:
+                    paths = self._paths(owner, lief.ELF.DynamicEntry.TAG.RPATH)
+                directories.extend((p, owner) for p in (paths or []))
+        elif runpath is None:
             for owner in (importer, *loader_chain):
                 if self._paths(owner, lief.ELF.DynamicEntry.TAG.RUNPATH) is None:
                     directories.extend((p, owner) for p in (self._paths(owner, lief.ELF.DynamicEntry.TAG.RPATH) or []))
-        directories.extend((p, importer) for p in (runpath or []))
+        if not self._musl:
+            directories.extend((p, importer) for p in (runpath or []))
         unknown_paths = []
 
         def accept(candidate):
@@ -136,7 +165,14 @@ class GuestLibraryResolver:
         if cached:
             return accept(cached.pop())
         for directory in self.default_dirs:
-            candidate = self._candidate(PurePosixPath(directory) / needed)
+            try:
+                guest_directory = self._expand(directory, importer)
+            except ValueError:
+                unknown_paths.append((str(importer), directory))
+                continue
+            candidate = self._candidate(guest_directory / needed)
             if candidate is not None:
                 return accept(candidate)
+        if unknown_paths:
+            raise ValueError(f"Guest library search requires unknown launch context for {needed!r}: {unknown_paths}")
         return None

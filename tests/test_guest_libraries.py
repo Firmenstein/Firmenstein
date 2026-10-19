@@ -100,3 +100,61 @@ def test_shared_object_without_pt_interp_uses_guest_default_dirs(tmp_path, monke
     )
     resolver = GuestLibraryResolver(tmp_path, executable)
     assert resolver.resolve("libshared.so", executable) == library
+
+
+def _musl(root, monkeypatch, *, interpreter="/lib/ld-musl-mipsel-sf.so.1", entries=()):
+    executable = root / "bin/service"
+    tag = lief.ELF.DynamicEntry.TAG
+    metadata = SimpleNamespace(interpreter=interpreter, header=SimpleNamespace(), dynamic_entries=[
+        SimpleNamespace(tag=getattr(tag, name), paths=paths) for name, paths in entries])
+    monkeypatch.setattr(GuestLibraryResolver, "_elf", lambda self, path:
+                        metadata if path == executable else SimpleNamespace(dynamic_entries=[]))
+    return GuestLibraryResolver(root, executable), executable
+
+
+def test_musl_default_order_ignores_glibc_cache(tmp_path, monkeypatch):
+    first = _library(tmp_path, "usr/local/lib/libshared.so", b"musl")
+    _library(tmp_path, "usr/lib/libshared.so", b"other")
+    cache = tmp_path / "etc/ld.so.cache"
+    cache.parent.mkdir()
+    cache.write_bytes(b"unsupported glibc cache must be ignored by musl")
+    resolver, exe = _musl(tmp_path, monkeypatch)
+    assert resolver.default_dirs == ("/lib", "/usr/local/lib", "/usr/lib")
+    assert resolver.resolve("libshared.so", exe) == first
+
+
+@pytest.mark.parametrize("interpreter,prefix", [("/lib/ld-musl-mipsel-sf.so.1", ""),
+    ("/opt/musl/lib/ld-musl-mipsel-sf.so.1", "opt/musl/")])
+def test_musl_path_file_uses_loader_prefix_and_guest_symlinks(tmp_path, monkeypatch, interpreter, prefix):
+    selected = _library(tmp_path, "custom/libshared.so")
+    _library(tmp_path, "lib/libshared.so", b"default")
+    config = tmp_path / prefix / "etc/ld-musl-mipsel-sf.path"
+    config.parent.mkdir(parents=True)
+    data = tmp_path / "paths"
+    data.write_text("/absent:\n/custom\n")
+    config.symlink_to("/paths")
+    resolver, exe = _musl(tmp_path, monkeypatch, interpreter=interpreter)
+    assert resolver.resolve("libshared.so", exe) == selected
+
+
+def test_musl_empty_path_file_disables_defaults(tmp_path, monkeypatch):
+    _library(tmp_path, "lib/libshared.so")
+    config = tmp_path / "etc/ld-musl-mipsel-sf.path"
+    config.parent.mkdir()
+    config.write_text("")
+    resolver, exe = _musl(tmp_path, monkeypatch)
+    assert resolver.resolve("libshared.so", exe) is None
+
+
+def test_musl_runpath_preferred_and_inherited(tmp_path, monkeypatch):
+    preferred = _library(tmp_path, "preferred/libshared.so")
+    _library(tmp_path, "ignored/libshared.so", b"rpath")
+    resolver, exe = _musl(tmp_path, monkeypatch, entries=[("RUNPATH", ["$ORIGIN/../preferred"]),
+                                                       ("RPATH", ["/ignored"])])
+    assert resolver.resolve("libshared.so", tmp_path / "lib/child.so", (exe,)) == preferred
+
+
+def test_musl_unknown_search_context_is_a_gap(tmp_path, monkeypatch):
+    resolver, exe = _musl(tmp_path, monkeypatch, entries=[("RUNPATH", ["relative"])])
+    with pytest.raises(ValueError, match="unknown launch context"):
+        resolver.resolve("missing.so", exe)

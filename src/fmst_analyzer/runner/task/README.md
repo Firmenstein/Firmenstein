@@ -19,6 +19,48 @@ C/assembly and IDB directories. `resolve_material_path` resolves historical
 report paths without rewriting their provenance. This is a firmware-scoped
 copy, not the host workdir; unrelated firmware and old Runner dumps are excluded.
 
+Start investigation and repair from the Generator code in `/task/work/candidate`;
+`/task/input/candidate` preserves the original. Review the material index and
+available Analyzer, Plan and Generator overviews to understand prior findings,
+dependencies, launch options and the candidate. Each Analyzer's review reports
+can support the investigation. Read details and corresponding code relevant to
+the current problem on demand, and check prior conclusions against native execution.
+Analyzer, Plan and Generator reports are reference material only. They can contain
+false positives and false negatives. Check relevant findings against the current
+code and native execution; an omitted issue does not prove that no problem exists.
+
+When `input_mode="upstream_repair"`, an ordinary upstream tool/analysis failure
+prevented a usable publication. `task.json.upstream_repair.input` binds the
+selected ELF and original rootfs hashes and retains the failed stage, actual
+exception chain and task execution ledger. Failed reports remain under `.attempts`;
+they are partial evidence and are never complete-cache or Catalog sources.
+Prefer a validated Generator publication when supplied. Otherwise
+`candidate_origin="diagnostic_scaffold"` identifies a fresh GuestWeave executable
+with native syscall tracing, not a completed intervention or a firmware success.
+Fresh unfinished Generator files may be supplied separately in `upstream-generator`
+as unvalidated repair material. Verify their input, ABI and bindings before reuse.
+Investigate the native failure and implement interventions where needed.
+Provider, resource, cancellation and input-identity failures prohibit this handoff.
+The same Runner keeps its original budget and native completion criteria.
+
+The selected target's report directories are:
+
+| Material | Container directory |
+|---|---|
+| IPC Analyzer | `/task/input/reports/ipc_reports/` |
+| File Analyzer | `/task/input/reports/file_reports/` |
+| Network Analyzer | `/task/input/reports/network_reports/` |
+| Process lifecycle Analyzer | `/task/input/reports/process_lifecycle_reports/` |
+| Init/launch Analyzer | `/task/input/reports/init_launch_reports/` |
+| Plan | `/task/input/reports/intervention_plan_reports/` |
+| Generator | `/task/input/reports/intervention_generation_reports/` |
+
+Start with each available `index.md`; the same directories contain structured
+JSON and detailed reports. Reports for other analyzed targets in this firmware
+are under `/task/input/firmware-reports/<target>/`, as indexed by
+`/task/input/materials.json` and `task.json.report_paths`. Resolve source paths
+quoted in reports to these container copies before reading the referenced material.
+
 Firmware rootfs input uses a GNU tar stream with numeric ownership, permissions,
 links, ACLs and xattrs preserved. Both the received tree and its working copy are
 checked before this session starts. `/task/evidence/input-transfer/rootfs/` holds

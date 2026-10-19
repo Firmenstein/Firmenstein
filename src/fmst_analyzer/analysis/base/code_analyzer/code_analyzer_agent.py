@@ -403,6 +403,7 @@ class CodeAnalyzerAgent:
         output = None
         turn_message = full_message
         from fmst_analyzer.analysis.base.execution import check_analysis_dispatch
+        primary_error = None
         try:
             attempt = 0
             while True:
@@ -477,10 +478,23 @@ class CodeAnalyzerAgent:
                     provider=result.provider,
                     model=self.model,
                 )
+        except BaseException as error:
+            primary_error = error
+            raise
         finally:
-            await agent.aclose()
+            try:
+                await agent.aclose()
+            except BaseException as cleanup_error:
+                if primary_error is None:
+                    raise
+                primary_error.add_note(f"Agent close also failed: {type(cleanup_error).__name__}")
             if trace_handler:
-                trace_handler.write_summary()
+                try:
+                    trace_handler.write_summary()
+                except Exception as recording_error:
+                    if primary_error is None:
+                        raise
+                    primary_error.add_note(f"Trace summary also failed: {type(recording_error).__name__}")
 
         if output is None:
             raise RuntimeError("Agent returned no structured output")

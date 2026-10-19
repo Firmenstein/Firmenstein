@@ -560,6 +560,7 @@ class ClaudeAnalysisAgent:
         self._tool_budget = _ClaudeToolBudget(max_tool_calls_per_turn, None)
         self._native_tool_scope: asyncio.Timeout | None = None
         self._active_native_tools: dict[str, tuple[float, str]] = {}
+        self._native_tool_inputs: dict[str, dict] = {}
         self._filesystem_guard = _make_filesystem_guard(
             self.workdir,
             [*self.readable_roots, *skill_roots],
@@ -734,6 +735,7 @@ class ClaudeAnalysisAgent:
             asyncio.get_running_loop().time() + self.default_tool_timeout_seconds,
             input_data["tool_name"],
         ))
+        self._native_tool_inputs[identity] = dict(input_data.get("tool_input") or {})
         self._reschedule_native_tools()
         return {}
 
@@ -747,6 +749,7 @@ class ClaudeAnalysisAgent:
             return {}
         identity = tool_use_id or input_data["tool_use_id"]
         self._active_native_tools.pop(identity, None)
+        self._native_tool_inputs.pop(identity, None)
         self._reschedule_native_tools()
         return {}
 
@@ -774,11 +777,17 @@ class ClaudeAnalysisAgent:
             self._session.resuming = True
             self._options.session_id = None
             self._options.resume = self._session_id
+        from .resources import prepare_native_fd_limit
+        limits = prepare_native_fd_limit()
+        logger.debug("Native Agent NOFILE soft={}, hard={}", limits["soft"], limits["hard"])
         client = ClaudeSDKClient(options=self._options)
         try:
             await client.connect()
-        except BaseException:
-            await client.disconnect()
+        except BaseException as error:
+            try:
+                await client.disconnect()
+            except BaseException as cleanup_error:
+                error.add_note(f"SDK disconnect also failed: {type(cleanup_error).__name__}")
             raise
         self._client = client
         self._connected_once = True
@@ -858,9 +867,13 @@ class ClaudeAnalysisAgent:
             # turn. Disconnect it before surfacing a per-task failure.
             self._client = None
             if client is not None:
-                await client.disconnect()
+                try:
+                    await client.disconnect()
+                except BaseException as cleanup_error:
+                    error.add_note(f"SDK disconnect also failed: {type(cleanup_error).__name__}")
             if native_tool_deadline.expired():
-                _deadline, tool_name = min(self._active_native_tools.values())
+                identity = min(self._active_native_tools, key=self._active_native_tools.get)
+                _deadline, tool_name = self._active_native_tools[identity]
                 timeout_error = AgentTurnTimeoutError(
                     provider="claude", model=self.model,
                     timeout_seconds=self.default_tool_timeout_seconds,
@@ -868,6 +881,21 @@ class ClaudeAnalysisAgent:
                     tool_calls_seen=self._tool_budget.count,
                     limit=self.default_tool_timeout_seconds,
                 )
+                # Preserve the actual expired call before clearing the SDK
+                # stream. No response/completion/transcript is copied here.
+                from fmst_basic.utils.diagnostics import diagnostic_reason
+                details = diagnostic_reason(RuntimeError(json.dumps(
+                    {"tool": tool_name, "timeout_seconds": self.default_tool_timeout_seconds,
+                     "input": self._native_tool_inputs.get(identity, {})}, ensure_ascii=False)))
+                evidence = self.session_dir / "native-tool-timeout.json"
+                timeout_error.tool_diagnostic = {"at": time.time(), "tool": tool_name,
+                                                 "timeout_seconds": self.default_tool_timeout_seconds,
+                                                 "diagnostic": details}
+                try:
+                    evidence.write_text(json.dumps({"schema_version": 1, **timeout_error.tool_diagnostic}, indent=2) + "\n")
+                    timeout_error.add_note("Expired native tool diagnostic: " + str(evidence))
+                except OSError as recording_error:
+                    timeout_error.add_note("Tool diagnostic file could not be saved: " + type(recording_error).__name__)
             elif turn_deadline.expired():
                 timeout_error = AgentTurnTimeoutError(
                     provider="claude",
@@ -881,6 +909,8 @@ class ClaudeAnalysisAgent:
                 if trace is not None:
                     _trace_fail(trace, error, "provider_error", prompt=prompt)
                 raise AgentProviderError(str(error), provider="claude", model=self.model) from error
+            for note in getattr(error, "__notes__", []):
+                timeout_error.add_note(note)
             if trace is not None:
                 _trace_fail(trace, timeout_error, timeout_error.code, prompt=prompt)
             raise timeout_error
@@ -892,7 +922,10 @@ class ClaudeAnalysisAgent:
                 _trace_fail(trace, error, "cancelled", prompt=prompt)
             self._client = None
             if client is not None:
-                await client.disconnect()
+                try:
+                    await client.disconnect()
+                except BaseException as cleanup_error:
+                    error.add_note(f"SDK disconnect also failed: {type(cleanup_error).__name__}")
             raise
         except ClaudeSDKError as error:
             if trace is not None:
@@ -918,6 +951,7 @@ class ClaudeAnalysisAgent:
         finally:
             self._native_tool_scope = None
             self._active_native_tools.clear()
+            self._native_tool_inputs.clear()
 
         if result_message is None:
             error = AgentProviderError(

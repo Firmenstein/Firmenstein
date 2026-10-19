@@ -30,6 +30,7 @@ def test_generation_candidate_reaches_runner_only_when_requested(tmp_path, monke
     monkeypatch.setattr(generator, "InterventionGenerator", Stage)
     monkeypatch.setattr(runner, "create_runner", Repair)
     monkeypatch.setattr(module, "detect_generator_arch", lambda _: "arm")
+    monkeypatch.setattr(import_module("fmst_analyzer.runner.task.inputs"), "load_bound_candidate", lambda *a: None)
     framework = tmp_path / "framework"
     framework.mkdir()
     obj = object.__new__(module.FirmAnalyzer)

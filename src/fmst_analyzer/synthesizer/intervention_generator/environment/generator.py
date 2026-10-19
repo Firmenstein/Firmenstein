@@ -145,6 +145,7 @@ Environment generation input:
         seen = set()
         round_index = 0
         original_failure_code = None
+        primary_error = None
         try:
             while True:
                 round_index += 1
@@ -160,7 +161,13 @@ Environment generation input:
                     response = await asyncio.wait_for(agent.ainvoke(message, trace=trace),
                         timeout=max(0.001, deadline - time.monotonic()))
                 except Exception as error:
-                    trace.write_summary()
+                    from fmst_analyzer.runner.repair_intake import blocks_new_runner
+                    if blocks_new_runner(error):
+                        raise
+                    try:
+                        trace.write_summary()
+                    except Exception as recording_error:
+                        error.add_note("Trace summary also failed: " + type(recording_error).__name__)
                     code = getattr(error, "code", None) or "provider_error"
                     if code != "structured_output_error":
                         return outcome_result(status="unable", reason=str(error).strip() or repr(error), failure_code=code)
@@ -196,8 +203,16 @@ Environment generation input:
                     return outcome_result(status="completed" if validation_error is None else "unable",
                         reason=reason, failure_code=code)
                 seen.add(key)
+        except BaseException as error:
+            primary_error = error
+            raise
         finally:
-            await agent.aclose()
+            try:
+                await agent.aclose()
+            except BaseException as cleanup_error:
+                if primary_error is None:
+                    raise
+                primary_error.add_note("Environment Agent close also failed: " + type(cleanup_error).__name__)
 
 
 

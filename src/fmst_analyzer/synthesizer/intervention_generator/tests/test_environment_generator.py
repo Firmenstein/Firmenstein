@@ -8,6 +8,7 @@ from fmst_analyzer.synthesizer.intervention_plan_analyzer.tests.fixtures import 
 
 import asyncio
 import json
+import pytest
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -578,3 +579,24 @@ def test_environment_corrects_syntax_in_original_session_and_retains_bad_source(
     assert result.status == 'completed' and fake_agent.closed and len(fake_agent.prompts) == 2
     assert 'failed static compilation' in fake_agent.prompts[1]
     assert (tmp_path / 'traces/environment-feedback-01/candidate/setup_rootfs.py').read_text() == 'return\n'
+
+
+@pytest.mark.parametrize('kind', ['provider', 'resource'])
+def test_environment_provider_resource_stop_propagates_and_cleanup_preserves_primary(tmp_path, monkeypatch, kind):
+    from fmst_basic.agent import AgentProviderError
+    error = AgentProviderError('response interrupted', provider='test') if kind == 'provider' else OSError(24, 'fds')
+    class Agent:
+        closed = False
+        async def ainvoke(self, *a, **k): raise error
+        async def aclose(self):
+            self.closed = True
+            raise RuntimeError('cleanup error')
+    agent = Agent()
+    monkeypatch.setattr(environment_generator_module, 'create_analysis_agent', lambda **k: agent)
+    monkeypatch.setattr(environment_generator_module, 'FindingEvidenceResolver', _FakeEvidenceResolver)
+    with pytest.raises(type(error)) as caught:
+        asyncio.run(EnvironmentGenerator(_config(tmp_path)).run(plan=_plan(), catalog=_catalog(),
+            diagnostic_reports_root=tmp_path / 'reports', env_scripts_root=tmp_path / 'env_scripts',
+            rootfs_path=_rootfs(tmp_path), trace_root=tmp_path / 'traces'))
+    assert caught.value is error and agent.closed
+    assert any('close also failed' in note for note in error.__notes__)

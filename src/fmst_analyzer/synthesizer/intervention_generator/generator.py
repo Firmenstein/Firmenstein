@@ -210,6 +210,8 @@ class InterventionGenerator:
             max(1, int(global_config.agent_concurrency_limit))
         )
         self._active_handles: list[AgentHandle] = []
+        self._dispatch_stop: BaseException | None = None
+        self._generation_started = False
 
     @scoped("InterventionGenerator")
     async def run(
@@ -225,11 +227,14 @@ class InterventionGenerator:
         env_scripts_root: Path,
         iib_api_abspath: Path,
     ) -> InterventionGenerationResult:
+        self._generation_started = False
+        self._dispatch_stop = None
         catalog, plan = load_persisted_intervention_plan(
             diagnostic_reports_root, global_config=self.global_config,
             require_current_implementation=False,
         )
         archive_stage_outputs(self.global_config, "generation")
+        self._generation_started = True
         self._active_handles = []
         try:
             await self._run_impl(
@@ -245,6 +250,8 @@ class InterventionGenerator:
                 env_scripts_root=Path(env_scripts_root),
                 iib_api_abspath=Path(iib_api_abspath),
             )
+            if self._dispatch_stop is not None:
+                raise self._dispatch_stop
             return load_persisted_intervention_generation(
                 diagnostic_reports_root,
                 plan,
@@ -327,6 +334,9 @@ class InterventionGenerator:
                 unit_ids=selected_env_ids,
             )
         except Exception as error:
+            from fmst_analyzer.runner.repair_intake import blocks_new_runner
+            if blocks_new_runner(error):
+                raise
             environment = EnvironmentGenerationResult(
                 status="unable",
                 unit_ids=sorted(selected_env_ids),
@@ -467,6 +477,8 @@ class InterventionGenerator:
                     )
 
             async def run_one(unit: InterventionUnit) -> None:
+                if self._dispatch_stop is not None:
+                    return
                 started_units.add(unit.unit_id)
                 try:
                     await self._run_unit(
@@ -506,6 +518,9 @@ class InterventionGenerator:
                         )
                     raise
                 except Exception as error:  # noqa: BLE001 - isolate Unit
+                    from fmst_analyzer.runner.repair_intake import blocks_new_runner
+                    if blocks_new_runner(error):
+                        self._dispatch_stop = self._dispatch_stop or error
                     _mark_unit_failure(
                         states[unit.unit_id],
                         code=_failure_code(error),
@@ -532,6 +547,8 @@ class InterventionGenerator:
                         )
                 await checkpoint()
                 raise
+            if self._dispatch_stop is not None:
+                raise self._dispatch_stop
             correction_deadline = time.monotonic() + 3600
             seen_failures: set[tuple] = set()
             self._mark_inactive(states, crate_root, test_root)
@@ -725,6 +742,9 @@ class InterventionGenerator:
         except asyncio.CancelledError:
             raise
         except Exception as error:  # noqa: BLE001 - isolate this Unit
+            from fmst_analyzer.runner.repair_intake import blocks_new_runner
+            if blocks_new_runner(error):
+                raise
             response = error
         state.agent_outcome = self._record_agent_response(
             state,
@@ -786,6 +806,9 @@ class InterventionGenerator:
             except asyncio.CancelledError:
                 raise
             except Exception as error:
+                from fmst_analyzer.runner.repair_intake import blocks_new_runner
+                if blocks_new_runner(error):
+                    raise
                 response = error
             state.agent_outcome = self._record_agent_response(state, response,
                 crate_root=crate_root, test_root=test_root, source_snapshot=snapshot)
@@ -812,12 +835,20 @@ class InterventionGenerator:
         trace: Any | None = None,
     ):
         async with self._sem:
+            if self._dispatch_stop is not None:
+                raise self._dispatch_stop
             try:
-                return await invoke_agent(handle, message, trace=trace)
-            except TypeError as error:
-                if "unexpected keyword argument 'trace'" not in str(error):
-                    raise
-                return await invoke_agent(handle, message)
+                try:
+                    return await invoke_agent(handle, message, trace=trace)
+                except TypeError as error:
+                    if "unexpected keyword argument 'trace'" not in str(error):
+                        raise
+                    return await invoke_agent(handle, message)
+            except BaseException as error:
+                from fmst_analyzer.runner.repair_intake import blocks_new_runner
+                if blocks_new_runner(error):
+                    self._dispatch_stop = self._dispatch_stop or error
+                raise
 
     @staticmethod
     def _record_agent_response(

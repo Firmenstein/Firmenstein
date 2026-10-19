@@ -253,6 +253,10 @@ def test_claude_native_tool_deadline_only_applies_while_tool_active(outcome, mon
             assert caught.value.code == "tool_timeout"
             assert caught.value.last_tool == "Read"
             assert client.disconnected
+            import json
+            diagnostic = json.loads((agent.session_dir / "native-tool-timeout.json").read_text())
+            assert '"file_path": "local"' in diagnostic["diagnostic"]
+            assert any("native-tool-timeout.json" in note for note in caught.value.__notes__)
         else:
             assert (await agent.ainvoke("inspect")).status == "completed"
         assert agent._native_tool_scope is None

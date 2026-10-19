@@ -8,25 +8,18 @@ from __future__ import annotations
 
 from contextvars import ContextVar
 import asyncio
+import errno
 from functools import wraps
-import re
 from typing import Awaitable, Callable, Literal, TypeVar
 
-from pydantic import BaseModel, ConfigDict, Field, ValidationError, computed_field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, computed_field, model_validator, model_serializer
 
 from .output_validation import OutputValidationError
 
 from fmst_basic.agent.analysis_agent import AgentProviderError, AgentTurnTimeoutError, AgentToolStepLimitError
+from fmst_basic.utils.diagnostics import diagnostic_reason
 
 T = TypeVar("T")
-
-
-def diagnostic_reason(error: BaseException) -> str:
-    """Preserve diagnostic text while removing recognizable credentials."""
-    text = f"{type(error).__name__}: {error}"
-    text = re.sub(r"(?i)(bearer\s+)[^\s\"',;]+", r"\1[REDACTED]", text)
-    text = re.sub(r"(?i)((?:api[_-]?key|authorization|access_token)[\"']?\s*[=:]\s*[\"']?)[^\s\"',;&]+", r"\1[REDACTED]", text)
-    return re.sub(r"\bsk-[A-Za-z0-9_-]{12,}\b", "[REDACTED]", text)
 
 
 class TaskFailure(BaseModel):
@@ -35,6 +28,17 @@ class TaskFailure(BaseModel):
     reason: str = Field(min_length=1, description="Execution diagnostic, never a claim about firmware semantics.")
     provider: str | None = None
     code: str | None = None
+    errno: int | None = Field(default=None, description="Actual OS errno from the exception chain, if available; never inferred from a wrapper class.")
+    tool_diagnostic: dict | None = Field(default=None, description="Sanitized actual timed-out tool input and deadline, without its response or transcript.")
+
+    @model_serializer(mode="wrap")
+    def preserve_existing_records(self, serialize):
+        value = serialize(self)
+        if self.errno is None:
+            value.pop("errno", None)
+        if self.tool_diagnostic is None:
+            value.pop("tool_diagnostic", None)
+        return value
 
 
 class TaskOutcome(BaseModel):
@@ -78,9 +82,7 @@ class AnalysisExecution(BaseModel):
 
     def require_complete(self) -> None:
         if self.status != "complete":
-            raise ValueError("Analyzer execution is " + self.status + ": " + "; ".join(
-                f"{key}: {item.failure.reason}" for key, item in self.tasks.items() if item.failure
-            ))
+            raise AnalysisIncompleteError(self)
 
     def validate_phase(self, phase: str) -> None:
         if phase == "static" and self.tasks:
@@ -89,6 +91,31 @@ class AnalysisExecution(BaseModel):
 
 class AnalysisNotStarted(RuntimeError):
     pass
+
+
+class AnalysisIncompleteError(ValueError):
+    """Preserve the task ledger when crossing the pipeline failure boundary."""
+
+    def __init__(self, execution: AnalysisExecution):
+        self.execution = execution.model_copy(deep=True)
+        super().__init__("Analyzer execution is " + execution.status + ": " + "; ".join(
+            f"{key}: {item.failure.reason}" for key, item in execution.tasks.items() if item.failure
+        ))
+
+
+def exception_chain(error: BaseException):
+    """Walk actual causes/contexts, retaining order and avoiding cycles."""
+    seen = set()
+    pending = [error]
+    while pending:
+        error = pending.pop()
+        if error is None or id(error) in seen:
+            continue
+        seen.add(id(error))
+        yield error
+        if isinstance(error, BaseExceptionGroup):
+            pending.extend(reversed(error.exceptions))
+        pending.append(error.__cause__ or (None if error.__suppress_context__ else error.__context__))
 
 
 class ExecutionTracker:
@@ -112,29 +139,38 @@ class ExecutionTracker:
             if value is None:
                 raise ValueError("analysis task returned no validated result")
         except BaseException as error:
-            if getattr(error, "code", None) == "structured_output_error":
-                kind = "invalid_output"
-            elif isinstance(error, AgentProviderError):
+            chain = list(exception_chain(error))
+            provider_error = next((item for item in chain if isinstance(item, AgentProviderError)), None)
+            actual_errnos = [item.errno for item in chain if isinstance(item, OSError) and item.errno is not None]
+            resource_errno = next((value for value in actual_errnos if value in
+                                   {errno.EMFILE, errno.ENFILE, errno.ENOMEM, errno.ENOSPC}),
+                                  actual_errnos[0] if actual_errnos else None)
+            if provider_error is not None:
                 kind = "provider"
+            elif any(not isinstance(item, Exception) for item in chain):
+                kind = "cancelled"
+            elif getattr(error, "code", None) == "structured_output_error":
+                kind = "invalid_output"
             elif isinstance(error, (AgentTurnTimeoutError, TimeoutError)):
                 kind = "timeout"
             elif isinstance(error, AgentToolStepLimitError):
                 kind = "limit"
             elif isinstance(error, AnalysisNotStarted):
                 kind = "not_started"
-            elif isinstance(error, asyncio.CancelledError):
-                kind = "cancelled"
             elif isinstance(error, (OutputValidationError, ValidationError)):
                 kind = "invalid_output"
             elif isinstance(error, OSError):
                 kind = "tool"
             else:
                 kind = "internal"
-            failure = TaskFailure(kind=kind, reason=diagnostic_reason(error),
-                                  provider=getattr(error, "provider", None), code=getattr(error, "code", None))
+            failure = TaskFailure(kind=kind, reason="; caused by ".join(diagnostic_reason(item) for item in chain),
+                                  provider=getattr(provider_error or error, "provider", None),
+                                  code=getattr(provider_error or error, "code", None), errno=resource_errno,
+                                  tool_diagnostic=next((item.tool_diagnostic for item in chain
+                                                        if getattr(item, "tool_diagnostic", None) is not None), None))
             self.record.tasks[key] = TaskOutcome(subject_id=subject_id,
                 status="not_started" if kind == "not_started" else "failed", failure=failure)
-            if kind == "provider":
+            if kind == "provider" or resource_errno in {errno.EMFILE, errno.ENFILE, errno.ENOMEM, errno.ENOSPC}:
                 self.provider_failure = failure
             if not isinstance(error, Exception):
                 raise

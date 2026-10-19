@@ -18,7 +18,7 @@ class ContainerRehostingRunner:
         if max_attempts is not None:
             raise ValueError("agent_container uses a shared time budget; max_attempts is only supported by legacy")
 
-    async def run(self, *, view, rootfs: Path, runtime_workspace: Path):
+    async def run(self, *, view, rootfs: Path, runtime_workspace: Path, repair_input=None):
         # Read once at Runner entry, so a queued pipeline can receive explicit
         # delivery options without restarting its upstream analysis.
         options = RunnerOptions()
@@ -30,14 +30,19 @@ class ContainerRehostingRunner:
             options.delivery_mode = RunnerOptions(delivery_mode=self.delivery_mode).delivery_mode
         if self.resources is not None:
             options.resources = RunnerOptions(resources=self.resources).resources
+        if repair_input is not None:
+            # No Docker/model side effects before validating original input
+            # identity and the upstream dispatch-stop condition.
+            repair_input.validate_source(rootfs)
         output = self.config.target_diagnostic_reports_dir() / "runner_task_reports" / uuid.uuid4().hex
         task = ContainerTask(output=output, target=self.config.current_target,
             image=os.environ.get("FMST_RUNNER_AGENT_IMAGE", "firmenstein/runner-agent:py312-runtime"),
             budget_seconds=self.timeout, delivery_mode=options.delivery_mode, resources=options.resources)
         try:
             task.create()
+            kwargs = {"repair_input": repair_input} if repair_input is not None else {}
             spec = prepare(task, config=self.config, view=view, rootfs=rootfs, framework=runtime_workspace,
-                           service_goal=self.service_goal)
+                           service_goal=self.service_goal, **kwargs)
             task.configure(spec)
             return await task.run()
         except BaseException as error:
